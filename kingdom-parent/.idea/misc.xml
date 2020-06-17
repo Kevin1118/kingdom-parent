@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/kingdom-user-web/pom.xml" />
+        <option value="$PROJECT_DIR$/kingdom-user-service/pom.xml" />
+        <option value="$PROJECT_DIR$/kingdom-interface/pom.xml" />
+        <option value="$PROJECT_DIR$/kingdom-interface/kingdom-interface-user-service/pom.xml" />
+        <option value="$PROJECT_DIR$/kingdom-util/pom.xml" />
+        <option value="$PROJECT_DIR$/kingdom-pojo/pom.xml" />
+        <option value="$PROJECT_DIR$/kingdom-vojo/pom.xml" />
+        <option value="$PROJECT_DIR$/kingdom-dto/pom.xml" />
+        <option value="$PROJECT_DIR$/kingdom-dao/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
