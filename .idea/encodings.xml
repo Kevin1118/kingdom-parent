@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-dao" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-dto" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-interface" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-interface/kingdom-interface-user-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-pojo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-user-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-user-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-user-web/src/main/resources/application.yml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/kingdom-util" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-vojo" charset="UTF-8" />
+  </component>
+</project>
