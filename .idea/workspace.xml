@@ -22,17 +22,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="新增投顾人模块，包含注册方法">
-      <change afterPath="$PROJECT_DIR$/kingdom-pojo/src/main/java/com/kingdom/pojo/LoginTicket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/commonUtils/CommonUtils.java" afterDir="false" />
+    <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="新增投顾人登录模块">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-consultant-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-consultant-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-consultant-service/src/main/java/com/kingdom/consultant/service/impl/ConsultantServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-consultant-service/src/main/java/com/kingdom/consultant/service/impl/ConsultantServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-consultant-web/src/main/java/com/kingdom/consultant/web/ConsultantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-consultant-web/src/main/java/com/kingdom/consultant/web/ConsultantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ConsultantMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ConsultantMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ConsultantMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ConsultantMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-interface/kingdom-interface-consultant-service/src/main/java/com/kingdom/consultant/service/ConsultantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-interface/kingdom-interface-consultant-service/src/main/java/com/kingdom/consultant/service/ConsultantService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-pojo/src/main/java/com/kingdom/pojo/Consultant.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-pojo/src/main/java/com/kingdom/pojo/Consultant.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +70,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../community" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../kingdom-parent" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.27941176" />
@@ -273,7 +264,7 @@
       <workItem from="1592622945845" duration="178000" />
       <workItem from="1592628166942" duration="5964000" />
       <workItem from="1592634648116" duration="806000" />
-      <workItem from="1592635643737" duration="8376000" />
+      <workItem from="1592635643737" duration="10460000" />
     </task>
     <task id="LOCAL-00001" summary="新增投顾人模块，包含注册方法">
       <created>1592633837802</created>
@@ -282,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592633837803</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="新增投顾人登录模块">
+      <created>1592644683485</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1592644683485</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -307,7 +305,8 @@
       <path value="$PROJECT_DIR$/kingdom-repo" />
     </ignored-roots>
     <MESSAGE value="新增投顾人模块，包含注册方法" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增投顾人模块，包含注册方法" />
+    <MESSAGE value="新增投顾人登录模块" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增投顾人登录模块" />
   </component>
   <component name="WindowStateProjectService">
     <state x="578" y="176" key="#Project_Structure" timestamp="1592630430545">
@@ -334,42 +333,42 @@
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
     <state x="651" y="514" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592630134102" />
-    <state x="1254" y="360" key="FileChooserDialogImpl" timestamp="1592635829370">
+    <state x="1254" y="360" key="FileChooserDialogImpl" timestamp="1592645199926">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
-    <state x="1254" y="360" key="FileChooserDialogImpl/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592635829370" />
-    <state width="1483" height="508" key="GridCell.Tab.0.bottom" timestamp="1592644262097">
+    <state x="1254" y="360" key="FileChooserDialogImpl/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592645199926" />
+    <state width="1483" height="508" key="GridCell.Tab.0.bottom" timestamp="1592644647122">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
-    <state width="1483" height="508" key="GridCell.Tab.0.bottom/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592644262097" />
-    <state width="1483" height="508" key="GridCell.Tab.0.center" timestamp="1592644262097">
+    <state width="1483" height="508" key="GridCell.Tab.0.bottom/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592644647122" />
+    <state width="1483" height="508" key="GridCell.Tab.0.center" timestamp="1592644647122">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
-    <state width="1483" height="508" key="GridCell.Tab.0.center/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592644262097" />
-    <state width="1483" height="508" key="GridCell.Tab.0.left" timestamp="1592644262097">
+    <state width="1483" height="508" key="GridCell.Tab.0.center/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592644647122" />
+    <state width="1483" height="508" key="GridCell.Tab.0.left" timestamp="1592644647122">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
-    <state width="1483" height="508" key="GridCell.Tab.0.left/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592644262097" />
-    <state width="1483" height="508" key="GridCell.Tab.0.right" timestamp="1592644262097">
+    <state width="1483" height="508" key="GridCell.Tab.0.left/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592644647122" />
+    <state width="1483" height="508" key="GridCell.Tab.0.right" timestamp="1592644647122">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
-    <state width="1483" height="508" key="GridCell.Tab.0.right/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592644262097" />
-    <state width="1483" height="508" key="GridCell.Tab.1.bottom" timestamp="1592644262098">
+    <state width="1483" height="508" key="GridCell.Tab.0.right/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592644647122" />
+    <state width="1483" height="508" key="GridCell.Tab.1.bottom" timestamp="1592644647122">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
-    <state width="1483" height="508" key="GridCell.Tab.1.bottom/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592644262098" />
-    <state width="1483" height="508" key="GridCell.Tab.1.center" timestamp="1592644262098">
+    <state width="1483" height="508" key="GridCell.Tab.1.bottom/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592644647122" />
+    <state width="1483" height="508" key="GridCell.Tab.1.center" timestamp="1592644647122">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
-    <state width="1483" height="508" key="GridCell.Tab.1.center/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592644262098" />
-    <state width="1483" height="508" key="GridCell.Tab.1.left" timestamp="1592644262097">
+    <state width="1483" height="508" key="GridCell.Tab.1.center/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592644647122" />
+    <state width="1483" height="508" key="GridCell.Tab.1.left" timestamp="1592644647122">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
-    <state width="1483" height="508" key="GridCell.Tab.1.left/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592644262097" />
-    <state width="1483" height="508" key="GridCell.Tab.1.right" timestamp="1592644262098">
+    <state width="1483" height="508" key="GridCell.Tab.1.left/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592644647122" />
+    <state width="1483" height="508" key="GridCell.Tab.1.right" timestamp="1592644647122">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
-    <state width="1483" height="508" key="GridCell.Tab.1.right/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592644262098" />
+    <state width="1483" height="508" key="GridCell.Tab.1.right/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592644647122" />
     <state x="1047" y="242" width="996" height="717" key="SettingsEditor" timestamp="1592622584767">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
@@ -378,10 +377,14 @@
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
     <state x="773" y="298" key="SpringBootCustomization/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592464845269" />
-    <state x="690" y="335" key="Vcs.Push.Dialog.v2" timestamp="1592633859092">
+    <state x="690" y="335" key="Vcs.Push.Dialog.v2" timestamp="1592644688668">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
-    <state x="690" y="335" key="Vcs.Push.Dialog.v2/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592633859092" />
+    <state x="690" y="335" key="Vcs.Push.Dialog.v2/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592644688668" />
+    <state x="798" y="389" key="git4idea.merge.GitPullDialog" timestamp="1592646580032">
+      <screen x="0" y="0" width="2194" height="1204" />
+    </state>
+    <state x="798" y="389" key="git4idea.merge.GitPullDialog/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592646580032" />
     <state x="785" y="296" key="new project wizard" timestamp="1592628692265">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
