@@ -5,21 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service/src/main/java/com/kingdom/sign/service/KingdomInterfaceSignServiceApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service/src/test/java/com/kingdom/sign/service/KingdomInterfaceSignServiceApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-interface/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-interface/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-product-web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-product-web/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-product-web/src/main/java/com/kingdom/product/web/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-product-web/src/main/java/com/kingdom/product/web/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-user-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-user-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-user-service/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,16 +23,37 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Tag Library Descriptor" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
+        <option value="Tag Library Descriptor" />
+        <option value="FxmlFile" />
+        <option value="spring-beans.schema" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JsFlowSettings">
@@ -61,16 +77,18 @@
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.27941176" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.ignored.files" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.kingdom.product.service" />
       <recent name="com.kingdom.product" />
       <recent name="com.kingdom.user" />
     </key>
@@ -101,52 +119,10 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.KingdomUserWebApplication (1)">
-    <configuration name="KingdomDaoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="kingdom-dao" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.dao.KingdomDaoApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="KingdomDtoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="kingdom-dto" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.dto.KingdomDtoApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="KingdomInterfaceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="kingdom-interface" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.kingdominterfaceservice.KingdomInterfaceApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="KingdomInterfaceSignServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="kingdom-interface-sign-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.sign.service.KingdomInterfaceSignServiceApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="KingdomInterfaceUserServiceApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="kingdom-interface-user-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.user.KingdomInterfaceUserServiceApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="KingdomInterfaceUserServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="kingdom-interface-user-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.kingdominterface.user.service.KingdomInterfaceUserServiceApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="KingdomPojoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="kingdom-pojo" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.pojo.KingdomPojoApplication" />
+  <component name="RunManager" selected="Spring Boot.KingdomProductWebApplication">
+    <configuration name="KingdomProductServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="kingdom-product-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.product.service.KingdomProductServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -165,7 +141,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="KingdomUserWebApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+    <configuration name="KingdomUserWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
       <module name="kingdom-user-web" />
       <extension name="coverage">
         <pattern>
@@ -174,51 +150,37 @@
         </pattern>
       </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.user.KingdomUserWebApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="KingdomUserWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="kingdom-user-web" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.kingdomuserweb.KingdomUserWebApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="KingdomUtilApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="kingdom-util" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.KingdomUtilApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="KingdomVojoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="kingdom-vojo" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.vojo.KingdomVojoApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.KingdomProductWebApplication" />
+      <item itemvalue="Spring Boot.KingdomUserServiceApplication" />
+      <item itemvalue="Spring Boot.KingdomProductServiceApplication" />
+      <item itemvalue="Spring Boot.KingdomUserWebApplication" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.KingdomUserWebApplication (1)" />
+        <item itemvalue="Spring Boot.KingdomUserWebApplication" />
       </list>
     </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="allServicesViewState">
       <serviceView>
-        <option name="contentProportion" value="0.21002024" />
+        <option name="contentProportion" value="0.20767982" />
         <treeState>
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@d21f4220" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@647da856" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@d21f4220" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@3f51ee98" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@647da856" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@db0bbe36" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
           </expand>
           <select />
@@ -240,8 +202,17 @@
       <workItem from="1592295836916" duration="14107000" />
       <workItem from="1592361893531" duration="13301000" />
       <workItem from="1592449165065" duration="4309000" />
-      <workItem from="1592642953945" duration="1016000" />
+      <workItem from="1592642953945" duration="7691000" />
+      <workItem from="1592652156053" duration="5620000" />
     </task>
+    <task id="LOCAL-00001" summary="新增了product-web模块，在父依赖中引入">
+      <created>1592644187147</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1592644187147</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -265,5 +236,7 @@
       <path value="$PROJECT_DIR$/kingdom-parent" />
       <path value="$PROJECT_DIR$/kingdom-repo" />
     </ignored-roots>
+    <MESSAGE value="新增了product-web模块，在父依赖中引入" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增了product-web模块，在父依赖中引入" />
   </component>
 </project>

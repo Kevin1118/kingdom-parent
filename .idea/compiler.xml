@@ -10,7 +10,9 @@
         <module name="kingdom-dto" />
         <module name="kingdom-user-service" />
         <module name="kingdom-product-web" />
+        <module name="kingdom-interface-product-service" />
         <module name="kingdom-pojo" />
+        <module name="kingdom-product-service" />
         <module name="kingdom-vojo" />
         <module name="kingdom-user-web" />
         <module name="kingdom-util" />
@@ -18,9 +20,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="kingdom-interface-product-service" target="1.8" />
       <module name="kingdom-interface-sign-service" target="1.8" />
-      <module name="kingdom-product-service" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -28,10 +28,12 @@
       <module name="kingdom-dao" options="-parameters" />
       <module name="kingdom-dto" options="-parameters" />
       <module name="kingdom-interface" options="-parameters" />
+      <module name="kingdom-interface-product-service" options="-parameters" />
       <module name="kingdom-interface-sign-service" options="-parameters" />
       <module name="kingdom-interface-user-service" options="-parameters" />
       <module name="kingdom-parent" options="-parameters" />
       <module name="kingdom-pojo" options="-parameters" />
+      <module name="kingdom-product-service" options="-parameters" />
       <module name="kingdom-product-web" options="-parameters" />
       <module name="kingdom-user-service" options="-parameters" />
       <module name="kingdom-user-web" options="-parameters" />

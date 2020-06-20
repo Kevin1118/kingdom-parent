@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.kingdom.dao.ProductMapper">
+
+
+    <select id="selectProductById" parameterType="java.lang.Integer" resultType="com.kingdom.pojo.Product">
+        select
+        *
+        from `product`
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectProductAll" parameterType="java.lang.Integer" resultType="com.kingdom.pojo.Product">
+        select
+        *
+        from `product`
+    </select>
+
+</mapper>
