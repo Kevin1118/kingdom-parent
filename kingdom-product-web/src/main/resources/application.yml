@@ -1,9 +1,9 @@
 server:
-  port: 9001
+  port: 9003
 
 dubbo:
   application:
-    name: user-web
+    name: product-web
 
   registry:
     address: zookeeper://123.57.46.173:2181
@@ -12,7 +12,7 @@ dubbo:
     timeout: 10000
 # Swagger
 swagger:
-  title: DevPlatform Api æ–‡æ¡£
+  title: DevPlatform Api ÎÄµµ
   description: DevPlatform Api Documentation
   version: 1.0.0
   termsOfServiceUrl: https://gitee.com

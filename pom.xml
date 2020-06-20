@@ -24,6 +24,7 @@
         <module>kingdom-interface</module>
         <module>kingdom-user-web</module>
         <module>kingdom-user-service</module>
+        <module>kingdom-product-web</module>
     </modules>
 
     <packaging>pom</packaging>
