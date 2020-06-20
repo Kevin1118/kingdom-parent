@@ -2,16 +2,30 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-consultant-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-consultant-web/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kingdom-dao" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-dao/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kingdom-dto" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-dto/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kingdom-interface" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-interface/kingdom-interface-consultant-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kingdom-interface/kingdom-interface-user-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-interface/kingdom-interface-user-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-interface/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-interface/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kingdom-pojo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-pojo/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kingdom-user-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-user-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kingdom-user-web" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/kingdom-user-web/src/main/resources/application.yml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/kingdom-user-web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-user-web/src/main/resources/application.yml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kingdom-util" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-util/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kingdom-vojo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kingdom-vojo/src/main/java" charset="UTF-8" />
   </component>
 </project>

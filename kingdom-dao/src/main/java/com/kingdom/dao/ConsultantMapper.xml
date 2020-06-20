@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.kingdom.dao.ConsultantMapper">
+
+    <sql id="insertFields">
+        phoneNumber,email,description,password,passwordSalt,payPassword,payPasswordSalt,name.idNumber,createTime,status
+    </sql>
+
+    <insert id="insertConsultant" parameterType="com.kingdom.pojo.Consultant">
+        insert into consultant (phoneNumber,password,passwordSalt,createTime,status)
+        values (#{phoneNumber},#{password},#{passwordSalt},#{createTime},#{status})
+    </insert>
+
+
+</mapper>

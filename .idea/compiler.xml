@@ -8,21 +8,27 @@
         <outputRelativeToContentRoot value="true" />
         <module name="kingdom-interface-user-service" />
         <module name="kingdom-dto" />
-        <module name="kingdom-interface-sign-service" />
         <module name="kingdom-user-service" />
-        <module name="kingdom-pojo" />
+        <module name="kingdom-interface-consultant-service" />
+        <module name="kingdom-interface-sign-service" />
         <module name="kingdom-vojo" />
+        <module name="kingdom-pojo" />
+        <module name="kingdom-consultant-service" />
         <module name="kingdom-user-web" />
         <module name="kingdom-util" />
+        <module name="kingdom-consultant-web" />
         <module name="kingdom-dao" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="kingdom-consultant-service" options="-parameters" />
+      <module name="kingdom-consultant-web" options="-parameters" />
       <module name="kingdom-dao" options="-parameters" />
       <module name="kingdom-dto" options="-parameters" />
       <module name="kingdom-interface" options="-parameters" />
+      <module name="kingdom-interface-consultant-service" options="-parameters" />
       <module name="kingdom-interface-sign-service" options="-parameters" />
       <module name="kingdom-interface-user-service" options="-parameters" />
       <module name="kingdom-parent" options="-parameters" />
