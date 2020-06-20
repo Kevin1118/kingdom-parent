@@ -12,5 +12,11 @@
         values (#{phoneNumber},#{password},#{passwordSalt},#{createTime},#{status})
     </insert>
 
+    <select id="selectByPhoneNumber" resultType="com.kingdom.pojo.Consultant">
+        select *
+        from consultant
+        where phoneNumber=#{phoneNumber}
+    </select>
+
 
 </mapper>

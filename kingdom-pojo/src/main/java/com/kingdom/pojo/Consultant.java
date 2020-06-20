@@ -28,7 +28,7 @@ public class Consultant implements Serializable {
     private String name;
     private String idNumber;
     private Integer createTime;
-    private String status;
+    private Integer status;
 
 
     public Integer getId() {
@@ -119,11 +119,11 @@ public class Consultant implements Serializable {
         this.createTime = createTime;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
