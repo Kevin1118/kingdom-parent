@@ -14,7 +14,7 @@
         <option value="$PROJECT_DIR$/kingdom-vojo/pom.xml" />
         <option value="$PROJECT_DIR$/kingdom-dto/pom.xml" />
         <option value="$PROJECT_DIR$/kingdom-dao/pom.xml" />
-        <option value="$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service/pom.xml" />
+        <option value="$PROJECT_DIR$/kingdom-product-web/pom.xml" />
       </list>
     </option>
   </component>

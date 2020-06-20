@@ -4,7 +4,24 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="" />
+    <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service/src/main/java/com/kingdom/sign/service/KingdomInterfaceSignServiceApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-interface/kingdom-interface-sign-service/src/test/java/com/kingdom/sign/service/KingdomInterfaceSignServiceApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +38,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/kingdom-repo" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
@@ -46,17 +63,19 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/jindumooc-parent" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.27941176" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.kingdom.product" />
       <recent name="com.kingdom.user" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.kingdom.product" />
       <recent name="com.kingdom.user.web" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -128,6 +147,13 @@
     <configuration name="KingdomPojoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="kingdom-pojo" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.pojo.KingdomPojoApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="KingdomProductWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="kingdom-product-web" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.product.KingdomProductWebApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -214,6 +240,7 @@
       <workItem from="1592295836916" duration="14107000" />
       <workItem from="1592361893531" duration="13301000" />
       <workItem from="1592449165065" duration="4309000" />
+      <workItem from="1592642953945" duration="1016000" />
     </task>
     <servers />
   </component>
@@ -232,5 +259,11 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/kingdom-parent" />
+      <path value="$PROJECT_DIR$/kingdom-repo" />
+    </ignored-roots>
   </component>
 </project>
