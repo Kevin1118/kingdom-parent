@@ -1,5 +1,6 @@
 package com.kingdom.dao;
 
+import com.kingdom.pojo.AlternateRule;
 import com.kingdom.pojo.Product;
 
 import java.util.List;
@@ -21,7 +22,15 @@ public interface ProductMapper {
 
     /**
      * 查询所有产品明细，带分页功能
-     * @return
+     * @return List<Product>
      */
     List<Product> selectProductAll();
+
+    /**
+     * 查询所有备选规则，带分页功能
+     * @return List<AlternateRule>
+     */
+    List<AlternateRule> selectAlternateRuleAll();
+
+
 }

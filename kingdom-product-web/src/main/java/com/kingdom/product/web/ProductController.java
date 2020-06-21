@@ -1,12 +1,10 @@
 package com.kingdom.product.web;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.kingdom.kingdominterfaceservice.ProductService;
+import com.kingdom.service.ProductService;
 import com.kingdom.result.Result;
 import com.kingdom.result.ResultGenerator;
 import io.swagger.annotations.ApiOperation;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,7 +30,7 @@ public class ProductController {
         return ResultGenerator.genSuccessResult(productService.selectProductById(id));
     }
 
-    @ApiOperation("查询所有产品明细，带分页功能")
+    @ApiOperation("Jc-3 查询所有产品明细，带分页功能")
     @GetMapping("/product/selectProductAll")
     @ResponseBody
     public Result selectProductAll(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "10") Integer pageSize)
@@ -40,6 +38,19 @@ public class ProductController {
         return ResultGenerator.genSuccessResult(productService.selectProductAll(pageNum, pageSize));
     }
 
+    @ApiOperation("Jc-4备选规则,获取备选库生成规则")
+    @GetMapping("/product/selectAlternateRuleAll")
+    @ResponseBody
+    public Result selectAlternateRuleAll(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "10") Integer pageSize)
+    {
+        return ResultGenerator.genSuccessResult(productService.selectAlternateRuleAll(pageNum, pageSize));
+    }
+
+//    @ApiOperation("Jc-7股票获取,根据产品id获取股票信息")
+//
+//
+//
+//    @ApiOperation("Jc-8基金获取,根据产品id获取基金信息")
 
 
 }

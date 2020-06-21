@@ -26,5 +26,18 @@ public class UserDemoServiceImpl implements UserDemoService {
         return user;
     }
 
+    @Override
+    public int loginUser(String email, String phoneNumber, String password) {
+        User user = userMapper.selectPasswordByEmailOrPhoneNumber(email, phoneNumber);
+        String rightPassword = user.getPassword();
+        if(rightPassword == null || rightPassword.isEmpty()){
+            return -1;
+        }else if(rightPassword.equals(password)){
+            return 1;
+        }else{
+            return -1;
+        }
+    }
+
 
 }

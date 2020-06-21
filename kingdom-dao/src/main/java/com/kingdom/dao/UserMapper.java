@@ -1,6 +1,7 @@
 package com.kingdom.dao;
 
 import com.kingdom.pojo.User;
+import org.apache.ibatis.annotations.Param;
 
 
 /**
@@ -16,8 +17,17 @@ public interface UserMapper {
      * 如有必要，注释接口实现和调用的注意事项
      *
      * @param id
-     * @return
+     * @return User
      */
     User selectByIdDemo(Integer id);
+
+
+    /**
+     * 投资人登陆功能，从数据库中查询密码
+     * @param email
+     * @param phoneNumber
+     * @return User
+     */
+    User selectPasswordByEmailOrPhoneNumber(@Param("email")String email,@Param("phonenumber") String phoneNumber);
 
 }

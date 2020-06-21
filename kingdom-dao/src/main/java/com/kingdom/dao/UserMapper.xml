@@ -3,18 +3,27 @@
 
 <mapper namespace="com.kingdom.dao.UserMapper">
 
-    <resultMap id="BaseResultMap" type="com.kingdom.pojo.User">
-        <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="userName" property="username" jdbcType="VARCHAR"/>
-        <result column="email" property="email" jdbcType="VARCHAR"/>
-    </resultMap>
 
-    <select id="selectByIdDemo" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+
+    <select id="selectByIdDemo" resultType="com.kingdom.pojo.User" parameterType="java.lang.Integer">
         select
         *
         from `user`
         where id = #{id,jdbcType=INTEGER}
     </select>
 
+    <select id="selectPasswordByEmailOrPhoneNumber" resultType="com.kingdom.pojo.User" parameterType="com.kingdom.pojo.User">
+        select
+        u.password
+        from `user` u
+        <where>
+            <if test="email != null">
+                u.email =  #{email,jdbcType=VARCHAR}
+            </if>
+            <if test="phonenumber!= null">
+                AND u.phoneNumber = #{phonenumber,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
 
 </mapper>

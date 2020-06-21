@@ -4,7 +4,8 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.kingdom.dao.ProductMapper;
-import com.kingdom.kingdominterfaceservice.ProductService;
+import com.kingdom.service.ProductService;
+import com.kingdom.pojo.AlternateRule;
 import com.kingdom.pojo.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -43,6 +44,16 @@ public class ProductServiceImpl implements ProductService {
         Map res = new HashMap();
         res.put("total", pageObject.getTotal());
         res.put("data", selectProductAll);
+        return res;
+    }
+
+    @Override
+    public Map selectAlternateRuleAll(Integer pageNum, Integer pageSize) {
+        Page<Object> pageObject = PageHelper.startPage(pageNum, pageSize);
+        List<AlternateRule> selectRuleAllList = productMapper.selectAlternateRuleAll();
+        Map res = new HashMap();
+        res.put("total", pageObject.getTotal());
+        res.put("data", selectRuleAllList);
         return res;
     }
 

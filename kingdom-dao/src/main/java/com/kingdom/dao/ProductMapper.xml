@@ -11,10 +11,16 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
 
-    <select id="selectProductAll" parameterType="java.lang.Integer" resultType="com.kingdom.pojo.Product">
+    <select id="selectProductAll" resultType="com.kingdom.pojo.Product">
         select
         *
         from `product`
+    </select>
+
+    <select id="selectAlternateRuleAll" resultType="com.kingdom.pojo.AlternateRule">
+        select
+        *
+        from `alternate_rule`
     </select>
 
 </mapper>

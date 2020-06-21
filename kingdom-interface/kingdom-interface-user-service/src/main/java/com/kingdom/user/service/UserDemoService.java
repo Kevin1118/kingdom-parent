@@ -15,8 +15,16 @@ public interface UserDemoService {
      * 根据 id 查询 user 表详情的接口 demo
      *
      * @param id
-     * @return Result
+     * @return User
      */
     User selectByIdDemo(Integer id);
+
+    /**
+     * 投资人通过邮箱或手机号码进行登陆
+     *
+     * @Param
+     * @return int
+     */
+    int loginUser(String email,String phoneNumber,String password);
 
 }
