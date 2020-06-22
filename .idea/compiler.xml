@@ -8,14 +8,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="kingdom-dto" />
-        <module name="kingdom-product-service" />
         <module name="kingdom-user-service" />
         <module name="kingdom-product-web" />
-        <module name="kingdom-pojo" />
+        <module name="kingdom-util" />
+        <module name="kingdom-product-service" />
         <module name="kingdom-interface" />
         <module name="kingdom-vojo" />
         <module name="kingdom-user-web" />
-        <module name="kingdom-util" />
+        <module name="kingdom-pojo" />
         <module name="kingdom-dao" />
       </profile>
     </annotationProcessing>
