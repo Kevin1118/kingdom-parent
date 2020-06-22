@@ -1,4 +1,4 @@
-package com.kingdom.user.service;
+package com.kingdom.interfaceservice.user;
 
 import com.kingdom.pojo.User;
 
@@ -12,12 +12,12 @@ import com.kingdom.pojo.User;
 public interface UserDemoService {
 
     /**
-     * 根据 id 查询 user 表详情的接口 demo
+     * 根据 userid 查询 user 表详情的接口 demo
      *
-     * @param id
+     * @param userid
      * @return User
      */
-    User selectByIdDemo(Integer id);
+    User selectByIdDemo(Integer userid);
 
     /**
      * 投资人通过邮箱或手机号码进行登陆
@@ -25,6 +25,6 @@ public interface UserDemoService {
      * @Param
      * @return int
      */
-    int loginUser(String email,String phoneNumber,String password);
+    int loginUser(String email, String phoneNumber, String password);
 
 }

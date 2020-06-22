@@ -15,10 +15,10 @@ public interface ProductMapper {
 
     /**
      * 根据产品id查询出产品明细
-     * @param id
+     * @param productid
      * @return Product
      */
-    Product selectProductById(Integer id);
+    Product selectProductById(Integer productid);
 
     /**
      * 查询所有产品明细，带分页功能

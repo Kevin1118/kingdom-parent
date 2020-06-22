@@ -8,7 +8,7 @@
         select
         *
         from `product`
-        where id = #{id,jdbcType=INTEGER}
+        where productId = #{productid,jdbcType=INTEGER}
     </select>
 
     <select id="selectProductAll" resultType="com.kingdom.pojo.Product">

@@ -1,7 +1,7 @@
 package com.kingdom.product.web;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.kingdom.service.ProductService;
+import com.kingdom.interfaceservice.product.ProductService;
 import com.kingdom.result.Result;
 import com.kingdom.result.ResultGenerator;
 import io.swagger.annotations.ApiOperation;

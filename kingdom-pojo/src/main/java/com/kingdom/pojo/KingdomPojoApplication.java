@@ -1,13 +1,13 @@
-package com.kingdom.user;
+package com.kingdom.pojo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class KingdomInterfaceUserServiceApplication {
+public class KingdomPojoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(KingdomInterfaceUserServiceApplication.class, args);
+        SpringApplication.run(KingdomPojoApplication.class, args);
     }
 
 }

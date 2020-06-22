@@ -17,6 +17,8 @@
         <java.version>1.8</java.version>
     </properties>
 
+    <packaging>jar</packaging>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -53,25 +55,21 @@
 
         <dependency>
             <groupId>com.kingdom</groupId>
-            <artifactId>kingdom-interface-user-service</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.kingdom</groupId>
             <artifactId>kingdom-pojo</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.kingdom</groupId>
             <artifactId>kingdom-vojo</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.kingdom</groupId>
             <artifactId>kingdom-dto</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -113,9 +111,17 @@
 
     <build>
         <plugins>
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--            </plugin>-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!--新增-->
+                <configuration>
+                    <classifier>exec</classifier>
+                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
@@ -158,11 +164,9 @@
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.properties</include>
-                    <include>**/*.yml</include>
                     <include>**/*.xml</include>
+                    <include>**/*.yml</include>
                 </includes>
-<!--                filtering标签的作用是？    -->
-                <filtering>false</filtering>
             </resource>
             <resource>
                 <directory>src/main/resources</directory>

@@ -1,9 +1,7 @@
-package com.kingdom.service;
+package com.kingdom.interfaceservice.product;
 
 import com.kingdom.pojo.Product;
-import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,7 +33,7 @@ public interface ProductService {
      * @Param pageNum 当前页数 pageSize 一页大小
      * @Return List<AlternateRule> 包含所有备选库生成规则的 list
      */
-    Map selectAlternateRuleAll(Integer pageNum,Integer pageSize);
+    Map selectAlternateRuleAll(Integer pageNum, Integer pageSize);
 
 
 

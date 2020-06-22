@@ -2,7 +2,7 @@ package com.kingdom.user.web;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.kingdom.result.*;
-import com.kingdom.user.service.UserDemoService;
+import com.kingdom.interfaceservice.user.UserDemoService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

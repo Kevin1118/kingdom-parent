@@ -16,16 +16,16 @@
     <description>Demo project for Spring Boot</description>
 
     <modules>
+        <module>kingdom-interface</module>
+        <module>kingdom-user-service</module>
+        <module>kingdom-product-service</module>
+        <module>kingdom-user-web</module>
+        <module>kingdom-product-web</module>
         <module>kingdom-pojo</module>
         <module>kingdom-vojo</module>
-        <module>kingdom-dto</module>
         <module>kingdom-dao</module>
+        <module>kingdom-dto</module>
         <module>kingdom-util</module>
-        <module>kingdom-interface</module>
-        <module>kingdom-user-web</module>
-        <module>kingdom-user-service</module>
-        <module>kingdom-product-web</module>
-        <module>kingdom-product-service</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -110,6 +110,7 @@
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
 
+
                 <!--        maven依赖自动配置的几个插件        -->
 
                 <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
@@ -161,6 +162,7 @@
 
             </plugins>
         </pluginManagement>
+
     </build>
 
 </project>

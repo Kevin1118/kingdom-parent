@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Data
 public class Product implements Serializable {
 
-    private Integer id;
+    private Integer productid;
 
     private String name;
 

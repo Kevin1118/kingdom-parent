@@ -16,10 +16,10 @@ public interface UserMapper {
      * 标注功能、简单说明业务逻辑
      * 如有必要，注释接口实现和调用的注意事项
      *
-     * @param id
+     * @param userid
      * @return User
      */
-    User selectByIdDemo(Integer id);
+    User selectByIdDemo(Integer userid);
 
 
     /**

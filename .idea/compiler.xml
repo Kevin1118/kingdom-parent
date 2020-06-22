@@ -2,17 +2,17 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="kingdom-interface-user-service" />
         <module name="kingdom-dto" />
+        <module name="kingdom-product-service" />
         <module name="kingdom-user-service" />
         <module name="kingdom-product-web" />
-        <module name="kingdom-interface-product-service" />
         <module name="kingdom-pojo" />
-        <module name="kingdom-product-service" />
+        <module name="kingdom-interface" />
         <module name="kingdom-vojo" />
         <module name="kingdom-user-web" />
         <module name="kingdom-util" />
@@ -20,7 +20,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="kingdom-interface-product-service" target="1.8" />
       <module name="kingdom-interface-sign-service" target="1.8" />
+      <module name="kingdom-interface-user-service" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

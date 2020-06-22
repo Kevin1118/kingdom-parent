@@ -4,7 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.kingdom.dao.ProductMapper;
-import com.kingdom.service.ProductService;
+import com.kingdom.interfaceservice.product.ProductService;
 import com.kingdom.pojo.AlternateRule;
 import com.kingdom.pojo.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +27,8 @@ public class ProductServiceImpl implements ProductService {
     private ProductMapper productMapper;
 
     @Override
-    public Product selectProductById(Integer id) {
-        return productMapper.selectProductById(id);
+    public Product selectProductById(Integer productid) {
+        return productMapper.selectProductById(productid);
     }
 
     /**

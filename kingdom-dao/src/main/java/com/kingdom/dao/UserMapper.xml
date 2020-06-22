@@ -9,7 +9,7 @@
         select
         *
         from `user`
-        where id = #{id,jdbcType=INTEGER}
+        where userId = #{userid,jdbcType=INTEGER}
     </select>
 
     <select id="selectPasswordByEmailOrPhoneNumber" resultType="com.kingdom.pojo.User" parameterType="com.kingdom.pojo.User">
