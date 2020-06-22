@@ -5,6 +5,7 @@ import com.kingdom.result.*;
 import com.kingdom.interfaceservice.user.UserDemoService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @date : 2020-06-16 12:08
  **/
 @Controller
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 public class UserDemoController {
 
     @Reference

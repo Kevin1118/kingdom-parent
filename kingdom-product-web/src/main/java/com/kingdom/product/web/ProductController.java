@@ -6,6 +6,7 @@ import com.kingdom.result.Result;
 import com.kingdom.result.ResultGenerator;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @date : 2020-06-20 17:05
  **/
 @Controller
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 public class ProductController {
 
     @Reference
