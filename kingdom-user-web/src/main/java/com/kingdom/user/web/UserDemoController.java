@@ -2,10 +2,11 @@ package com.kingdom.user.web;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.kingdom.result.*;
-import com.kingdom.user.service.UserDemoService;
+import com.kingdom.interfaceservice.user.UserDemoService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -34,6 +35,21 @@ public class UserDemoController {
     @ResponseBody
     public Result selectByIdDemo() {
         return ResultGenerator.genSuccessResult(userDemoService.selectByIdDemo(1));
+    }
+
+    /**
+     * 投资人登陆的demo
+     * @param email 用户邮箱
+     * @param phonenumber 用户手机号
+     * @param password 用户密码
+     * @return 1代表登陆成功 -1代表登陆失败
+     */
+    @ApiOperation(("投资人登陆demo版"))
+    @PostMapping("/user/loginUser")
+    @ResponseBody
+    public Result loginUser(String email,String phonenumber,String password){
+        int i = userDemoService.loginUser(email, phonenumber, password);
+        return ResultGenerator.genSuccessResult(i);
     }
 
 }
