@@ -1,5 +1,7 @@
 package com.kingdom.pojo;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -9,36 +11,41 @@ import java.io.Serializable;
  * @author : HuangJingChao
  * @date : 2020-06-17 10:53
  **/
-
+@Data
 public class User implements Serializable {
-    private Integer id;
+
+    private Integer userid;
+
+    private String name ;
 
     private String email;
 
+    private String phonenumber;
+
+    private String password;
+
+    private String salt;
+
+    private String paypassword;
+
+    private String paypasswordsalt;
+
+    private String usertype;
+
     private String username;
 
-    public Integer getId() {
-        return id;
-    }
+    private String avatar;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    private String idnumber;
 
-    public String getEmail() {
-        return email;
-    }
+    private String approvalstatus;
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    private Integer approvaltime;
 
-    public String getUsername() {
-        return username;
-    }
+    private Integer createdtime;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    private Integer updatedtime;
+
+    private String status;
 
 }

@@ -12,7 +12,7 @@ dubbo:
     timeout: 10000
 # Swagger
 swagger:
-  title: DevPlatform Api ÎÄµµ
+  title: DevPlatform Api æ–‡æ¡£
   description: DevPlatform Api Documentation
   version: 1.0.0
   termsOfServiceUrl: https://gitee.com
