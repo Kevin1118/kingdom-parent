@@ -22,7 +22,7 @@ public class Product implements Serializable {
 
     private Integer consultantid;
 
-    private String riskType;
+    private String risktype;
 
     private Integer stockamount;
 

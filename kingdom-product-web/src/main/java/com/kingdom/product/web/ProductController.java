@@ -48,11 +48,20 @@ public class ProductController {
         return ResultGenerator.genSuccessResult(productService.selectAlternateRuleAll(pageNum, pageSize));
     }
 
-//    @ApiOperation("Jc-7股票获取,根据产品id获取股票信息")
-//
-//
-//
-//    @ApiOperation("Jc-8基金获取,根据产品id获取基金信息")
+    @ApiOperation("展示股票备选库页面")
+    @GetMapping("/product/selectStockAlternateAll")
+    @ResponseBody
+    public Result selectStockAlternateAll(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "10") Integer pageSize)
+    {
+        return ResultGenerator.genSuccessResult(productService.selectStockAlternateAll(pageNum, pageSize));
+    }
 
+    @ApiOperation("展示基金备选库页面")
+    @GetMapping("/product/selectFundAlternateAll")
+    @ResponseBody
+    public Result selectFundAlternateAll(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "10") Integer pageSize)
+    {
+        return ResultGenerator.genSuccessResult(productService.selectFundAlternateAll(pageNum, pageSize));
+    }
 
 }

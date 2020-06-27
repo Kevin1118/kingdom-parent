@@ -1,7 +1,9 @@
 package com.kingdom.dao;
 
 import com.kingdom.pojo.AlternateRule;
+import com.kingdom.pojo.FundAlternate;
 import com.kingdom.pojo.Product;
+import com.kingdom.pojo.StockAlternate;
 
 import java.util.List;
 
@@ -32,5 +34,15 @@ public interface ProductMapper {
      */
     List<AlternateRule> selectAlternateRuleAll();
 
+    /**
+     * 查询所有股票备选库，带分页
+     * @return List<StockAlternate>
+     */
+    List<StockAlternate> selectStockAlternateAll();
 
+    /**
+     * 查询所有股票备选库，带分页
+     * @return List<FundAlternate>
+     */
+    List<FundAlternate> selectFundAlternateAll();
 }

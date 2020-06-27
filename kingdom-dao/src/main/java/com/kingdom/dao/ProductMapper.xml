@@ -23,4 +23,33 @@
         from `alternate_rule`
     </select>
 
+
+    <select id="selectStockAlternateAll" resultType="com.kingdom.pojo.StockAlternate">
+        select
+        stockAlternateId,
+        stockType,
+        name,
+        code,
+        riskType,
+        prevClose,
+        upAndDown,
+        open,
+        peRatio
+        from `stock_alternate`
+    </select>
+
+    <select id="selectFundAlternateAll" resultType="com.kingdom.pojo.FundAlternate">
+        select
+        fundAlternateId,
+        fundType,
+        name,
+        code,
+        riskType,
+        prevClose,
+        upAndDown,
+        open,
+        peRatio
+        from `fund_alternate`
+    </select>
+
 </mapper>
