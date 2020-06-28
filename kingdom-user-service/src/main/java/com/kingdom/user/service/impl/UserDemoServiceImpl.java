@@ -27,6 +27,17 @@ public class UserDemoServiceImpl implements UserDemoService {
     }
 
     @Override
+    public int registerUser(int userId,String userName,String email,String phoneNumber,String password) {
+
+        return userMapper.addUser(userId,userName,email,phoneNumber,password);
+    }
+
+    @Override
+    public int bindCardUser(int cardId, String realName, String cardNumber) {
+        return userMapper.addCard(cardId,realName,cardNumber);
+    }
+
+    @Override
     public int loginUser(String email, String phoneNumber, String password) {
         User user = userMapper.selectPasswordByEmailOrPhoneNumber(email, phoneNumber);
         String rightPassword = user.getPassword();
