@@ -6,7 +6,9 @@ import com.github.pagehelper.PageHelper;
 import com.kingdom.dao.ProductMapper;
 import com.kingdom.interfaceservice.product.ProductService;
 import com.kingdom.pojo.AlternateRule;
+import com.kingdom.pojo.FundAlternate;
 import com.kingdom.pojo.Product;
+import com.kingdom.pojo.StockAlternate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
@@ -54,6 +56,26 @@ public class ProductServiceImpl implements ProductService {
         Map res = new HashMap();
         res.put("total", pageObject.getTotal());
         res.put("data", selectRuleAllList);
+        return res;
+    }
+
+    @Override
+    public Map selectStockAlternateAll(Integer pageNum, Integer pageSize) {
+        Page<Object> pageObject = PageHelper.startPage(pageNum, pageSize);
+        List<StockAlternate> selectStockAlternateAll = productMapper.selectStockAlternateAll();
+        Map res = new HashMap();
+        res.put("total", pageObject.getTotal());
+        res.put("data", selectStockAlternateAll);
+        return res;
+    }
+
+    @Override
+    public Map selectFundAlternateAll(Integer pageNum, Integer pageSize) {
+        Page<Object> pageObject = PageHelper.startPage(pageNum, pageSize);
+        List<FundAlternate> selectFundAlternateAll = productMapper.selectFundAlternateAll();
+        Map res = new HashMap();
+        res.put("total", pageObject.getTotal());
+        res.put("data", selectFundAlternateAll);
         return res;
     }
 
