@@ -3,14 +3,6 @@
 
 <mapper namespace="com.kingdom.dao.ProductMapper">
 
-
-    <select id="selectProductById" parameterType="java.lang.Integer" resultType="com.kingdom.pojo.Product">
-        select
-        *
-        from `product`
-        where productId = #{productid,jdbcType=INTEGER}
-    </select>
-
     <select id="selectProductAll" resultType="com.kingdom.pojo.Product">
         select
         *
@@ -21,6 +13,13 @@
         select
         *
         from `alternate_rule`
+    </select>
+
+    <select id="selectProductById" parameterType="java.lang.Integer" resultType="com.kingdom.pojo.Product">
+        select
+        *
+        from `product`
+        where productId = #{productid,jdbcType=INTEGER}
     </select>
 
 

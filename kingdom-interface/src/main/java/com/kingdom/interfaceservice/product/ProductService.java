@@ -38,6 +38,10 @@ public interface ProductService {
      * @param pageSize 一页大小
      * @return List<AlternateRule> 包含所有备选库生成规则的 list
      */
+
+
+    //-----以下为正式开发，产品盒子模块的功能
+
     Map selectAlternateRuleAll(Integer pageNum, Integer pageSize);
 
     /**
@@ -57,5 +61,14 @@ public interface ProductService {
      * @return List<FundAlternate> 包含所有备选库股票的 list
      */
     Map selectFundAlternateAll(Integer pageNum, Integer pageSize);
+
+
+
+    /**
+     * 复杂业务，产品初始化功能，考虑使用迭代器，迭代插入股票以及基金的比例到 product_xxxxx_details表，
+     * 和投顾商量一下买入卖出的功能实现
+     * @param List<ProductInitDTO> 备选股票id、基金id及其比例
+     */
+
 
 }

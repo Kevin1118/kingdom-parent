@@ -3,6 +3,7 @@ package com.kingdom.pojo;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * <h3>kingdom-parent</h3>
@@ -27,6 +28,8 @@ public class Product implements Serializable {
     private Integer stockamount;
 
     private Integer fundamount;
+
+    private BigDecimal expectedYield;
 
     private String status;
 
