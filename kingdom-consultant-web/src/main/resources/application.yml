@@ -21,3 +21,9 @@ swagger:
     name: Huang JingChao
     url: https://github.com/Kevin1118
     email: huangjingchao@2019.163.com
+
+#上传服务器时需要更改文件夹地址
+consultant:
+  path:
+    domain: http://localhost:9002
+    upload: e:/workspace/communityData/upload

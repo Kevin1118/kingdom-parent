@@ -4,19 +4,43 @@
 <mapper namespace="com.kingdom.dao.ConsultantMapper">
 
     <sql id="insertFields">
-        phoneNumber,email,description,password,passwordSalt,payPassword,payPasswordSalt,name.idNumber,createTime,status
+        phonenumber,email,activationcode,avatar,description,departmentid,positionid,password,passwordsalt,paypassword,paypasswordsalt,name.idnumber,createtime,status
     </sql>
 
     <insert id="insertConsultant" parameterType="com.kingdom.pojo.Consultant">
-        insert into consultant (phoneNumber,password,passwordSalt,createTime,status)
-        values (#{phoneNumber},#{password},#{passwordSalt},#{createTime},#{status})
+        insert into consultant (email,activationCode,avatar,description,password,passwordSalt,createTime,status)
+        values (#{email},#{activationcode},#{avatar},#{description},#{password},#{passwordsalt},#{createtime},#{status})
     </insert>
 
     <select id="selectByPhoneNumber" resultType="com.kingdom.pojo.Consultant">
         select *
         from consultant
-        where phoneNumber=#{phoneNumber}
+        where phoneNumber=#{phonenumber}
     </select>
 
+    <select id="selectByEmail" resultType="com.kingdom.pojo.Consultant">
+        select *
+        from consultant
+        where email=#{email}
+    </select>
+
+    <update id="updateAvatar">
+        update consultant set avatar = #{avatarUrl} where consultantId=#{consultantId}
+    </update>
+
+
+    <select id="selectById" resultType="com.kingdom.pojo.Consultant">
+        select *
+        from consultant
+        where consultantId=#{consultantId}
+    </select>
+
+    <update id="updateNameAndId">
+        update consultant set name=#{name},idNumber=#{idNumber} where consultantId=#{consultantId}
+    </update>
+
+    <update id="updatePayPassword">
+        update consultant set payPassword=#{payPassword},payPasswordSalt=#{payPasswordSalt} where consultantId=#{consultantId}
+    </update>
 
 </mapper>

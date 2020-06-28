@@ -6,8 +6,8 @@
         <groupId>com.kingdom</groupId>
         <artifactId>kingdom-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
-    <groupId>com.kingdom</groupId>
     <artifactId>kingdom-consultant-web</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>kingdom-consultant-web</name>
@@ -16,6 +16,8 @@
     <properties>
         <java.version>1.8</java.version>
     </properties>
+
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
@@ -28,29 +30,30 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
-        <!--        在这里引入依赖 三级接口层interface
-                    然后引入 pojo vojo dto 还有 util 组件-->
-
+        <!--还需要引入interface层的依赖-->
         <dependency>
             <groupId>com.kingdom</groupId>
-            <artifactId>kingdom-interface-consultant-service</artifactId>
+            <artifactId>kingdom-interface</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.kingdom</groupId>
             <artifactId>kingdom-pojo</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.kingdom</groupId>
             <artifactId>kingdom-vojo</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.kingdom</groupId>
             <artifactId>kingdom-dto</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.kingdom</groupId>
@@ -84,6 +87,7 @@
             <version>2.9.2</version>
         </dependency>
 
+
     </dependencies>
 
     <build>
@@ -93,6 +97,22 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
+
 
 </project>
