@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @EnableDubbo
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.kingdom.email","com.kingdom.consultant.service"})
+//@ComponentScan(basePackages = {"com.kingdom.email","com.kingdom.consultant.service"})
 @MapperScan(basePackages = "com.kingdom.dao")
 
 public class KingdomConsultantServiceApplication {
