@@ -26,4 +26,70 @@
         </where>
     </select>
 
+    <insert id="addUser" parameterType="com.kingdom.pojo.User" useGeneratedKeys="true" keyColumn="userId">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userid != null" >
+                userId,
+            </if>
+            <if test="username != null" >
+                userName,
+            </if>
+            <if test="email != null" >
+                email,
+            </if>
+            <if test="password != null" >
+                password,
+            </if>
+            <if test="phonenumber != null" >
+                phoneNumber,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="userid != null" >
+                #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="username != null" >
+                #{username,jdbcType=INTEGER},
+            </if>
+            <if test="email != null" >
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null" >
+                #{password,jdbcType=INTEGER},
+            </if>
+            <if test="email != null" >
+                #{phonenumber,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="addCard" parameterType="com.kingdom.pojo.Card" useGeneratedKeys="true" keyColumn="cardId">
+        insert into card
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="cardid != null" >
+                cardId,
+            </if>
+            <if test="realname != null" >
+                realName,
+            </if>
+            <if test="cardnumber != null" >
+                cardNumber,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="cardid != null" >
+                #{cardid,jdbcType=INTEGER},
+            </if>
+            <if test="realname != null" >
+                #{realname,jdbcType=INTEGER},
+            </if>
+            <if test="cardnumber != null" >
+                #{cardnumber,jdbcType=VARCHAR},
+            </if>
+
+        </trim>
+    </insert>
+
 </mapper>

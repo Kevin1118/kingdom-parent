@@ -20,6 +20,20 @@ public interface UserDemoService {
     User selectByIdDemo(Integer userid);
 
     /**
+     * 投资人注册个人信息
+     * @Param
+     * @return int
+     */
+    int registerUser(int userId,String userName,String email,String phoneNumber,String password);
+
+    /**
+     * 投资人绑定银行卡
+     * @Param
+     * @return int
+     */
+    int bindCardUser(int cardid,String realname,String cardnumber);
+
+    /**
      * 投资人通过邮箱或手机号码进行登陆
      *
      * @Param
