@@ -1,0 +1,29 @@
+server:
+  port: 9002
+
+dubbo:
+  application:
+    ##### 注册服务的名称
+    name: consultant-web
+  ##### 注册中心地址
+  registry:
+    address: zookeeper://123.57.46.173:2181
+  ##### 调用服务超时时间
+  consumer:
+    timeout: 10000
+# Swagger界面内容配置
+swagger:
+  title: DevPlatform API接口文档
+  description: DevPlatform Api Documentation
+  version: 1.0.0
+  termsOfServiceUrl: https://gitee.com
+  contact:
+    name: Huang JingChao
+    url: https://github.com/Kevin1118
+    email: huangjingchao@2019.163.com
+
+#上传服务器时需要更改文件夹地址
+consultant:
+  path:
+    domain: http://localhost:9002
+    upload: e:/workspace/communityData/upload
