@@ -5,10 +5,7 @@ import com.kingdom.result.*;
 import com.kingdom.interfaceservice.user.UserDemoService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -39,6 +36,14 @@ public class UserDemoController {
         return ResultGenerator.genSuccessResult(userDemoService.selectByIdDemo(1));
     }
 
+
+    @ApiOperation("投资人注册功能")
+    @PostMapping("/user/registerUser")
+    @ResponseBody
+    public Result registerUser(int userid,String username,String email,String phonenumber,String password){
+        return ResultGenerator.genSuccessResult(userDemoService.registerUser(userid,username,email,phonenumber,password));
+    }
+
     /**
      * 投资人登陆的demo
      * @param email 用户邮箱
@@ -46,12 +51,25 @@ public class UserDemoController {
      * @param password 用户密码
      * @return 1代表登陆成功 -1代表登陆失败
      */
-    @ApiOperation(("投资人登陆demo版"))
+    @ApiOperation(("投资人登录"))
     @PostMapping("/user/loginUser")
     @ResponseBody
     public Result loginUser(String email,String phonenumber,String password){
         int i = userDemoService.loginUser(email, phonenumber, password);
         return ResultGenerator.genSuccessResult(i);
     }
-
+    /**
+     * 投资人登陆的demo
+     * @param cardid 银行卡id
+     * @param realname 真实姓名
+     * @param phonenumber 用户手机号
+     * @return 1代表登陆成功 -1代表登陆失败
+     */
+    @ApiOperation(("投资人绑定银行卡"))
+    @PostMapping("/user/bindCardUser")
+    @ResponseBody
+    public Result bindCardUser(int cardid,String realname,String phonenumber){
+        int i = userDemoService.bindCardUser(cardid, realname, phonenumber);
+        return ResultGenerator.genSuccessResult(i);
+    }
 }

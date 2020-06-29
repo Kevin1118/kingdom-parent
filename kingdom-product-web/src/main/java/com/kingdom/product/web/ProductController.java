@@ -25,14 +25,7 @@ public class ProductController {
     @Reference
     private ProductService productService;
 
-    @ApiOperation("根据产品id查询出产品明细")
-    @GetMapping("/product/selectProductById")
-    @ResponseBody
-    public Result selectProductById(@RequestParam Integer id) {
-        return ResultGenerator.genSuccessResult(productService.selectProductById(id));
-    }
-
-    @ApiOperation("Jc-3 查询所有产品明细，带分页功能")
+    @ApiOperation("Demo接口 查询所有产品明细，带分页功能")
     @GetMapping("/product/selectProductAll")
     @ResponseBody
     public Result selectProductAll(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "10") Integer pageSize)
@@ -40,7 +33,7 @@ public class ProductController {
         return ResultGenerator.genSuccessResult(productService.selectProductAll(pageNum, pageSize));
     }
 
-    @ApiOperation("Jc-4备选规则,获取备选库生成规则")
+    @ApiOperation("Demo接口 备选规则,获取备选库生成规则")
     @GetMapping("/product/selectAlternateRuleAll")
     @ResponseBody
     public Result selectAlternateRuleAll(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "10") Integer pageSize)
@@ -48,11 +41,29 @@ public class ProductController {
         return ResultGenerator.genSuccessResult(productService.selectAlternateRuleAll(pageNum, pageSize));
     }
 
-//    @ApiOperation("Jc-7股票获取,根据产品id获取股票信息")
-//
-//
-//
-//    @ApiOperation("Jc-8基金获取,根据产品id获取基金信息")
+    //以下为正式业务
 
+    @ApiOperation("根据产品id查询出组合产品详情 01")
+    @GetMapping("/product/selectProductById")
+    @ResponseBody
+    public Result selectProductById(@RequestParam Integer id) {
+        return ResultGenerator.genSuccessResult(productService.selectProductById(id));
+    }
+
+    @ApiOperation("展示股票备选库页面")
+    @GetMapping("/product/selectStockAlternateAll")
+    @ResponseBody
+    public Result selectStockAlternateAll(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "10") Integer pageSize)
+    {
+        return ResultGenerator.genSuccessResult(productService.selectStockAlternateAll(pageNum, pageSize));
+    }
+
+    @ApiOperation("展示基金备选库页面")
+    @GetMapping("/product/selectFundAlternateAll")
+    @ResponseBody
+    public Result selectFundAlternateAll(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "10") Integer pageSize)
+    {
+        return ResultGenerator.genSuccessResult(productService.selectFundAlternateAll(pageNum, pageSize));
+    }
 
 }
