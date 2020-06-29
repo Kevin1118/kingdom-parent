@@ -28,7 +28,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="新增投顾人接口" />
+    <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="删除邮件信息">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -323,6 +325,9 @@
       <workItem from="1593245724288" duration="3153000" />
       <workItem from="1593248996202" duration="4351000" />
       <workItem from="1593304770854" duration="232000" />
+      <workItem from="1593305301689" duration="84000" />
+      <workItem from="1593398593637" duration="521000" />
+      <workItem from="1593399885328" duration="1407000" />
     </task>
     <task id="LOCAL-00001" summary="新增投顾人模块，包含注册方法">
       <created>1592633837802</created>
@@ -359,7 +364,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593304861823</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="删除邮件信息">
+      <created>1593305374760</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1593305374760</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -400,7 +412,8 @@
     <MESSAGE value="尝试合并" />
     <MESSAGE value="无用" />
     <MESSAGE value="新增投顾人接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增投顾人接口" />
+    <MESSAGE value="删除邮件信息" />
+    <option name="LAST_COMMIT_MESSAGE" value="删除邮件信息" />
   </component>
   <component name="WindowStateProjectService">
     <state x="578" y="176" key="#Project_Structure" timestamp="1592630430545">
