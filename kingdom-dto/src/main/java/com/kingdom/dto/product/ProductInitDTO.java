@@ -18,12 +18,22 @@ import java.util.List;
 @Data
 public class ProductInitDTO implements Serializable {
 
-    private Integer stockAlternateId;
+    private Integer productId;
 
-    private Integer fundAlternateId;
+    private Integer stockAlternateId;
 
     private BigDecimal stockProportion;
 
+    private String stockCode;
+
+    private String stockName;
+
+    private Integer fundAlternateId;
+
     private BigDecimal fundProportion;
+
+    private String fundCode;
+
+    private String fundName;
 
 }

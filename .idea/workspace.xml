@@ -28,15 +28,14 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="无用">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-consultant-service/src/main/java/com/kingdom/consultant/service/KingdomConsultantServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-consultant-service/src/main/java/com/kingdom/consultant/service/KingdomConsultantServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-consultant-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-consultant-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-consultant-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-consultant-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-user-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ProductMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ProductMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ProductMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-dto/src/main/java/com/kingdom/dto/product/ProductInitDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dto/src/main/java/com/kingdom/dto/product/ProductInitDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-interface/src/main/java/com/kingdom/interfaceservice/product/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-interface/src/main/java/com/kingdom/interfaceservice/product/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-product-service/src/main/java/com/kingdom/product/service/impl/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-product-service/src/main/java/com/kingdom/product/service/impl/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-product-web/src/main/java/com/kingdom/product/web/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-product-web/src/main/java/com/kingdom/product/web/ProductController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,6 +53,19 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/Kevin-Branch" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
@@ -83,7 +95,9 @@
     </option>
   </component>
   <component name="ProjectId" id="1dNwP3O90Pczcs4n3PxG5IvFvrL" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -99,6 +113,8 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../jindumooc-parent" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.27941176" />
@@ -137,7 +153,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.KingdomConsultantWebApplication">
+  <component name="RunManager" selected="Spring Boot.KingdomProductServiceApplication">
     <configuration name="KingdomConsultantServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="kingdom-consultant-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.consultant.service.KingdomConsultantServiceApplication" />
@@ -222,10 +238,10 @@
       <item itemvalue="Spring Boot.KingdomVojoApplication" />
       <item itemvalue="Spring Boot.KingdomProductWebApplication" />
       <item itemvalue="Spring Boot.KingdomProductServiceApplication" />
-      <item itemvalue="Spring Boot.KingdomUserWebApplication (1)" />
       <item itemvalue="Spring Boot.KingdomPojoApplication" />
       <item itemvalue="Spring Boot.KingdomConsultantWebApplication" />
       <item itemvalue="Spring Boot.KingdomConsultantServiceApplication" />
+      <item itemvalue="Spring Boot.KingdomUserWebApplication (1)" />
     </list>
     <recent_temporary>
       <list>
@@ -241,12 +257,12 @@
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e588efb0" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@2ba6fe89" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e588efb0" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@16e2976d" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@2ba6fe89" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@8dd27fdd" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
           </expand>
           <select />
@@ -278,7 +294,11 @@
       <workItem from="1593233621381" duration="212000" />
       <workItem from="1593267767628" duration="4886000" />
       <workItem from="1593311482505" duration="3568000" />
-      <workItem from="1593317722261" duration="4683000" />
+      <workItem from="1593317722261" duration="4800000" />
+      <workItem from="1593326923557" duration="437000" />
+      <workItem from="1593357830417" duration="306000" />
+      <workItem from="1593395182275" duration="5379000" />
+      <workItem from="1593482350361" duration="11517000" />
     </task>
     <task id="LOCAL-00001" summary="新增投顾人模块，包含注册方法">
       <created>1592633837802</created>
@@ -322,7 +342,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593272591180</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="第一次部署测试">
+      <created>1593326558685</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1593326558685</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -364,7 +391,8 @@
     <MESSAGE value="更改了项目结构，部署了产品模块的demo接口" />
     <MESSAGE value="Controller层配置解决了跨域问题" />
     <MESSAGE value="更新产品管理页面的接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新产品管理页面的接口" />
+    <MESSAGE value="第一次部署测试" />
+    <option name="LAST_COMMIT_MESSAGE" value="第一次部署测试" />
   </component>
   <component name="WindowStateProjectService">
     <state x="574" y="117" key="#com.intellij.ide.util.MemberChooser" />

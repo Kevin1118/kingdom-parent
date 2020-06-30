@@ -51,4 +51,110 @@
         from `fund_alternate`
     </select>
 
+    <insert id="initStockAlternate" parameterType="com.kingdom.pojo.ProductStockDetail" useGeneratedKeys="true" keyColumn="productStockDetailId" keyProperty="productStockDetailId">
+        insert into product_stock_detail
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="productStockDetailId != null" >
+                productStockDetailId,
+            </if>
+            <if test="productId != null" >
+                productId,
+            </if>
+            <if test="stockAlternateId != null" >
+                stockAlternateId,
+            </if>
+            <if test="proportion != null" >
+                proportion,
+            </if>
+            <if test="stockName != null" >
+                stockName,
+            </if>
+            <if test="stockCode != null" >
+                stockCode,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="productStockDetailId != null" >
+                #{productStockDetailId,jdbcType=INTEGER},
+            </if>
+            <if test="productId != null" >
+                #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="stockAlternateId != null" >
+                #{stockAlternateId,jdbcType=INTEGER},
+            </if>
+            <if test="proportion != null" >
+                #{proportion,jdbcType=DECIMAL},
+            </if>
+            <if test="stockName != null" >
+                #{stockName,jdbcType=VARCHAR},
+            </if>
+            <if test="stockCode != null" >
+                #{stockCode,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="initFundAlternate" parameterType="com.kingdom.pojo.ProductFundDetail" useGeneratedKeys="true" keyColumn="productFundDetailId" keyProperty="productFundDetailId">
+        insert into product_fund_detail
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="productFundDetailId != null" >
+                productFundDetailId,
+            </if>
+            <if test="productId != null" >
+                productId,
+            </if>
+            <if test="fundAlternateId != null" >
+                fundAlternateId,
+            </if>
+            <if test="proportion != null" >
+                proportion,
+            </if>
+            <if test="fundName != null" >
+                fundName,
+            </if>
+            <if test="fundCode != null" >
+                fundCode,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="productFundDetailId != null" >
+                #{productFundDetailId,jdbcType=INTEGER},
+            </if>
+            <if test="productId != null" >
+                #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="fundAlternateId != null" >
+                #{fundAlternateId,jdbcType=INTEGER},
+            </if>
+            <if test="proportion != null" >
+                #{proportion,jdbcType=DECIMAL},
+            </if>
+            <if test="fundName != null" >
+                #{fundName,jdbcType=VARCHAR},
+            </if>
+            <if test="fundCode != null" >
+                #{fundCode,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectStockProportionFromDetail" parameterType="java.lang.Integer" resultType="com.kingdom.pojo.ProductStockDetail">
+        select
+        stockName,proportion,stockCode
+        from
+        product_stock_detail
+        where
+        productId = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectFundProportionFromDetail" parameterType="java.lang.Integer" resultType="com.kingdom.pojo.ProductFundDetail">
+        select
+        fundName,proportion,fundCode
+        from
+        product_fund_detail
+        where
+        productId = #{id,jdbcType=INTEGER}
+    </select>
+
 </mapper>
