@@ -34,8 +34,8 @@ public interface UserMapper {
      * @param phonenumber
      * @return User 查询对象
      */
-
     User selectUserByPhoneNumber(String phonenumber);
+
     /**
      * 投资人更换头像
      * @param userid
@@ -43,12 +43,14 @@ public interface UserMapper {
      * @return
      */
     int updateAvatar(Integer userid,String avatar);
+
     /**
      * 投资人绑卡功能，将姓名和卡号写进数据库
      * @param card
      * @return int 操作行数
      */
     int addCard(Card card);
+
     /**
      * 投资人登录功能，从数据库中查询密码
      * @param email
@@ -57,4 +59,40 @@ public interface UserMapper {
      */
     User selectPasswordByEmailOrPhoneNumber(@Param("email")String email,@Param("phonenumber") String phoneNumber);
 
+    /**
+     * 投资人更新支付密码
+     * @param userid
+     * @param paypassword
+     * @param paypasswordsalt
+     * @return
+     */
+    int updatePayPassword(Integer userid,String paypassword,String paypasswordsalt);
+
+    /**
+     * 密码管理
+     * @param userid
+     * @param password
+     * @param salt
+     * @return int 操作行数
+     */
+    int updatePassword(Integer userid,String password,String salt);
+
+    /**
+     * 实名认证
+     * @param userid
+     * @param name
+     * @param idnumber
+     * @param approvalstatus
+     * @param approvaltime
+     * @return int 操作行数
+     */
+    int updateName(Integer userid,String name,String idnumber,String approvalstatus,Integer approvaltime);
+
+    /**
+     * 投资人修改手机号
+     * @param userid
+     * @param phonenumber
+     * @return
+     */
+    int updatePhoneNumber(Integer userid,String phonenumber);
 }

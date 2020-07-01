@@ -37,7 +37,7 @@
         where phoneNumber=#{phonenumber}
     </select>
 
-    <update id="updateAvatar">
+    <update id="updateAvatar" parameterType="com.kingdom.pojo.User">
         update user
         set avatar=#{avatar}
         where userId=#{userid}
@@ -47,5 +47,29 @@
         insert into card(realName,cardNumber,createdTime,status)
         values(#{realname},#{cardnumber},#{createdtime},#{status})
     </insert>
+
+    <update id="updatePayPassword" parameterType="com.kingdom.pojo.User">
+        update `user`
+        set payPassword=#{paypassword},payPasswordSalt=#{paypasswordsalt}
+        where userId=#{userid}
+    </update>
+
+    <update id="updateName" parameterType="com.kingdom.pojo.User">
+        update `user`
+        set name=#{name},idNumber=#{idnumber},approvalStatus=#{approvalstatus},approvalTime=#{approvaltime}
+        where userId=#{userid}
+    </update>
+
+    <update id="updatePassword" parameterType="com.kingdom.pojo.User">
+        update `user`
+        set password=#{password},salt=#{salt}
+        where userId=#{userid}
+    </update>
+
+    <update id="updatePhoneNumber" parameterType="com.kingdom.pojo.User">
+        update `user`
+        set phoneNumber=#{phonenumber}
+        where userId=#{userid}
+    </update>
 
 </mapper>

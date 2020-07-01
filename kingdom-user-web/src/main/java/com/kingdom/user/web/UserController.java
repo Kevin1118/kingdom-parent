@@ -4,10 +4,12 @@ import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.kingdom.commonutils.CommonUtils;
 import com.kingdom.pojo.Card;
+import com.kingdom.pojo.Consultant;
 import com.kingdom.pojo.HostHolder;
 import com.kingdom.pojo.User;
 import com.kingdom.result.*;
 import com.kingdom.interfaceservice.user.UserService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,7 +34,6 @@ import java.util.Map;
  * @date : 2020-06-16 12:08
  **/
 @Controller
-@CrossOrigin(origins = "*",allowedHeaders = "*")
 public class UserController {
 
     @Reference
@@ -89,7 +90,7 @@ public class UserController {
 
     }
     @ApiOperation("头像加载")
-    @GetMapping("/headerUser/{fileName}")
+    @GetMapping("/user/headerUser/{fileName}")
     public void getHeader(@PathVariable("fileName") String filename, HttpServletResponse response) {
         //服务器存放路径
         filename = uploadPath + "/" + filename;
@@ -114,7 +115,7 @@ public class UserController {
 
     @ApiOperation("上传头像")
     @ResponseBody
-    @PostMapping("/uploadAvatarUser")
+    @PostMapping("/user/uploadAvatarUser")
     public Result uploadHeader(MultipartFile headerImage) {
         if (headerImage == null) {
             return ResultGenerator.genFailResult("您还没有选择图片！");
@@ -138,18 +139,60 @@ public class UserController {
         //更新当前用户头像路径（web访问路径）
         //http://localhost:9001/consultant/consultantAvatar/xxx.png
         User user = hostHolder.getUser();
-
         String avatarUrl = domain + "/user/headerUser/" + fileName;
         userService.updateAvatarUser(user.getUserid(),avatarUrl);
         return ResultGenerator.genSuccessResult();
 
     }
+    @ApiOperation("基本信息加载")
+    @ResponseBody
+    @GetMapping("/user/loadUser")
+    public Result loadUser(){
+        User user=hostHolder.getUser();
+        if(user!=null){
+            return ResultGenerator.genSuccessResult(user);
+        }else {
+            return ResultGenerator.genFailResult("加载失败");
+        }
+    }
 
-    @ApiOperation(("投资人绑定银行卡"))
+    @ApiOperation("投资人绑定银行卡")
     @PostMapping("/user/bindCardUser")
     @ResponseBody
     public Result bindCardUser(Card card){
         int i = userService.bindCardUser(card);
         return ResultGenerator.genSuccessResult(i);
+    }
+
+    @ApiOperation("投资人设置支付密码")
+    @ResponseBody
+    @PostMapping("/user/setPayPasswordUser")
+    public Result setPayPasswordUser(String payPassword){
+        User user=hostHolder.getUser();
+        return ResultGenerator.genSuccessResult(userService.setPayPasswordUser(user.getUserid(),payPassword));
+    }
+
+    @ApiOperation("密码管理")
+    @ResponseBody
+    @PostMapping("/user/passwordManageUser")
+    public Result passwordManageUser(String oldPassword,String newPassword){
+        User user=hostHolder.getUser();
+        return ResultGenerator.genSuccessResult(userService.passwordManageUser(user,oldPassword,newPassword));
+    }
+
+    @ApiOperation("投资人实名认证")
+    @ResponseBody
+    @PostMapping("/user/certificationUser")
+    public Result certificationUser(String name,String idNumber){
+        User user=hostHolder.getUser();
+        return ResultGenerator.genSuccessResult(userService.certificationUser(user,name,idNumber));
+    }
+
+    @ApiOperation("投资人修改手机号")
+    @ResponseBody
+    @PostMapping("/user/changePhoneNumberUser")
+    public Result changePhoneNumberUser(String phoneNumber){
+        User user=hostHolder.getUser();
+        return ResultGenerator.genSuccessResult(userService.changePhoneNumberUser(user,phoneNumber));
     }
 }

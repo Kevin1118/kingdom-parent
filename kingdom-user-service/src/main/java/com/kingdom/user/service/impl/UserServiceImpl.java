@@ -111,4 +111,35 @@ public class UserServiceImpl implements UserService {
         return loginTicketMapper.selectByTicket(loginTicket);
     }
 
+    @Override
+    public int setPayPasswordUser(int userid, String payPassword) {
+        String salt=CommonUtils.generateUUID().substring(0, 5);
+        payPassword=CommonUtils.md5(payPassword+salt);
+        return userMapper.updatePayPassword(userid,payPassword,salt);
+    }
+
+    @Override
+    public int passwordManageUser(User user, String oldPassword, String newPassword) {
+        if (CommonUtils.md5(oldPassword+user.getSalt()).equals(user.getPassword())){
+            String salt=CommonUtils.generateUUID().substring(0,5);
+            return userMapper.updatePassword(user.getUserid(),CommonUtils.md5(newPassword+salt),salt);
+        }else{
+            return -1;
+        }
+    }
+
+    @Override
+    public int certificationUser(User user, String name, String idNumber) {
+        String approvalStatus="1";
+        int approvalTime=(int)(System.currentTimeMillis()/1000);
+        user.setApprovalstatus(approvalStatus);
+        user.setApprovaltime(approvalTime);
+        return userMapper.updateName(user.getUserid(),name,idNumber,approvalStatus,approvalTime);
+    }
+
+    @Override
+    public int changePhoneNumberUser(User user, String phoneNumber) {
+        return userMapper.updatePhoneNumber(user.getUserid(),phoneNumber);
+    }
+
 }

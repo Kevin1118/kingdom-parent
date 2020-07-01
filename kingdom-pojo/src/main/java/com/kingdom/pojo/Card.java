@@ -6,9 +6,9 @@ import java.io.Serializable;
 
 @Data
 public class Card implements Serializable {
-    private int cardid;
+    private Integer cardid;
     private String realname;
     private String cardnumber;
-    private int createdtime;
+    private Integer createdtime;
     private String status;
 }

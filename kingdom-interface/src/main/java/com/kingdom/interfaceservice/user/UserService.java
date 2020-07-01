@@ -59,4 +59,37 @@ public interface UserService {
      */
     LoginTicket findLoginTicket(String loginTicket);
 
+    /**
+     * 设置支付密码，并存储
+     * @param userId
+     * @param payPassword
+     * @return
+     */
+    int setPayPasswordUser(int userId,String payPassword);
+
+    /**
+     * 密码管理，修改密码
+     * @param user
+     * @param oldPassword
+     * @param newPassword
+     * @return
+     */
+
+    int passwordManageUser(User user,String oldPassword,String newPassword);
+    /**
+     * 投资人实名认证
+     * @param user
+     * @param name
+     * @param idNumber
+     * @return
+     */
+    int certificationUser(User user,String name,String idNumber);
+
+    /**
+     * 投资人修改手机号
+     * @param user
+     * @param phoneNumber
+     * @return
+     */
+    int changePhoneNumberUser(User user,String phoneNumber);
 }
