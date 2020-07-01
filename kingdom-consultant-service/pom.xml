@@ -7,10 +7,9 @@
         <artifactId>kingdom-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <groupId>com.kingdom</groupId>
-    <artifactId>kingdom-user-service</artifactId>
+    <artifactId>kingdom-consultant-service</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>kingdom-user-service</name>
+    <name>kingdom-consultant-service</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -31,17 +30,18 @@
             <scope>test</scope>
         </dependency>
 
-<!--        这里引入二级接口层 interface 还有 dao -->
+        <!--        这里引入二级接口层 interface 还有 dao -->
+
+        <dependency>
+            <groupId>com.kingdom</groupId>
+            <artifactId>kingdom-interface</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>com.kingdom</groupId>
             <artifactId>kingdom-dao</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.kingdom</groupId>
-            <artifactId>kingdom-interface</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -50,50 +50,36 @@
             <scope>test</scope>
         </dependency>
 
-<!--        这里引入三级接口层 interface
+        <!--        这里引入三级接口层 interface
         还有pojo dto vojo -->
 
         <dependency>
             <groupId>com.kingdom</groupId>
             <artifactId>kingdom-pojo</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.kingdom</groupId>
             <artifactId>kingdom-vojo</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.kingdom</groupId>
             <artifactId>kingdom-dto</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
+
 
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>${pagehelper.version}</version>
+            <version>1.2.10</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>${http-client.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>${fast-json.version}</version>
-        </dependency>
-        <!-- druid -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>${druid.version}</version>
         </dependency>
-<!--        暂时没有引入数据库，注解掉 mybatis 依赖-->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -110,17 +96,17 @@
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
-
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+            <version>2.2.5.RELEASE</version>
+        </dependency>
     </dependencies>
-
     <build>
-
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <!--新增-->
             </plugin>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
@@ -163,9 +149,11 @@
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.properties</include>
-                    <include>**/*.xml</include>
                     <include>**/*.yml</include>
+                    <include>**/*.xml</include>
                 </includes>
+                <!--                filtering标签的作用是？    -->
+                <filtering>false</filtering>
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
@@ -175,6 +163,5 @@
             </resource>
         </resources>
     </build>
-
 
 </project>
