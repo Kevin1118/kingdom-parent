@@ -20,3 +20,8 @@ swagger:
     name: Huang JingChao
     url: https://github.com/Kevin1118
     email: huangjingchao@2019.163.com
+
+user:
+  path:
+    domain: http://localhost:9001
+    upload: e:/360Safe

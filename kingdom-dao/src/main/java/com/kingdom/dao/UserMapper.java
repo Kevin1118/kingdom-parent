@@ -1,5 +1,6 @@
 package com.kingdom.dao;
 
+import com.kingdom.pojo.Card;
 import com.kingdom.pojo.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,28 +20,35 @@ public interface UserMapper {
      * @param userid
      * @return User
      */
-    User selectByIdDemo(Integer userid);
-
+    User selectUserById(Integer userid);
 
     /**
      * 投资人注册功能，向数据库写进用户名，邮箱,手机号和密码
-     * @param userId
-     * @param userName
-     * @param email
-     * @param phoneNumber
-     * @param password
-     * @return int
+     * @param user 投资人对象，写进数据库
+     * @return int 操作行数
      */
-    int addUser(@Param("userid")Integer userId,@Param("username")String userName,@Param("email")String email,@Param("phonenumber")String phoneNumber,@Param("password")String password);
+    int addUser(User user);
 
     /**
-     * 投资人绑卡功能，将姓名和卡号写进数据库
-     * @param cardId
-     * @param realName
-     * @param cardNumber
+     * 根据电话号码查询投资人用户
+     * @param phonenumber
+     * @return User 查询对象
      */
 
-    int addCard(@Param("cardid") Integer cardId,@Param("realname") String realName,@Param("cardnumber") String cardNumber);
+    User selectUserByPhoneNumber(String phonenumber);
+    /**
+     * 投资人更换头像
+     * @param userid
+     * @param avatar
+     * @return
+     */
+    int updateAvatar(Integer userid,String avatar);
+    /**
+     * 投资人绑卡功能，将姓名和卡号写进数据库
+     * @param card
+     * @return int 操作行数
+     */
+    int addCard(Card card);
     /**
      * 投资人登录功能，从数据库中查询密码
      * @param email
