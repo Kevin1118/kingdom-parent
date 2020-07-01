@@ -28,19 +28,15 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="莫名奇妙的文件">
-      <change afterPath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/commonutils/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="新增查询产品接口">
+      <change afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/OrderMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/OrderMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kingdom-pojo/src/main/java/com/kingdom/pojo/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kingdom-consultant-service/src/main/java/com/kingdom/consultant/service/impl/ConsultantServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-consultant-service/src/main/java/com/kingdom/consultant/service/impl/ConsultantServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kingdom-consultant-web/src/main/java/com/kingdom/consultant/web/ConsultantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-consultant-web/src/main/java/com/kingdom/consultant/web/ConsultantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ProductMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ProductMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ProductMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kingdom-interface/src/main/java/com/kingdom/interfaceservice/consultant/ConsultantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-interface/src/main/java/com/kingdom/interfaceservice/consultant/ConsultantService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-pojo/src/main/java/com/kingdom/pojo/Consultant.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-pojo/src/main/java/com/kingdom/pojo/Consultant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/commonutils/CommonUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/commonutils/CommonUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/commonutils/RedisKeyUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/commonutils/RedisKeyUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/result/ResultCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/result/ResultCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/commonutils/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/commonutils/Constant.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -424,7 +420,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593569609256</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="新增查询产品接口">
+      <created>1593594556185</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1593594556185</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -468,7 +471,8 @@
     <MESSAGE value="删除邮件信息" />
     <MESSAGE value="莫名奇妙的文件" />
     <MESSAGE value="加入redis，重构部分代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="加入redis，重构部分代码" />
+    <MESSAGE value="新增查询产品接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增查询产品接口" />
   </component>
   <component name="WindowStateProjectService">
     <state x="578" y="176" key="#Project_Structure" timestamp="1592630430545">
@@ -483,11 +487,11 @@
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
     <state x="552" y="257" key="#com.intellij.execution.impl.EditConfigurationsDialog/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592465046923" />
-    <state x="903" y="286" key="#com.intellij.ide.util.MemberChooser" timestamp="1593588019014">
+    <state x="903" y="286" key="#com.intellij.ide.util.MemberChooser" timestamp="1593600440456">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
     <state x="903" y="286" key="#com.intellij.ide.util.MemberChooser/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592643675813" />
-    <state x="903" y="286" key="#com.intellij.ide.util.MemberChooser/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1593588019014" />
+    <state x="903" y="286" key="#com.intellij.ide.util.MemberChooser/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1593600440456" />
     <state x="827" y="391" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1592465045526">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
@@ -502,50 +506,50 @@
     <state x="1254" y="360" key="FileChooserDialogImpl/-1920.1338.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592876532382" />
     <state x="1254" y="360" key="FileChooserDialogImpl/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592645199926" />
     <state x="1254" y="360" key="FileChooserDialogImpl/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1593582732305" />
-    <state width="1694" height="358" key="GridCell.Tab.0.bottom" timestamp="1593592071522">
+    <state width="1694" height="358" key="GridCell.Tab.0.bottom" timestamp="1593606693609">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
     <state width="2517" height="404" key="GridCell.Tab.0.bottom/-1920.1338.1536.827/0.0.2560.1409@0.0.2560.1409" timestamp="1592748855004" />
     <state width="1485" height="506" key="GridCell.Tab.0.bottom/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592650074383" />
-    <state width="1694" height="358" key="GridCell.Tab.0.bottom/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1593592071522" />
-    <state width="1694" height="358" key="GridCell.Tab.0.center" timestamp="1593592071522">
+    <state width="1694" height="358" key="GridCell.Tab.0.bottom/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1593606693609" />
+    <state width="1694" height="358" key="GridCell.Tab.0.center" timestamp="1593606693609">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
     <state width="2517" height="404" key="GridCell.Tab.0.center/-1920.1338.1536.827/0.0.2560.1409@0.0.2560.1409" timestamp="1592748855004" />
     <state width="1485" height="506" key="GridCell.Tab.0.center/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592650074382" />
-    <state width="1694" height="358" key="GridCell.Tab.0.center/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1593592071522" />
-    <state width="1694" height="358" key="GridCell.Tab.0.left" timestamp="1593592071522">
+    <state width="1694" height="358" key="GridCell.Tab.0.center/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1593606693609" />
+    <state width="1694" height="358" key="GridCell.Tab.0.left" timestamp="1593606693608">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
     <state width="2517" height="404" key="GridCell.Tab.0.left/-1920.1338.1536.827/0.0.2560.1409@0.0.2560.1409" timestamp="1592748855003" />
     <state width="1485" height="506" key="GridCell.Tab.0.left/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592650074382" />
-    <state width="1694" height="358" key="GridCell.Tab.0.left/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1593592071522" />
-    <state width="1694" height="358" key="GridCell.Tab.0.right" timestamp="1593592071522">
+    <state width="1694" height="358" key="GridCell.Tab.0.left/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1593606693608" />
+    <state width="1694" height="358" key="GridCell.Tab.0.right" timestamp="1593606693609">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
     <state width="2517" height="404" key="GridCell.Tab.0.right/-1920.1338.1536.827/0.0.2560.1409@0.0.2560.1409" timestamp="1592748855004" />
     <state width="1485" height="506" key="GridCell.Tab.0.right/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592650074383" />
-    <state width="1694" height="358" key="GridCell.Tab.0.right/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1593592071522" />
-    <state width="1694" height="358" key="GridCell.Tab.1.bottom" timestamp="1593592071522">
+    <state width="1694" height="358" key="GridCell.Tab.0.right/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1593606693609" />
+    <state width="1694" height="358" key="GridCell.Tab.1.bottom" timestamp="1593606693609">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
     <state width="1485" height="506" key="GridCell.Tab.1.bottom/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592650074383" />
-    <state width="1694" height="358" key="GridCell.Tab.1.bottom/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1593592071522" />
-    <state width="1694" height="358" key="GridCell.Tab.1.center" timestamp="1593592071522">
+    <state width="1694" height="358" key="GridCell.Tab.1.bottom/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1593606693609" />
+    <state width="1694" height="358" key="GridCell.Tab.1.center" timestamp="1593606693609">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
     <state width="1485" height="506" key="GridCell.Tab.1.center/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592650074383" />
-    <state width="1694" height="358" key="GridCell.Tab.1.center/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1593592071522" />
-    <state width="1694" height="358" key="GridCell.Tab.1.left" timestamp="1593592071522">
+    <state width="1694" height="358" key="GridCell.Tab.1.center/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1593606693609" />
+    <state width="1694" height="358" key="GridCell.Tab.1.left" timestamp="1593606693609">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
     <state width="1485" height="506" key="GridCell.Tab.1.left/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592650074383" />
-    <state width="1694" height="358" key="GridCell.Tab.1.left/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1593592071522" />
-    <state width="1694" height="358" key="GridCell.Tab.1.right" timestamp="1593592071522">
+    <state width="1694" height="358" key="GridCell.Tab.1.left/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1593606693609" />
+    <state width="1694" height="358" key="GridCell.Tab.1.right" timestamp="1593606693609">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>
     <state width="1485" height="506" key="GridCell.Tab.1.right/3840.1094.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1592650074383" />
-    <state width="1694" height="358" key="GridCell.Tab.1.right/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1593592071522" />
+    <state width="1694" height="358" key="GridCell.Tab.1.right/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1593606693609" />
     <state width="1694" height="358" key="GridCell.Tab.2.bottom" timestamp="1593513791094">
       <screen x="0" y="0" width="2194" height="1204" />
     </state>

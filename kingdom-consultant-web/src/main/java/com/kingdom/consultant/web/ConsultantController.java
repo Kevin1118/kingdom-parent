@@ -285,11 +285,55 @@ public class ConsultantController implements Constant {
         Map map=consultantService.selectProduct(pageNum,pageSize,consultant.getConsultantid());
         return ResultGenerator.genSuccessResult(map);
     }
-//
-//    @ApiOperation("查看产品详情")
-//    @ResponseBody
-//    @PostMapping("/productDetail")
-//    public Result loadProductDetail(int productid){
-//
-//    }
+
+
+    @ApiOperation("查看审批列表")
+    @ResponseBody
+    @GetMapping("/loadApprovalList")
+    public Result loadApprovalList(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize){
+        Consultant consultant=hostHolder.getConsultant();
+        //判断对象是否为空，若空返回未登录
+        if (consultant==null){
+            return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
+        }
+        Map map=consultantService.selectOrders(pageNum,pageSize,consultant.getConsultantid(),APPROVAL);
+        return ResultGenerator.genSuccessResult(map);
+    }
+
+    @ApiOperation("买入审批确认")
+    @ResponseBody
+    @PostMapping("/acceptApproval")
+    public Result acceptApproval(int id,int status){
+        //判断是否登录
+        Consultant consultant=hostHolder.getConsultant();
+        if (consultant==null){
+            return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
+        }
+        ResultCode code;
+        //判断当前审批订单是买入还是卖出，并修改为对应的状态
+        if (status==APPROVAL_BUY){
+            code=consultantService.updateOrderStatus(id,WAIT_TO_BUY);
+        }else{
+            code=consultantService.updateOrderStatus(id,WAIT_TO_SELL);
+        }
+        if (code.equals(ResultCode.SUCCESS)){
+            return ResultGenerator.genSuccessResult();
+        }else {
+            return ResultGenerator.genFailResult(code);
+        }
+    }
+
+
+    @ApiOperation("交易列表加载")
+    @ResponseBody
+    @GetMapping("/loadTransactionList")
+    public Result loadBuyList(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize){
+        Consultant consultant=hostHolder.getConsultant();
+        //判断对象是否为空，若空返回未登录
+        if (consultant==null){
+            return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
+        }
+        Map map=consultantService.selectOrders(pageNum,pageSize,consultant.getConsultantid(),TRANSACTION);
+        return ResultGenerator.genSuccessResult(map);
+    }
 }

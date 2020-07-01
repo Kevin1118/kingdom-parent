@@ -4,14 +4,13 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.kingdom.commonutils.CommonUtils;
+import com.kingdom.commonutils.Constant;
 import com.kingdom.commonutils.RedisKeyUtil;
+import com.kingdom.dao.OrderMapper;
 import com.kingdom.dao.ProductMapper;
 import com.kingdom.interfaceservice.consultant.ConsultantService;
 import com.kingdom.dao.ConsultantMapper;
-import com.kingdom.pojo.AlternateRule;
-import com.kingdom.pojo.Consultant;
-import com.kingdom.pojo.LoginTicket;
-import com.kingdom.pojo.Product;
+import com.kingdom.pojo.*;
 import com.kingdom.result.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -26,13 +25,16 @@ import java.util.concurrent.TimeUnit;
  * @date : 2020/6/20 12:48
  */
 @Service
-public class ConsultantServiceImpl implements ConsultantService {
+public class ConsultantServiceImpl implements ConsultantService, Constant {
 
     @Autowired
     private ConsultantMapper consultantMapper;
 
     @Autowired
     private ProductMapper productMapper;
+
+    @Autowired
+    private OrderMapper orderMapper;
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -243,6 +245,13 @@ public class ConsultantServiceImpl implements ConsultantService {
     }
 
 
+    /**
+     * 查询产品
+     * @param pageNum 页码
+     * @param pageSize 分页大小
+     * @param consultantId 投顾id
+     * @return 产品列表
+     */
     @Override
     public Map selectProduct(int pageNum, int pageSize, int consultantId) {
         //分页组件
@@ -327,5 +336,52 @@ public class ConsultantServiceImpl implements ConsultantService {
     }
 
 
+    /**
+     * 查询订单
+     * @param pageNum 页码
+     * @param pageSize 分页大小
+     * @param consultantId 投顾id
+     * @return 订单审批列表
+     */
+    @Override
+    public Map selectOrders(int pageNum,int pageSize,int consultantId,int type){
+        //分页
+        Page<Object> pageObject=PageHelper.startPage(pageNum,pageSize);
+        List<Order> buyList;
+        List<Order> sellList;
+        Map map=new HashMap(3);
+        if (type==APPROVAL){
+            //查询买入审批列表
+            buyList=orderMapper.selectOrderByConsultantIdAndStatus(consultantId,APPROVAL_BUY);
+            //查询卖出审批列表
+            sellList=orderMapper.selectOrderByConsultantIdAndStatus(consultantId,APPROVAL_SELL);
+            map.put("buyApproval",buyList);
+            map.put("sellApproval",sellList);
 
+        }else{
+            buyList=orderMapper.selectOrderByConsultantIdAndStatus(consultantId,WAIT_TO_BUY);
+            sellList=orderMapper.selectOrderByConsultantIdAndStatus(consultantId,WAIT_TO_SELL);
+            map.put("buyTransaction",buyList);
+            map.put("sellTransaction",sellList);
+        }
+
+        return map;
+    }
+
+
+    /**
+     * 更新订单状态
+     * @param id 订单id
+     * @param status 状态
+     * @return
+     */
+    @Override
+    public ResultCode updateOrderStatus(int id,int status) {
+        int rows=orderMapper.updateOrderStatus(id,status);
+        if (rows==1){
+            return ResultCode.SUCCESS;
+        }else {
+            return ResultCode.MYSQL_CURD_ERROR;
+        }
+    }
 }

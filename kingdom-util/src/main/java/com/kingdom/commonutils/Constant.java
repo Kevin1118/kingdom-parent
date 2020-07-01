@@ -36,4 +36,33 @@ public interface Constant {
      * 登录凭证
      */
     String LOGIN_TICKET="loginTicket";
+
+    /**
+     * 订单买入待审批状态
+     */
+    int APPROVAL_BUY=1;
+
+    /**
+     * 订单卖出待审批状态
+     */
+    int APPROVAL_SELL=2;
+
+    /**
+     * 订单待买入
+     */
+    int WAIT_TO_BUY=3;
+
+    /**
+     * 订单待卖出
+     */
+    int WAIT_TO_SELL=4;
+
+    /**
+     * 审批
+     */
+    int APPROVAL=0;
+    /**
+     * 交易
+     */
+    int TRANSACTION=1;
 }

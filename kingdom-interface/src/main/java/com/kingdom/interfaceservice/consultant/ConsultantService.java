@@ -3,6 +3,7 @@ package com.kingdom.interfaceservice.consultant;
 
 import com.kingdom.pojo.Consultant;
 import com.kingdom.pojo.LoginTicket;
+import com.kingdom.result.Result;
 import com.kingdom.result.ResultCode;
 
 import java.util.Map;
@@ -89,4 +90,22 @@ public interface ConsultantService {
      * @return 产品列表
      */
     Map selectProduct(int pageNum, int pageSize,int consultantId);
+
+    /**
+     * 查询投顾所属订单
+     * @param pageNum 页码
+     * @param pageSize 分页大小
+     * @param consultantId 投顾id
+     * @return 订单列表
+     */
+    Map selectOrders(int pageNum,int pageSize,int consultantId,int type);
+
+
+    /**
+     * 更改订单状态
+     * @param id 订单id
+     * @param status 状态
+     * @return 响应码
+     */
+    ResultCode updateOrderStatus(int id,int status);
 }
