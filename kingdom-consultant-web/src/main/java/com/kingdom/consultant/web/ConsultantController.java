@@ -3,6 +3,7 @@ package com.kingdom.consultant.web;
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.kingdom.commonutils.CommonUtils;
+import com.kingdom.commonutils.Constant;
 import com.kingdom.interfaceservice.consultant.ConsultantService;
 import com.kingdom.pojo.Consultant;
 import com.kingdom.pojo.HostHolder;
@@ -32,7 +33,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/consultant")
-public class ConsultantController {
+public class ConsultantController implements Constant {
 
     /**
      * 注入投顾人业务层
@@ -67,16 +68,16 @@ public class ConsultantController {
     @ApiOperation("投顾人注册,目前采用邮箱注册")
     @PostMapping("/registerConsultant")
     @ResponseBody
-    public Result register(Consultant consultant){
+    public Result register(Consultant consultant) {
         //判空处理，如果参数为空，返回空值错误
-        if(consultant==null){
+        if (consultant == null) {
             return ResultGenerator.genFailResult(ResultCode.EMPTY_ARG);
         }
         //使用ResultCode接受业务调用结果，如果成功则生成默认成功结果，失败则返回相应的错误码
-        ResultCode code=consultantService.register(consultant);
-        if(code.equals(ResultCode.SUCCESS)){
+        ResultCode code = consultantService.register(consultant);
+        if (code.equals(ResultCode.SUCCESS)) {
             return ResultGenerator.genSuccessResult();
-        }else {
+        } else {
             return ResultGenerator.genFailResult(code);
         }
     }
@@ -84,37 +85,42 @@ public class ConsultantController {
     @ApiOperation("投顾人登录")
     @PostMapping("/loginConsultant")
     @ResponseBody
-    public Result login(String email,String password,HttpServletResponse response){
+    public Result login(String email, String password, HttpServletResponse response) {
         //判空处理，参数为空则返回空值错误
-        if(StringUtils.isEmpty(email) || StringUtils.isEmpty(password)){
+        if (StringUtils.isEmpty(email) || StringUtils.isEmpty(password)) {
             return ResultGenerator.genFailResult(ResultCode.EMPTY_ARG);
         }
         //使用map接收业务调用结果，map中数据包括响应码和登录凭证
-        Map<String,Object> map=consultantService.login(email,password);
-        ResultCode code=(ResultCode) map.get("resultCode");
+        Map<String, Object> map = consultantService.login(email, password);
+        ResultCode code = (ResultCode) map.get("resultCode");
         //如果响应码为成功，则获取map中的登录凭证
-        if(code.equals(ResultCode.SUCCESS)){
-            LoginTicket ticket=(LoginTicket) map.get("loginTicket");
+        if (code.equals(ResultCode.SUCCESS)) {
+            LoginTicket ticket = (LoginTicket) map.get("loginTicket");
             //将登录凭证使用cookie返回前端
-            Cookie cookie = new Cookie("loginTicket",ticket.getTicket());
+            Cookie cookie = new Cookie("loginTicket", ticket.getTicket());
             //cookie有效时间为十二小时，对应ticket有效时间十二小时
-            cookie.setMaxAge(3600*12);
+            cookie.setMaxAge(3600 * 12);
             response.addCookie(cookie);
             return ResultGenerator.genSuccessResult();
-        }else {
+        } else {
             return ResultGenerator.genFailResult(code);
         }
     }
 
     @ApiOperation("头像加载")
     @GetMapping("/consultantAvatar/{fileName}")
-    public void getHeader(@PathVariable("fileName") String filename, HttpServletResponse response) {
+    public Result getHeader(@PathVariable("fileName") String filename, HttpServletResponse response) {
         //使用上传路径和文件名拼接出服务器存放路径
         filename = uploadPath + "/" + filename;
         //获取文件后缀
         String suffix = filename.substring(filename.lastIndexOf("."));
         //响应图片
-        response.setContentType("/image" + suffix);
+        if(suffix.equals(SUFFIX_JPG)){
+            response.setContentType(CONTENT_TYPE_JPG);
+        }else {
+            response.setContentType(CONTENT_TYPE_PNG);
+        }
+
         try (
                 //文件输入流和响应输出流，自动关闭
                 FileInputStream fileInputStream = new FileInputStream(filename);
@@ -127,24 +133,29 @@ public class ConsultantController {
                 //循环将缓冲区内容输出
                 os.write(buffer, 0, b);
             }
+            return ResultGenerator.genSuccessResult();
         } catch (IOException e) {
             e.printStackTrace();
+            return ResultGenerator.genFailResult(e.getMessage());
         }
     }
 
     @ApiOperation("上传头像")
     @ResponseBody
     @PostMapping("/uploadAvatar")
-    public Result uploadHeader(MultipartFile headerImage) {
+    public Result uploadHeader(MultipartFile avatar) {
         //判空处理，如果参数为空则返回空值响应码
-        if (headerImage == null) {
+        if (avatar == null) {
             return ResultGenerator.genFailResult(ResultCode.EMPTY_ARG);
         }
         //获取文件原名
-        String fileName = headerImage.getOriginalFilename();
+        String fileName = avatar.getOriginalFilename();
         //获取文件后缀
         String suffix = fileName.substring(fileName.lastIndexOf("."));
         if (StringUtils.isBlank(suffix)) {
+            return ResultGenerator.genFailResult(ResultCode.FILE_SUFFIX_ERROR);
+        }
+        if (!suffix.equals(SUFFIX_JPG) && !suffix.equals(SUFFIX_PNG)){
             return ResultGenerator.genFailResult(ResultCode.FILE_SUFFIX_ERROR);
         }
 
@@ -154,22 +165,22 @@ public class ConsultantController {
         File dest = new File(uploadPath + "/" + fileName);
         try {
             //存储文件
-            headerImage.transferTo(dest);
+            avatar.transferTo(dest);
         } catch (IOException e) {
             throw new RuntimeException("上传文件失败，服务器发生异常！", e);
         }
         //更新当前用户头像路径（web访问路径）
         //http://localhost:9002/consultant/consultantAvatar/xxx.png
         Consultant consultant = hostHolder.getConsultant();
-        if(consultant==null){
+        if (consultant == null) {
             return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
         }
         String avatarUrl = domain + "/consultant/consultantAvatar/" + fileName;
         //接收业务层响应码
-        ResultCode code=consultantService.updateAvatar(consultant.getConsultantid(), avatarUrl);
-        if(code.equals(ResultCode.SUCCESS)){
+        ResultCode code = consultantService.updateAvatar(consultant.getConsultantid(), avatarUrl);
+        if (code.equals(ResultCode.SUCCESS)) {
             return ResultGenerator.genSuccessResult();
-        }else {
+        } else {
             return ResultGenerator.genFailResult(code);
         }
 
@@ -178,18 +189,21 @@ public class ConsultantController {
     @ApiOperation("实名认证")
     @ResponseBody
     @PostMapping("/authentication")
-    public Result authentication(String name,String idnumber){
-        if(StringUtils.isEmpty(name) || StringUtils.isEmpty(idnumber)){
+    public Result authentication(String name, String idnumber) {
+        //判空处理，如果参数为空，返回空值响应码
+        if (StringUtils.isEmpty(name) || StringUtils.isEmpty(idnumber)) {
             return ResultGenerator.genFailResult(ResultCode.EMPTY_ARG);
         }
-        Consultant consultant=hostHolder.getConsultant();
-        if (consultant==null){
+        Consultant consultant = hostHolder.getConsultant();
+        //如果consultant对象为空，则返回未登录响应码
+        if (consultant == null) {
             return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
         }
-        ResultCode code=consultantService.updateNameAndId(consultant.getConsultantid(),name, idnumber);
-        if(code.equals(ResultCode.SUCCESS)){
+        //接收业务层响应码
+        ResultCode code = consultantService.updateNameAndId(consultant.getConsultantid(), name, idnumber);
+        if (code.equals(ResultCode.SUCCESS)) {
             return ResultGenerator.genSuccessResult();
-        }else {
+        } else {
             return ResultGenerator.genFailResult(code);
         }
     }
@@ -198,16 +212,18 @@ public class ConsultantController {
     @ApiOperation("基本信息加载")
     @ResponseBody
     @GetMapping("/loadConsultant")
-    public Result loadConsultant(){
-        Consultant consultant=hostHolder.getConsultant();
+    public Result loadConsultant() {
+        Consultant consultant = hostHolder.getConsultant();
         //consultant不为空，则返回对象
-        if(consultant!=null){
+        if (consultant != null) {
+            //清空登录密码数据
             consultant.setPassword(null);
             consultant.setPasswordsalt(null);
+            //清空支付密码数据
             consultant.setPaypassword(null);
             consultant.setPasswordsalt(null);
             return ResultGenerator.genSuccessResult(consultant);
-        }else {
+        } else {
             return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
         }
     }
@@ -216,20 +232,64 @@ public class ConsultantController {
     @ApiOperation("设置支付密码")
     @ResponseBody
     @PostMapping("/setPayPassword")
-    public Result setPayPassword(String paypassword){
-        Consultant consultant=hostHolder.getConsultant();
-        return ResultGenerator.genSuccessResult(consultantService.setPayPassword(consultant.getConsultantid(),paypassword));
+    public Result setPayPassword(String paypassword) {
+        //判空处理，空值返回参数空值响应码
+        if (StringUtils.isEmpty(paypassword)) {
+            return ResultGenerator.genFailResult(ResultCode.EMPTY_ARG);
+        }
+        Consultant consultant = hostHolder.getConsultant();
+        //对象空值判断，若空返回未登录响应码
+        if (consultant == null) {
+            return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
+        }
+        //接受业务层响应码，判断是否为成功响应
+        ResultCode code = consultantService.setPayPassword(consultant.getConsultantid(), paypassword);
+        if (code.equals(ResultCode.SUCCESS)) {
+            return ResultGenerator.genSuccessResult();
+        } else {
+            return ResultGenerator.genFailResult(code);
+        }
     }
 
     @ApiOperation("更新支付密码")
     @ResponseBody
     @PostMapping("/updatePayPassword")
-    public Result updatePayPassword(String oldpaypassword,String newpaypassword){
-        Consultant consultant=hostHolder.getConsultant();
-        int result=consultantService.updatePayPassword(consultant.getConsultantid(),oldpaypassword,newpaypassword);
-        if(result==-1){
-            return ResultGenerator.genFailResult("密码错误");
+    public Result updatePayPassword(String oldpaypassword, String newpaypassword) {
+        //判空处理，空值返回参数空值响应码
+        if (StringUtils.isEmpty(oldpaypassword) || StringUtils.isEmpty(newpaypassword)) {
+            return ResultGenerator.genFailResult(ResultCode.EMPTY_ARG);
         }
-        return ResultGenerator.genSuccessResult();
+        Consultant consultant = hostHolder.getConsultant();
+        //对象判空，如果为空返回未登录响应码
+        if (consultant == null) {
+            return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
+        }
+        //接收业务层响应码，判断是否为成功响应
+        ResultCode code = consultantService.updatePayPassword(consultant, oldpaypassword, newpaypassword);
+        if (code.equals(ResultCode.SUCCESS)) {
+            return ResultGenerator.genSuccessResult();
+        } else {
+            return ResultGenerator.genFailResult(code);
+        }
     }
+
+    @ApiOperation("查看投顾持有产品")
+    @ResponseBody
+    @PostMapping("/loadProduct")
+    public Result loadProduct(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize){
+        Consultant consultant=hostHolder.getConsultant();
+        //判断对象是否为空，若空返回未登录的响应码
+        if (consultant==null){
+            return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
+        }
+        Map map=consultantService.selectProduct(pageNum,pageSize,consultant.getConsultantid());
+        return ResultGenerator.genSuccessResult(map);
+    }
+//
+//    @ApiOperation("查看产品详情")
+//    @ResponseBody
+//    @PostMapping("/productDetail")
+//    public Result loadProductDetail(int productid){
+//
+//    }
 }

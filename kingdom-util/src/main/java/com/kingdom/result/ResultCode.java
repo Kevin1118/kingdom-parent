@@ -21,14 +21,20 @@ public enum ResultCode {
     REGISTER_EMAIL_ERROR(6001),
     //登录错误，账号不存在或者账号已停用
     LOGIN_EMAIL_ERROR(6002),
+    //账号被停用
+    LOGIN_STATUS_ERROR(6003),
     //登录错误，密码错误
-    LOGIN_PWD_ERROR(6003),
+    LOGIN_PWD_ERROR(6004),
     //未登录，或登录过期
-    NOT_LOGGED_IN(6004),
+    NOT_LOGGED_IN(6005),
     //空值
-    EMPTY_ARG(6005),
+    EMPTY_ARG(6006),
     //文件格式错误
-    FILE_SUFFIX_ERROR(6006);
+    FILE_SUFFIX_ERROR(6007),
+    //数据库操作错误
+    MYSQL_CURD_ERROR(6008),
+    //更改密码失败，密码错误
+    UPDATE_PWD_ERROR(6009),
     ;
 
 

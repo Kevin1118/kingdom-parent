@@ -8,6 +8,7 @@ public class RedisKeyUtil {
     private static final String SPLIT=":";
     private static final String PREFIX_TICKET="ticket";
     private static final String PREFIX_CONSULTANT="consultant";
+    private static final String PREFIX_PRODUCT_COUNT="productCount";
 
     /**
      * 生成redis中的指定格式key
@@ -25,5 +26,14 @@ public class RedisKeyUtil {
      */
     public static String getConsultantKey(int consultantId){
         return PREFIX_CONSULTANT+SPLIT+consultantId;
+    }
+
+    /**
+     * 生成redis中的指定格式的key
+     * @param productId 产品id
+     * @return 指定格式的key
+     */
+    public static String getProductCountKey(int productId){
+        return PREFIX_PRODUCT_COUNT+SPLIT+productId;
     }
 }

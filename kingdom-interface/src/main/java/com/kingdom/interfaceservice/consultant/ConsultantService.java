@@ -66,18 +66,27 @@ public interface ConsultantService {
 
     /**
      * 更新支付密码
-     * @param consultantId 投顾人对象
+     * @param consultant 投顾人对象
      * @param oldPayPassword 旧支付密码
      * @param newPayPassword 新支付密码
-     * @return 操作行数
+     * @return 响应码
      */
-    int updatePayPassword(int consultantId,String oldPayPassword,String newPayPassword);
+    ResultCode updatePayPassword(Consultant consultant,String oldPayPassword,String newPayPassword);
 
     /**
      * 设置支付密码
      * @param consultantId 投顾人id
      * @param payPassword 支付密码
-     * @return 操作行数
+     * @return 响应码
      */
-    int setPayPassword(int consultantId,String payPassword);
+    ResultCode setPayPassword(int consultantId,String payPassword);
+
+    /**
+     * 查询投顾所属产品
+     * @param pageNum 页码
+     * @param pageSize 分页大小
+     * @param consultantId 投顾id
+     * @return 产品列表
+     */
+    Map selectProduct(int pageNum, int pageSize,int consultantId);
 }

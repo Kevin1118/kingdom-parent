@@ -32,10 +32,4 @@ public class Consultant implements Serializable {
     private Integer createtime;
     private Integer status;
 
-    public void hidePwd(Consultant consultant){
-        consultant.setPassword(null);
-        consultant.setPasswordsalt(null);
-        consultant.setPaypassword(null);
-        consultant.setPasswordsalt(null);
-    }
 }
