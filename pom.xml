@@ -19,8 +19,10 @@
         <module>kingdom-interface</module>
         <module>kingdom-user-service</module>
         <module>kingdom-product-service</module>
+        <module>kingdom-consultant-service</module>
         <module>kingdom-user-web</module>
         <module>kingdom-product-web</module>
+        <module>kingdom-consultant-web</module>
         <module>kingdom-pojo</module>
         <module>kingdom-vojo</module>
         <module>kingdom-dao</module>

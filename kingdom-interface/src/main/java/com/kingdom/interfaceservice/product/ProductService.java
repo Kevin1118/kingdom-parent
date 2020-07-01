@@ -1,7 +1,11 @@
 package com.kingdom.interfaceservice.product;
 
+import com.kingdom.dto.product.ProductInitDTO;
 import com.kingdom.pojo.Product;
+import com.kingdom.vojo.product.ProductPieChart;
 
+import java.text.ParseException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,11 +15,10 @@ import java.util.Map;
 public interface ProductService {
     /**
      * 查询接口模板1
-     * 产品服务组件 组件编号 Jc-3
      * 根据产品 id 获取组合产品基本信息介绍
      *
      * @param id 产品id
-     * @return product 产品组合的所有信息
+     * @return product 组合产品详情接口01
      */
     Product selectProductById(Integer id);
 
@@ -62,13 +65,20 @@ public interface ProductService {
      */
     Map selectFundAlternateAll(Integer pageNum, Integer pageSize);
 
-
+    /**
+     * 产品初始化功能，迭代插入股票以及基金的比例到 product_details表，
+     * @param list 备选股票id、基金id及其比例
+     * @return List<?> 暂时返回 null
+     */
+    List<?> initProduct(List<ProductInitDTO> list);
 
     /**
-     * 复杂业务，产品初始化功能，考虑使用迭代器，迭代插入股票以及基金的比例到 product_xxxxx_details表，
-     * 和投顾商量一下买入卖出的功能实现
-     * @param List<ProductInitDTO> 备选股票id、基金id及其比例
+     * 根据产品 id 获取股票比例饼状图
+     *
+     * @param productId 产品id
+     * @return List<ProductPieChart> 组合产品详情接口01
      */
+    List<ProductPieChart> selectProportionFromDetail(Integer productId);
 
 
 }
