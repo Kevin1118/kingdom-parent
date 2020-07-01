@@ -5,6 +5,7 @@ package com.kingdom.result;
  */
 public class ResultGenerator {
     private static final String DEFAULT_SUCCESS_MESSAGE = "SUCCESS";
+    private static final String DEFAULT_FAIL_MESSAGE = "FAIL";
 
     public static Result genSuccessResult() {
         return new Result()
@@ -23,5 +24,17 @@ public class ResultGenerator {
         return new Result()
                 .setCode(ResultCode.FAIL)
                 .setMessage(message);
+    }
+
+    public static Result genFailResult(ResultCode code,String message) {
+        return new Result()
+                .setCode(code)
+                .setMessage(message);
+    }
+
+    public static Result genFailResult(ResultCode code) {
+        return new Result()
+                .setCode(code)
+                .setMessage(DEFAULT_FAIL_MESSAGE);
     }
 }

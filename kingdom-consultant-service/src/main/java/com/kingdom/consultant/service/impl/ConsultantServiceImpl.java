@@ -2,20 +2,22 @@ package com.kingdom.consultant.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.kingdom.commonutils.CommonUtils;
-import com.kingdom.dao.LoginTicketMapper;
+import com.kingdom.commonutils.RedisKeyUtil;
 import com.kingdom.interfaceservice.consultant.ConsultantService;
 import com.kingdom.dao.ConsultantMapper;
 import com.kingdom.pojo.Consultant;
-import com.kingdom.pojo.HostHolder;
 import com.kingdom.pojo.LoginTicket;
+import com.kingdom.result.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.util.StringUtils;
+import org.springframework.data.redis.core.RedisTemplate;
 
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -29,16 +31,16 @@ public class ConsultantServiceImpl implements ConsultantService {
     private ConsultantMapper consultantMapper;
 
     @Autowired
-    private LoginTicketMapper loginTicketMapper;
+    private RedisTemplate redisTemplate;
 
     @Override
-    public int register(Consultant consultant) {
+    public ResultCode register(Consultant consultant) {
 
 
         //判断邮箱是否被注册
         Consultant c = consultantMapper.selectByEmail(consultant.getEmail());
         if (c != null) {
-            return 0;
+            return ResultCode.REGISTER_EMAIL_ERROR;
         }
 
         //生成密码salt值，取5位
@@ -59,23 +61,17 @@ public class ConsultantServiceImpl implements ConsultantService {
         //设置默认简介
         consultant.setDescription("一位神秘的投资精英");
         int result = consultantMapper.insertConsultant(consultant);
-        return result;
+        return ResultCode.SUCCESS;
     }
 
     @Override
-    public Map<String, Object> login(String email, String password) {
+    public Map<String,Object> login(String email, String password) {
         Consultant consultant = consultantMapper.selectByEmail(email);
-        Map<String, Object> map = new HashMap<>(16);
-        map.put("loginticket", null);
-        //检查账号是否存在
-        if (consultant == null) {
-            map.put("loginerrormessage", "账号不存在");
-            return map;
-        }
+        Map<String,Object> map=new HashMap<>(2);
 
-        //检查账号状态
-        if (consultant.getStatus() == 1) {
-            map.put("loginerrormessage", "账号被停用");
+        //检查账号是否存在,账号状态
+        if (consultant == null || consultant.getStatus() == 1) {
+            map.put("resultCode",ResultCode.LOGIN_EMAIL_ERROR);
             return map;
         }
 
@@ -83,50 +79,61 @@ public class ConsultantServiceImpl implements ConsultantService {
         //密码加salt进行md5加密
         password = CommonUtils.md5(password + consultant.getPasswordsalt());
         if (!consultant.getPassword().equals(password)) {
-            map.put("loginerrormessage", "密码错误");
+            map.put("resultCode",ResultCode.LOGIN_PWD_ERROR);
             return map;
         }
         LoginTicket ticket = new LoginTicket();
         ticket.setTicket(CommonUtils.generateUUID());
         ticket.setUserid(consultant.getConsultantid());
         ticket.setStatus(0);
-        ticket.setExpired((int) (System.currentTimeMillis() / 1000 + 3600 * 12));
-        loginTicketMapper.insertLoginTicket(ticket);
-
-        map.put("loginticket", ticket.getTicket());
-
+        ticket.setExpired((int) (System.currentTimeMillis()/1000+3600*12));
+        String redisKey=RedisKeyUtil.getTicketKey(ticket.getTicket());
+        redisTemplate.opsForValue().set(redisKey,ticket);
+        map.put("resultCode",ResultCode.SUCCESS);
+        map.put("loginTicket",ticket);
         return map;
     }
 
 
     @Override
-    public int updateAvatar(int consultantId, String avatarUrl) {
-        return consultantMapper.updateAvatar(consultantId, avatarUrl);
+    public ResultCode updateAvatar(int consultantId, String avatarUrl) {
+        int rows=consultantMapper.updateAvatar(consultantId,avatarUrl);
+        clearCache(consultantId);
+        return ResultCode.SUCCESS;
     }
 
 
     @Override
     public LoginTicket findLoginTicket(String loginTicket) {
-        return loginTicketMapper.selectByTicket(loginTicket);
+        String redisKey=RedisKeyUtil.getTicketKey(loginTicket);
+        return (LoginTicket) redisTemplate.opsForValue().get(redisKey);
     }
 
     @Override
     public Consultant findConsultantById(int consultantId) {
-        return consultantMapper.selectById(consultantId);
+        Consultant consultant=getCache(consultantId);
+        if(consultant==null){
+            consultant=initCache(consultantId);
+        }
+        return consultant;
     }
 
     @Override
-    public int updateNameAndId(int consultantId, String name, String idNumber) {
-        return consultantMapper.updateNameAndId(consultantId, name, idNumber);
+    public ResultCode updateNameAndId(int consultantId, String name, String idNumber) {
+        int rows=consultantMapper.updateNameAndId(consultantId, name, idNumber);
+        clearCache(consultantId);
+        return ResultCode.SUCCESS;
     }
 
     @Override
-    public int updatePayPassword(Consultant consultant,String oldPayPassword, String newPayPassword) {
+    public int updatePayPassword(int consultantId,String oldPayPassword, String newPayPassword) {
 
-
+        Consultant consultant=findConsultantById(consultantId);
         if (CommonUtils.md5(oldPayPassword + consultant.getPaypasswordsalt()).equals(consultant.getPaypassword())) {
             String salt = CommonUtils.generateUUID().substring(0, 5);
-            return consultantMapper.updatePayPassword(consultant.getConsultantid(), CommonUtils.md5(newPayPassword + salt), salt);
+            int rows=consultantMapper.updatePayPassword(consultant.getConsultantid(), CommonUtils.md5(newPayPassword + salt), salt);
+            clearCache(consultantId);
+            return rows;
         } else {
             return -1;
         }
@@ -137,6 +144,41 @@ public class ConsultantServiceImpl implements ConsultantService {
     public int setPayPassword(int consultantId, String payPassword) {
         String salt = CommonUtils.generateUUID().substring(0, 5);
         payPassword=CommonUtils.md5(payPassword+salt);
-        return consultantMapper.updatePayPassword(consultantId,payPassword,salt);
+        int rows=consultantMapper.updatePayPassword(consultantId,payPassword,salt);
+        clearCache(consultantId);
+        return rows;
+    }
+
+
+    /**
+     * 从redis缓存中取对象
+     * @param consultantId 投顾人id
+     * @return 投顾人对象
+     */
+    private Consultant getCache(int consultantId){
+        String redisKey= RedisKeyUtil.getConsultantKey(consultantId);
+        return (Consultant) redisTemplate.opsForValue().get(redisKey);
+    }
+
+
+    /**
+     * 缓存中没有投顾对象时初始化缓存对象
+     * @param consultantId 投顾人id
+     * @return 投顾人对象
+     */
+    private Consultant initCache(int consultantId){
+        Consultant consultant=consultantMapper.selectById(consultantId);
+        String redisKey=RedisKeyUtil.getConsultantKey(consultantId);
+        redisTemplate.opsForValue().set(redisKey,consultant,3600, TimeUnit.SECONDS);
+        return consultant;
+    }
+
+    /**
+     * 当数据变更时清除缓存数据
+     * @param consultantId 投顾人id
+     */
+    private void clearCache(int consultantId){
+        String redisKey=RedisKeyUtil.getConsultantKey(consultantId);
+        redisTemplate.delete(redisKey);
     }
 }

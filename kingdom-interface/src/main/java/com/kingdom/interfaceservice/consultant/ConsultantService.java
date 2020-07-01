@@ -3,6 +3,7 @@ package com.kingdom.interfaceservice.consultant;
 
 import com.kingdom.pojo.Consultant;
 import com.kingdom.pojo.LoginTicket;
+import com.kingdom.result.ResultCode;
 
 import java.util.Map;
 
@@ -18,9 +19,9 @@ public interface ConsultantService {
     /**
      * 投顾人注册功能
      * @param consultant 投顾人信息
-     * @return 操作行数
+     * @return 响应码
      */
-    int register(Consultant consultant);
+    ResultCode register(Consultant consultant);
 
 
     /**
@@ -35,9 +36,9 @@ public interface ConsultantService {
      * 更新头像
      * @param consultantId 投顾人id
      * @param avatarUrl 头像链接
-     * @return 操作行数
+     * @return 响应码
      */
-    int updateAvatar(int consultantId,String avatarUrl);
+    ResultCode updateAvatar(int consultantId,String avatarUrl);
 
 
     /**
@@ -59,18 +60,18 @@ public interface ConsultantService {
      * @param consultantId 投顾人id
      * @param name 姓名
      * @param idNumber 身份证号
-     * @return 操作行数
+     * @return 响应码
      */
-    int updateNameAndId(int consultantId,String name,String idNumber);
+    ResultCode updateNameAndId(int consultantId,String name,String idNumber);
 
     /**
      * 更新支付密码
-     * @param consultant 投顾人对象
+     * @param consultantId 投顾人对象
      * @param oldPayPassword 旧支付密码
      * @param newPayPassword 新支付密码
      * @return 操作行数
      */
-    int updatePayPassword(Consultant consultant,String oldPayPassword,String newPayPassword);
+    int updatePayPassword(int consultantId,String oldPayPassword,String newPayPassword);
 
     /**
      * 设置支付密码

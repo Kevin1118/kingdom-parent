@@ -6,11 +6,14 @@ import com.kingdom.commonutils.CommonUtils;
 import com.kingdom.interfaceservice.consultant.ConsultantService;
 import com.kingdom.pojo.Consultant;
 import com.kingdom.pojo.HostHolder;
+import com.kingdom.pojo.LoginTicket;
 import com.kingdom.result.Result;
+import com.kingdom.result.ResultCode;
 import com.kingdom.result.ResultGenerator;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,60 +34,97 @@ import java.util.Map;
 @RequestMapping("/consultant")
 public class ConsultantController {
 
+    /**
+     * 注入投顾人业务层
+     */
     @Reference
     private ConsultantService consultantService;
 
+    /**
+     * 注入application中配置的文件上传路径
+     */
     @Value("${consultant.path.upload}")
     private String uploadPath;
 
+    /**
+     * 注入application中配置的域名
+     */
     @Value("${consultant.path.domain}")
     private String domain;
 
+    /**
+     * 注入用户持有对象
+     */
     @Autowired
     private HostHolder hostHolder;
 
-    @ApiOperation("投顾人注册")
+    /**
+     * 注入redis模板类，用于redis数据库的操作
+     */
+    @Autowired
+    private RedisTemplate redisTemplate;
+
+    @ApiOperation("投顾人注册,目前采用邮箱注册")
     @PostMapping("/registerConsultant")
     @ResponseBody
     public Result register(Consultant consultant){
-        if(consultantService.register(consultant)==0){
-            return ResultGenerator.genFailResult("邮箱已注册");
+        //判空处理，如果参数为空，返回空值错误
+        if(consultant==null){
+            return ResultGenerator.genFailResult(ResultCode.EMPTY_ARG);
         }
-        return ResultGenerator.genSuccessResult(1);
+        //使用ResultCode接受业务调用结果，如果成功则生成默认成功结果，失败则返回相应的错误码
+        ResultCode code=consultantService.register(consultant);
+        if(code.equals(ResultCode.SUCCESS)){
+            return ResultGenerator.genSuccessResult();
+        }else {
+            return ResultGenerator.genFailResult(code);
+        }
     }
 
     @ApiOperation("投顾人登录")
     @PostMapping("/loginConsultant")
     @ResponseBody
     public Result login(String email,String password,HttpServletResponse response){
+        //判空处理，参数为空则返回空值错误
+        if(StringUtils.isEmpty(email) || StringUtils.isEmpty(password)){
+            return ResultGenerator.genFailResult(ResultCode.EMPTY_ARG);
+        }
+        //使用map接收业务调用结果，map中数据包括响应码和登录凭证
         Map<String,Object> map=consultantService.login(email,password);
-        if(map.get("loginticket")!=null){
-            Cookie cookie = new Cookie("loginticket", map.get("loginticket").toString());
-            cookie.setMaxAge((int)(System.currentTimeMillis()/1000));
+        ResultCode code=(ResultCode) map.get("resultCode");
+        //如果响应码为成功，则获取map中的登录凭证
+        if(code.equals(ResultCode.SUCCESS)){
+            LoginTicket ticket=(LoginTicket) map.get("loginTicket");
+            //将登录凭证使用cookie返回前端
+            Cookie cookie = new Cookie("loginTicket",ticket.getTicket());
+            //cookie有效时间为十二小时，对应ticket有效时间十二小时
+            cookie.setMaxAge(3600*12);
             response.addCookie(cookie);
-            return ResultGenerator.genSuccessResult(map);
+            return ResultGenerator.genSuccessResult();
         }else {
-            return ResultGenerator.genFailResult(map.get("loginerrormessage").toString());
+            return ResultGenerator.genFailResult(code);
         }
     }
 
     @ApiOperation("头像加载")
     @GetMapping("/consultantAvatar/{fileName}")
     public void getHeader(@PathVariable("fileName") String filename, HttpServletResponse response) {
-        //服务器存放路径
+        //使用上传路径和文件名拼接出服务器存放路径
         filename = uploadPath + "/" + filename;
-        //文件后缀
+        //获取文件后缀
         String suffix = filename.substring(filename.lastIndexOf("."));
         //响应图片
         response.setContentType("/image" + suffix);
         try (
+                //文件输入流和响应输出流，自动关闭
                 FileInputStream fileInputStream = new FileInputStream(filename);
                 OutputStream os = response.getOutputStream();
         ) {
-
+            //使用缓冲区，每次1024字节
             byte[] buffer = new byte[1024];
             int b = 0;
             while ((b = fileInputStream.read(buffer)) != -1) {
+                //循环将缓冲区内容输出
                 os.write(buffer, 0, b);
             }
         } catch (IOException e) {
@@ -96,16 +136,19 @@ public class ConsultantController {
     @ResponseBody
     @PostMapping("/uploadAvatar")
     public Result uploadHeader(MultipartFile headerImage) {
+        //判空处理，如果参数为空则返回空值响应码
         if (headerImage == null) {
-            return ResultGenerator.genFailResult("您还没有选择图片！");
+            return ResultGenerator.genFailResult(ResultCode.EMPTY_ARG);
         }
+        //获取文件原名
         String fileName = headerImage.getOriginalFilename();
+        //获取文件后缀
         String suffix = fileName.substring(fileName.lastIndexOf("."));
         if (StringUtils.isBlank(suffix)) {
-            return ResultGenerator.genFailResult("文件格式不正确！");
+            return ResultGenerator.genFailResult(ResultCode.FILE_SUFFIX_ERROR);
         }
 
-        //生成随机文件名
+        //生成随机文件名,防止用户上传文件重名
         fileName = CommonUtils.generateUUID() + suffix;
         //确定文件存放的路径
         File dest = new File(uploadPath + "/" + fileName);
@@ -118,9 +161,17 @@ public class ConsultantController {
         //更新当前用户头像路径（web访问路径）
         //http://localhost:9002/consultant/consultantAvatar/xxx.png
         Consultant consultant = hostHolder.getConsultant();
+        if(consultant==null){
+            return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
+        }
         String avatarUrl = domain + "/consultant/consultantAvatar/" + fileName;
-        consultantService.updateAvatar(consultant.getConsultantid(), avatarUrl);
-        return ResultGenerator.genSuccessResult();
+        //接收业务层响应码
+        ResultCode code=consultantService.updateAvatar(consultant.getConsultantid(), avatarUrl);
+        if(code.equals(ResultCode.SUCCESS)){
+            return ResultGenerator.genSuccessResult();
+        }else {
+            return ResultGenerator.genFailResult(code);
+        }
 
     }
 
@@ -128,8 +179,19 @@ public class ConsultantController {
     @ResponseBody
     @PostMapping("/authentication")
     public Result authentication(String name,String idnumber){
+        if(StringUtils.isEmpty(name) || StringUtils.isEmpty(idnumber)){
+            return ResultGenerator.genFailResult(ResultCode.EMPTY_ARG);
+        }
         Consultant consultant=hostHolder.getConsultant();
-        return ResultGenerator.genSuccessResult(consultantService.updateNameAndId(consultant.getConsultantid(),name, idnumber));
+        if (consultant==null){
+            return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
+        }
+        ResultCode code=consultantService.updateNameAndId(consultant.getConsultantid(),name, idnumber);
+        if(code.equals(ResultCode.SUCCESS)){
+            return ResultGenerator.genSuccessResult();
+        }else {
+            return ResultGenerator.genFailResult(code);
+        }
     }
 
 
@@ -138,10 +200,15 @@ public class ConsultantController {
     @GetMapping("/loadConsultant")
     public Result loadConsultant(){
         Consultant consultant=hostHolder.getConsultant();
+        //consultant不为空，则返回对象
         if(consultant!=null){
+            consultant.setPassword(null);
+            consultant.setPasswordsalt(null);
+            consultant.setPaypassword(null);
+            consultant.setPasswordsalt(null);
             return ResultGenerator.genSuccessResult(consultant);
         }else {
-            return ResultGenerator.genFailResult("加载失败");
+            return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
         }
     }
 
@@ -159,7 +226,7 @@ public class ConsultantController {
     @PostMapping("/updatePayPassword")
     public Result updatePayPassword(String oldpaypassword,String newpaypassword){
         Consultant consultant=hostHolder.getConsultant();
-        int result=consultantService.updatePayPassword(consultant,oldpaypassword,newpaypassword);
+        int result=consultantService.updatePayPassword(consultant.getConsultantid(),oldpaypassword,newpaypassword);
         if(result==-1){
             return ResultGenerator.genFailResult("密码错误");
         }
