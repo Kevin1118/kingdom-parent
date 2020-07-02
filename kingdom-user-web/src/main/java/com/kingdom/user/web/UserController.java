@@ -3,6 +3,7 @@ package com.kingdom.user.web;
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.kingdom.commonutils.CommonUtils;
+import com.kingdom.dto.user.InvestDTO;
 import com.kingdom.dto.user.PasswordDTO;
 import com.kingdom.pojo.*;
 import com.kingdom.result.*;
@@ -210,5 +211,23 @@ public class UserController {
         User hostHolderUser=hostHolder.getUser();
         return ResultGenerator.genSuccessResult(userService.changeUserName(hostHolderUser.getUserid(),userName));
     }
+    @ApiOperation("投资人充值")
+    @ResponseBody
+    @PostMapping("/user/topUpUser")
+    public Result topUpUser(@RequestBody double topUpMoney){
+        User user=hostHolder.getUser();
+        return ResultGenerator.genSuccessResult(userService.topUpUser(user.getUserid(),topUpMoney));
+    }
+
+    @ApiOperation("买入")
+    @ResponseBody
+    @PostMapping("/user/investUser")
+    public Result investUser(@RequestBody InvestDTO investDTO,Order order){
+        String name=investDTO.getName();
+        int sum=investDTO.getSum();
+        User user=hostHolder.getUser();
+        return ResultGenerator.genSuccessResult(userService.investUser(order,user.getUserid(),name,sum));
+    }
+
 }
-//查看协议  ，保存协议， 修改用户名 ，充值，买入，卖出
+//查看协议  ，保存协议，买入，卖出

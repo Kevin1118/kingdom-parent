@@ -36,6 +36,17 @@
         values(#{independentbalance},#{accountamount},#{status})
     </insert>
 
+    <select id="selectIndependetAccountById" resultType="com.kingdom.pojo.IndependentAccount">
+        select *
+        from independent_account
+        where userId=#{userid}
+    </select>
+
+    <update id="updateIndependentBalance" parameterType="com.kingdom.pojo.IndependentAccount">
+        update independent_account
+        set independentBalance=#{independentbalance}
+        where userId=#{userid}
+    </update>
     <select id="selectUserByPhoneNumber" resultType="com.kingdom.pojo.User">
         select *
         from `user`
@@ -82,5 +93,21 @@
         set userName=#{username}
         where userId=#{userid}
     </update>
+
+    <insert id="addOrder" parameterType="com.kingdom.pojo.Order">
+        insert into `order` (orderId)
+        values(#{orderid})
+    </insert>
+
+    <select id="selectProductByName" resultType="com.kingdom.pojo.Product">
+        select * from product
+        where name=#{name}
+    </select>
+    
+    <select id="selectAccountNoByUserIdAndProductId" resultType="com.kingdom.pojo.SignAccount">
+        select * from sign_account
+        where userId=#{userId,jdbcType=INTEGER}
+        and productId=#{productId,jdbcType=INTEGER}
+    </select>
 
 </mapper>

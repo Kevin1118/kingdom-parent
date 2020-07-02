@@ -1,8 +1,6 @@
 package com.kingdom.dao;
 
-import com.kingdom.pojo.Card;
-import com.kingdom.pojo.IndependentAccount;
-import com.kingdom.pojo.User;
+import com.kingdom.pojo.*;
 import org.apache.ibatis.annotations.Param;
 
 
@@ -36,6 +34,20 @@ public interface UserMapper {
      * @return
      */
     int addIndependentAccount(IndependentAccount independentAccount);
+
+    /**
+     * 查询账户
+     * @param userid
+     * @return
+     */
+    IndependentAccount selectIndependetAccountById(Integer userid);
+    /**
+     * 独立账户充值
+     * @param userid
+     * @param independentbalance
+     * @return
+     */
+    int updateIndependentBalance(Integer userid,double independentbalance);
 
     /**
      * 根据电话号码查询投资人用户
@@ -111,4 +123,27 @@ public interface UserMapper {
      * @return
      */
     int updateUserName(Integer userid,String username);
+
+    /**
+     * 添加交易记录
+     * @param order
+     * @return
+     */
+    int addOrder(Order order);
+
+    /**
+     * 查询产品
+     * @param name
+     * @return
+     */
+    Product selectProductByName(String name);
+
+    /**
+     * 根据用户id和产品id查询投顾账户账号
+     * @param userid
+     * @param productid
+     * @return
+     */
+    SignAccount selectAccountNoByUserIdAndProductId(@Param("userId") Integer userid,@Param("productId") Integer productid);
+
 }

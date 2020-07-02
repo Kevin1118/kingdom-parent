@@ -5,10 +5,7 @@ import com.kingdom.commonutils.CommonUtils;
 import com.kingdom.dao.LoginTicketMapper;
 import com.kingdom.dao.UserMapper;
 import com.kingdom.interfaceservice.user.UserService;
-import com.kingdom.pojo.Card;
-import com.kingdom.pojo.IndependentAccount;
-import com.kingdom.pojo.LoginTicket;
-import com.kingdom.pojo.User;
+import com.kingdom.pojo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
@@ -125,6 +122,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int topUpUser(Integer userid, double topUpMoney) {
+        IndependentAccount independentAccount=userMapper.selectIndependetAccountById(userid);
+        double oldIndependentBalance=independentAccount.getIndependentbalance();
+        double newIndependentBalance=topUpMoney+oldIndependentBalance;
+        return userMapper.updateIndependentBalance(independentAccount.getUserid(),newIndependentBalance);
+    }
+
+    @Override
     public int passwordManageUser(User user, String oldPassword, String newPassword) {
         if (CommonUtils.md5(oldPassword+user.getSalt()).equals(user.getPassword())){
             String salt=CommonUtils.generateUUID().substring(0,5);
@@ -151,6 +156,27 @@ public class UserServiceImpl implements UserService {
     @Override
     public int changeUserName(int userId, String userName) {
         return userMapper.updateUserName(userId,userName);
+    }
+
+    @Override
+    public int investUser(Order order,int userId,String name,double sum) {
+        int transactionDate=(int)(System.currentTimeMillis()/1000);
+        String orderId=transactionDate+""+userId;
+        Product product=userMapper.selectProductByName(name);
+        int productId=product.getProductid();
+        int consultantId=product.getConsultantid();
+        SignAccount signAccount=userMapper.selectAccountNoByUserIdAndProductId(userId,productId);
+        int accountNo=signAccount.getSignaccountid();
+
+        order.setOrderid(orderId);
+        order.setAccountno(accountNo);
+        order.setSum(sum);
+        order.setTransactiondate(transactionDate);
+        order.setProductid(productId);
+        order.setConsultantid(consultantId);
+        order.setStatus(1);
+
+        return userMapper.addOrder(order);
     }
 
 }

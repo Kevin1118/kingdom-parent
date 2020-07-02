@@ -1,9 +1,6 @@
 package com.kingdom.interfaceservice.user;
 
-import com.kingdom.pojo.Card;
-import com.kingdom.pojo.IndependentAccount;
-import com.kingdom.pojo.LoginTicket;
-import com.kingdom.pojo.User;
+import com.kingdom.pojo.*;
 
 import java.util.Map;
 
@@ -69,13 +66,19 @@ public interface UserService {
     int setPayPasswordUser(int userId,String payPassword);
 
     /**
+     * 投资人充值，充值到自主账户
+     * @param userid
+     * @param topUpMoney 充值金额
+     * @return
+     */
+    int topUpUser(Integer userid,double topUpMoney);
+    /**
      * 密码管理，修改密码
      * @param user
      * @param oldPassword
      * @param newPassword
      * @return
      */
-
     int passwordManageUser(User user,String oldPassword,String newPassword);
     /**
      * 投资人实名认证
@@ -101,4 +104,12 @@ public interface UserService {
      * @return
      */
     int changeUserName(int userId,String userName);
+
+    /**
+     * 投资人买入
+     * @param order
+     * @param userId
+     * @return
+     */
+    int investUser(Order order,int userId,String name,double sum);
 }
