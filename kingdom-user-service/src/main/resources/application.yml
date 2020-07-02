@@ -17,3 +17,10 @@ dubbo:
   scan:
     ############接口实现类的扫包范围###################
     base-packages: com.kingdom.user.service.impl
+
+spring:
+  redis:
+    database: 12
+    host: 123.57.46.173
+    port: 6379
+    password: kingdom

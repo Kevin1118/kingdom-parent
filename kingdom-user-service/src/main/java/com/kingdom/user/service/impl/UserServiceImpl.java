@@ -2,15 +2,17 @@ package com.kingdom.user.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.kingdom.commonutils.CommonUtils;
-import com.kingdom.dao.LoginTicketMapper;
+import com.kingdom.commonutils.RedisKeyUtil;
 import com.kingdom.dao.UserMapper;
 import com.kingdom.interfaceservice.user.UserService;
 import com.kingdom.pojo.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <h3>kingdom-parent</h3>
@@ -24,13 +26,18 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+
     @Autowired
-    private LoginTicketMapper loginTicketMapper;
+    private RedisTemplate redisTemplate;
+
 
     @Override
     public User selectUserById(Integer userid) {
-
-        User user = userMapper.selectUserById(userid);
+        User user = getCache(userid);
+        //如果缓存中没有，则调用缓存初始化方法从mysql读取
+        if (user == null) {
+            user = initCache(userid);
+        }
         return user;
     }
 
@@ -86,7 +93,9 @@ public class UserServiceImpl implements UserService {
         ticket.setUserid(user.getUserid());
         ticket.setStatus(0);
         ticket.setExpired((int) (System.currentTimeMillis() / 1000 + 3600 * 12));
-        loginTicketMapper.insertLoginTicket(ticket);
+        String redisKey = RedisKeyUtil.getTicketKey(ticket.getTicket());
+        //将ticket存到redis数据库中
+        redisTemplate.opsForValue().set(redisKey, ticket);
         map.put("loginticket", ticket.getTicket());
 
         return map;
@@ -111,7 +120,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public LoginTicket findLoginTicket(String loginTicket) {
 
-        return loginTicketMapper.selectByTicket(loginTicket);
+        String redisKey = RedisKeyUtil.getTicketKey(loginTicket);
+        return (LoginTicket) redisTemplate.opsForValue().get(redisKey);
     }
 
     @Override
@@ -180,6 +190,36 @@ public class UserServiceImpl implements UserService {
         order.setStatus(1);
 
         return userMapper.addOrder(order);
+    }
+
+
+    private User getCache(int userId) {
+        String redisKey = RedisKeyUtil.getUserKey(userId);
+        return (User) redisTemplate.opsForValue().get(redisKey);
+    }
+
+
+    /**
+     * 缓存中没有投顾对象时初始化缓存对象
+     *
+     * @param userId 投顾人id
+     * @return 投顾人对象
+     */
+    private User initCache(int userId) {
+        User user = userMapper.selectUserById(userId);
+        String redisKey = RedisKeyUtil.getUserKey(userId);
+        redisTemplate.opsForValue().set(redisKey, user, 3600, TimeUnit.SECONDS);
+        return user;
+    }
+
+    /**
+     * 当数据变更时清除缓存数据
+     *
+     * @param userId 投顾人id
+     */
+    private void clearCache(int userId) {
+        String redisKey = RedisKeyUtil.getUserKey(userId);
+        redisTemplate.delete(redisKey);
     }
 
 }
