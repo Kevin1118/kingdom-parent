@@ -14,18 +14,19 @@ import java.math.BigDecimal;
  **/
 @Data
 public class FundAlternate implements Serializable {
-    private Integer stockAlternateId;
-    private String stockType;
+    private Integer fundAlternateId;
+    private String fundType;
     private String name;
     private String code;
     private String riskType;
-    private BigDecimal prevClose;
+    private BigDecimal valueNow;
     private BigDecimal upAndDown;
-    private BigDecimal open;
+    private BigDecimal buyingRate;
     private Integer createdTime;
     private Integer updatedTime;
     private Integer ruleId;
-    private BigDecimal valueNow;
     private BigDecimal peRatio;
+    private BigDecimal prevClose;
+    private BigDecimal open;
     private String corporation;
 }
