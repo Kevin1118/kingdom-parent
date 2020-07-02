@@ -1,6 +1,7 @@
 package com.kingdom.dao;
 
 import com.kingdom.pojo.Card;
+import com.kingdom.pojo.IndependentAccount;
 import com.kingdom.pojo.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -28,6 +29,13 @@ public interface UserMapper {
      * @return int 操作行数
      */
     int addUser(User user);
+
+    /**
+     * 新建独立账户
+     * @param independentAccount 独立账户对象
+     * @return
+     */
+    int addIndependentAccount(IndependentAccount independentAccount);
 
     /**
      * 根据电话号码查询投资人用户
@@ -95,4 +103,12 @@ public interface UserMapper {
      * @return
      */
     int updatePhoneNumber(Integer userid,String phonenumber);
+
+    /**
+     * 修改用户名
+     * @param userid
+     * @param username
+     * @return
+     */
+    int updateUserName(Integer userid,String username);
 }

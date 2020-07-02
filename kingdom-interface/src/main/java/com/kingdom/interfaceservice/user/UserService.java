@@ -1,6 +1,7 @@
 package com.kingdom.interfaceservice.user;
 
 import com.kingdom.pojo.Card;
+import com.kingdom.pojo.IndependentAccount;
 import com.kingdom.pojo.LoginTicket;
 import com.kingdom.pojo.User;
 
@@ -28,7 +29,7 @@ public interface UserService {
      * @param user
      * @return int
      */
-    int registerUser(User user);
+    int registerUser(User user, IndependentAccount independentAccount);
 
     /**
      * 投资人绑定银行卡
@@ -87,9 +88,17 @@ public interface UserService {
 
     /**
      * 投资人修改手机号
-     * @param user
+     * @param userId
      * @param phoneNumber
+     * @return int
+     */
+    int changePhoneNumberUser(int userId,String phoneNumber);
+
+    /**
+     * 投资人修改用户名
+     * @param userId
+     * @param userName
      * @return
      */
-    int changePhoneNumberUser(User user,String phoneNumber);
+    int changeUserName(int userId,String userName);
 }

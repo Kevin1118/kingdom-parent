@@ -3,10 +3,8 @@ package com.kingdom.user.web;
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.kingdom.commonutils.CommonUtils;
-import com.kingdom.pojo.Card;
-import com.kingdom.pojo.Consultant;
-import com.kingdom.pojo.HostHolder;
-import com.kingdom.pojo.User;
+import com.kingdom.dto.user.PasswordDTO;
+import com.kingdom.pojo.*;
 import com.kingdom.result.*;
 import com.kingdom.interfaceservice.user.UserService;
 import io.swagger.annotations.Api;
@@ -55,29 +53,31 @@ public class UserController {
      * @date : 2020-06-16 12:08
      */
 
-    @ApiOperation("测试user表的demo")
-    @GetMapping("/user/selectById")
-    @ResponseBody
-    public Result selectUserById() {
-        return ResultGenerator.genSuccessResult(userService.selectUserById(1));
-    }
+//    @ApiOperation("测试user表的demo")
+//    @GetMapping("/user/selectById")
+//    @ResponseBody
+//    public Result selectUserById() {
+//        return ResultGenerator.genSuccessResult(userService.selectUserById(1));
+//    }
 
 
     @ApiOperation("投资人注册功能")
     @PostMapping("/user/registerUser")
     @ResponseBody
-    public Result registerUser(User user){
-        if (userService.registerUser(user)==0){
-            return(ResultGenerator.genFailResult("该手机号已被注册"));
+    public Result registerUser(@RequestBody User user, IndependentAccount independentAccount){
+        if (userService.registerUser(user,independentAccount)==0){
+            return(ResultGenerator.genFailResult(ResultCode.EMPTY_ARG));
         }
-        return ResultGenerator.genSuccessResult(userService.registerUser(user));
+        return ResultGenerator.genSuccessResult(userService.registerUser(user,independentAccount));
     }
 
 
     @ApiOperation(("投资人登录"))
     @PostMapping("/user/loginUser")
     @ResponseBody
-    public Result loginUser(String phoneNumber, String password, HttpServletResponse response){
+    public Result loginUser(@RequestBody User user, HttpServletResponse response){
+        String phoneNumber=user.getPhonenumber();
+        String password=user.getPassword();
         Map<String,Object> map=userService.loginUser(phoneNumber,password);
         if(map.get("loginticket")!=null){
             Cookie cookie = new Cookie("loginticket", map.get("loginticket").toString());
@@ -159,7 +159,7 @@ public class UserController {
     @ApiOperation("投资人绑定银行卡")
     @PostMapping("/user/bindCardUser")
     @ResponseBody
-    public Result bindCardUser(Card card){
+    public Result bindCardUser(@RequestBody Card card){
         int i = userService.bindCardUser(card);
         return ResultGenerator.genSuccessResult(i);
     }
@@ -167,15 +167,18 @@ public class UserController {
     @ApiOperation("投资人设置支付密码")
     @ResponseBody
     @PostMapping("/user/setPayPasswordUser")
-    public Result setPayPasswordUser(String payPassword){
-        User user=hostHolder.getUser();
-        return ResultGenerator.genSuccessResult(userService.setPayPasswordUser(user.getUserid(),payPassword));
+    public Result setPayPasswordUser(@RequestBody User user){
+        String payPassword=user.getPaypassword();
+        User hostHolderUser=hostHolder.getUser();
+        return ResultGenerator.genSuccessResult(userService.setPayPasswordUser(hostHolderUser.getUserid(),payPassword));
     }
 
     @ApiOperation("密码管理")
     @ResponseBody
     @PostMapping("/user/passwordManageUser")
-    public Result passwordManageUser(String oldPassword,String newPassword){
+    public Result passwordManageUser(@RequestBody PasswordDTO passwordDTO){
+        String oldPassword=passwordDTO.getOldPassword();
+        String newPassword=passwordDTO.getNewPassword();
         User user=hostHolder.getUser();
         return ResultGenerator.genSuccessResult(userService.passwordManageUser(user,oldPassword,newPassword));
     }
@@ -183,16 +186,29 @@ public class UserController {
     @ApiOperation("投资人实名认证")
     @ResponseBody
     @PostMapping("/user/certificationUser")
-    public Result certificationUser(String name,String idNumber){
-        User user=hostHolder.getUser();
-        return ResultGenerator.genSuccessResult(userService.certificationUser(user,name,idNumber));
+    public Result certificationUser(@RequestBody User user){
+        String name=user.getName();
+        String idNumber=user.getIdnumber();
+        User hostHolderUser=hostHolder.getUser();
+        return ResultGenerator.genSuccessResult(userService.certificationUser(hostHolderUser,name,idNumber));
     }
 
     @ApiOperation("投资人修改手机号")
     @ResponseBody
     @PostMapping("/user/changePhoneNumberUser")
-    public Result changePhoneNumberUser(String phoneNumber){
-        User user=hostHolder.getUser();
-        return ResultGenerator.genSuccessResult(userService.changePhoneNumberUser(user,phoneNumber));
+    public Result changePhoneNumberUser(@RequestBody User user){
+        String phoneNumber=user.getPhonenumber();
+        User hostHolderUser=hostHolder.getUser();
+        return ResultGenerator.genSuccessResult(userService.changePhoneNumberUser(hostHolderUser.getUserid(),phoneNumber));
+    }
+
+    @ApiOperation("修改用户名")
+    @ResponseBody
+    @PostMapping("/user/changeUserNameUser")
+    public Result changeUserNameUser(@RequestBody User user){
+        String userName=user.getUsername();
+        User hostHolderUser=hostHolder.getUser();
+        return ResultGenerator.genSuccessResult(userService.changeUserName(hostHolderUser.getUserid(),userName));
     }
 }
+//查看协议  ，保存协议， 修改用户名 ，充值，买入，卖出

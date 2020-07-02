@@ -6,6 +6,7 @@ import com.kingdom.dao.LoginTicketMapper;
 import com.kingdom.dao.UserMapper;
 import com.kingdom.interfaceservice.user.UserService;
 import com.kingdom.pojo.Card;
+import com.kingdom.pojo.IndependentAccount;
 import com.kingdom.pojo.LoginTicket;
 import com.kingdom.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int registerUser(User user) {
+    public int registerUser(User user, IndependentAccount independentAccount) {
         User u=userMapper.selectUserByPhoneNumber(user.getPhonenumber());
         if(u!=null){
             return 0;
@@ -52,6 +53,11 @@ public class UserServiceImpl implements UserService {
         user.setPassword(CommonUtils.md5(user.getPassword() + salt));
         //设置默认头像，使用牛客网默认头像
         user.setAvatar(String.format("http://images.nowcoder.com/head/%dt.png", new Random().nextInt(1000)));
+
+        independentAccount.setStatus("1");
+        independentAccount.setIndependentbalance(0);
+        independentAccount.setAccountamount(0);
+        userMapper.addIndependentAccount(independentAccount);
         return userMapper.addUser(user);
     }
     @Override
@@ -138,8 +144,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int changePhoneNumberUser(User user, String phoneNumber) {
-        return userMapper.updatePhoneNumber(user.getUserid(),phoneNumber);
+    public int changePhoneNumberUser(int userid, String phoneNumber) {
+        return userMapper.updatePhoneNumber(userid,phoneNumber);
+    }
+
+    @Override
+    public int changeUserName(int userId, String userName) {
+        return userMapper.updateUserName(userId,userName);
     }
 
 }

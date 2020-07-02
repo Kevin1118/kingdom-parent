@@ -31,6 +31,11 @@
         values(#{username},#{email},#{phonenumber},#{password},#{salt},#{avatar},#{createdtime},#{status})
     </insert>
 
+    <insert id="addIndependentAccount" parameterType="com.kingdom.pojo.IndependentAccount">
+        insert into independent_account(independentBalance,accountAmount,status)
+        values(#{independentbalance},#{accountamount},#{status})
+    </insert>
+
     <select id="selectUserByPhoneNumber" resultType="com.kingdom.pojo.User">
         select *
         from `user`
@@ -69,6 +74,12 @@
     <update id="updatePhoneNumber" parameterType="com.kingdom.pojo.User">
         update `user`
         set phoneNumber=#{phonenumber}
+        where userId=#{userid}
+    </update>
+
+    <update id="updateUserName" parameterType="com.kingdom.pojo.User">
+        update `user`
+        set userName=#{username}
         where userId=#{userid}
     </update>
 

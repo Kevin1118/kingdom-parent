@@ -10,18 +10,18 @@
         <module name="kingdom-dto" />
         <module name="kingdom-user-service" />
         <module name="kingdom-product-web" />
+        <module name="kingdom-consultant-service" />
         <module name="kingdom-util" />
         <module name="kingdom-product-service" />
         <module name="kingdom-interface" />
         <module name="kingdom-vojo" />
         <module name="kingdom-user-web" />
         <module name="kingdom-pojo" />
+        <module name="kingdom-consultant-web" />
         <module name="kingdom-dao" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="kingdom-consultant-service" target="1.5" />
-      <module name="kingdom-consultant-web" target="1.5" />
       <module name="kingdom-interface-product-service" target="1.8" />
       <module name="kingdom-interface-sign-service" target="1.8" />
       <module name="kingdom-interface-user-service" target="1.8" />
@@ -29,6 +29,8 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="kingdom-consultant-service" options="-parameters" />
+      <module name="kingdom-consultant-web" options="-parameters" />
       <module name="kingdom-dao" options="-parameters" />
       <module name="kingdom-dto" options="-parameters" />
       <module name="kingdom-interface" options="-parameters" />
