@@ -22,7 +22,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="kingdom-interface-consultant-service" target="1.8" />
+      <module name="kingdom-interface-product-service" target="1.8" />
       <module name="kingdom-interface-sign-service" target="1.8" />
       <module name="kingdom-interface-user-service" target="1.8" />
     </bytecodeTargetLevel>
@@ -34,7 +34,7 @@
       <module name="kingdom-dao" options="-parameters" />
       <module name="kingdom-dto" options="-parameters" />
       <module name="kingdom-interface" options="-parameters" />
-      <module name="kingdom-interface-consultant-service" options="-parameters" />
+      <module name="kingdom-interface-product-service" options="-parameters" />
       <module name="kingdom-interface-sign-service" options="-parameters" />
       <module name="kingdom-interface-user-service" options="-parameters" />
       <module name="kingdom-parent" options="-parameters" />

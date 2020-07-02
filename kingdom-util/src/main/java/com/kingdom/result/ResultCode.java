@@ -38,7 +38,6 @@ public enum ResultCode {
     ;
 
 
-
     private final int code;
 
     ResultCode(int code) {
