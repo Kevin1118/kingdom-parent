@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * @author : long
@@ -35,12 +37,12 @@ public class LoginTicketInterceptor implements HandlerInterceptor {
 
 
         //从cookies中获取凭证
-        String ticket = CommonUtils.getValue(request, "loginticket");
+        String ticket = CommonUtils.getValue(request, "loginTicket");
         if (ticket != null) {
             //查询凭证
             LoginTicket loginTicket = consultantService.findLoginTicket(ticket);
             //检查凭证是否有效
-            if (loginTicket != null && loginTicket.getStatus() == 0 ) {
+            if (loginTicket != null && loginTicket.getStatus() == 0 &&new Date(loginTicket.getExpired()*1000L).after(new Date())) {
                 //根据凭证查询用户
                 Consultant consultant = consultantService.findConsultantById(loginTicket.getUserid());
                 //在本次请求持有用户

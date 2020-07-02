@@ -3,6 +3,8 @@ package com.kingdom.interfaceservice.consultant;
 
 import com.kingdom.pojo.Consultant;
 import com.kingdom.pojo.LoginTicket;
+import com.kingdom.result.Result;
+import com.kingdom.result.ResultCode;
 
 import java.util.Map;
 
@@ -18,9 +20,9 @@ public interface ConsultantService {
     /**
      * 投顾人注册功能
      * @param consultant 投顾人信息
-     * @return 操作行数
+     * @return 响应码
      */
-    int register(Consultant consultant);
+    ResultCode register(Consultant consultant);
 
 
     /**
@@ -35,9 +37,9 @@ public interface ConsultantService {
      * 更新头像
      * @param consultantId 投顾人id
      * @param avatarUrl 头像链接
-     * @return 操作行数
+     * @return 响应码
      */
-    int updateAvatar(int consultantId,String avatarUrl);
+    ResultCode updateAvatar(int consultantId,String avatarUrl);
 
 
     /**
@@ -59,24 +61,51 @@ public interface ConsultantService {
      * @param consultantId 投顾人id
      * @param name 姓名
      * @param idNumber 身份证号
-     * @return 操作行数
+     * @return 响应码
      */
-    int updateNameAndId(int consultantId,String name,String idNumber);
+    ResultCode updateNameAndId(int consultantId,String name,String idNumber);
 
     /**
      * 更新支付密码
      * @param consultant 投顾人对象
      * @param oldPayPassword 旧支付密码
      * @param newPayPassword 新支付密码
-     * @return 操作行数
+     * @return 响应码
      */
-    int updatePayPassword(Consultant consultant,String oldPayPassword,String newPayPassword);
+    ResultCode updatePayPassword(Consultant consultant,String oldPayPassword,String newPayPassword);
 
     /**
      * 设置支付密码
      * @param consultantId 投顾人id
      * @param payPassword 支付密码
-     * @return 操作行数
+     * @return 响应码
      */
-    int setPayPassword(int consultantId,String payPassword);
+    ResultCode setPayPassword(int consultantId,String payPassword);
+
+    /**
+     * 查询投顾所属产品
+     * @param pageNum 页码
+     * @param pageSize 分页大小
+     * @param consultantId 投顾id
+     * @return 产品列表
+     */
+    Map selectProduct(int pageNum, int pageSize,int consultantId);
+
+    /**
+     * 查询投顾所属订单
+     * @param pageNum 页码
+     * @param pageSize 分页大小
+     * @param consultantId 投顾id
+     * @return 订单列表
+     */
+    Map selectOrders(int pageNum,int pageSize,int consultantId,int type);
+
+
+    /**
+     * 更改订单状态
+     * @param id 订单id
+     * @param status 状态
+     * @return 响应码
+     */
+    ResultCode updateOrderStatus(int id,int status);
 }

@@ -1,16 +1,15 @@
 package com.kingdom.product.web;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.kingdom.dto.product.ProductInitDTO;
 import com.kingdom.interfaceservice.product.ProductService;
 import com.kingdom.result.Result;
 import com.kingdom.result.ResultGenerator;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 /**
  * <h3>kingdom-parent</h3>
  * <p>产品模块第一个controller</p>
@@ -43,13 +42,6 @@ public class ProductController {
 
     //以下为正式业务
 
-    @ApiOperation("根据产品id查询出组合产品详情 01")
-    @GetMapping("/product/selectProductById")
-    @ResponseBody
-    public Result selectProductById(@RequestParam Integer id) {
-        return ResultGenerator.genSuccessResult(productService.selectProductById(id));
-    }
-
     @ApiOperation("展示股票备选库页面")
     @GetMapping("/product/selectStockAlternateAll")
     @ResponseBody
@@ -66,4 +58,25 @@ public class ProductController {
         return ResultGenerator.genSuccessResult(productService.selectFundAlternateAll(pageNum, pageSize));
     }
 
+    @ApiOperation("初始化组合产品")
+    @PostMapping("/product/initProduct")
+    @ResponseBody
+    public Result initProduct(@RequestBody List<ProductInitDTO> listDTO)
+    {
+        return ResultGenerator.genSuccessResult(productService.initProduct(listDTO));
+    }
+
+    @ApiOperation("根据产品id查询出组合产品详情 01")
+    @GetMapping("/product/selectProductById")
+    @ResponseBody
+    public Result selectProductById(@RequestParam Integer id) {
+        return ResultGenerator.genSuccessResult(productService.selectProductById(id));
+    }
+
+    @ApiOperation("根据产品id查询组合产品详情 饼状图 02")
+    @GetMapping("/product/selectProportionFromDetail")
+    @ResponseBody
+    public Result selectProportionFromDetail(@RequestParam Integer id) {
+        return ResultGenerator.genSuccessResult(productService.selectProportionFromDetail(id));
+    }
 }

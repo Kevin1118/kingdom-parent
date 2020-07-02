@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.kingdom.dao.OrderMapper">
+
+    <select id="selectOrderByConsultantIdAndStatus" resultType="com.kingdom.pojo.Order">
+        select * from `order` where consultantId=#{consultantId} and status=#{status}
+    </select>
+
+    <update id="updateOrderStatus" >
+        update `order` set status=#{status} where id = #{id}
+    </update>
+
+</mapper>
