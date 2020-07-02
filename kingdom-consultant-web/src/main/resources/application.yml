@@ -27,3 +27,11 @@ consultant:
   path:
     domain: http://localhost:9002
     upload: e:/workspace/communityData/upload
+
+# RedisProperties
+spring:
+  redis:
+    database: 11
+    host: 123.57.46.173
+    port: 6379
+    password: kingdom

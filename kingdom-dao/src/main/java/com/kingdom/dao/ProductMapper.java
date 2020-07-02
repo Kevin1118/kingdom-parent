@@ -73,4 +73,11 @@ public interface ProductMapper {
      * @return List 基金产品详情
      */
     List<ProductFundDetail> selectFundProportionFromDetail(Integer productId);
+
+    /**
+     * 查询投顾所拥有产品
+     * @param consultantId 投顾id
+     * @return 产品列表
+     */
+    List<Product> selectProductByConsultantId(int consultantId);
 }

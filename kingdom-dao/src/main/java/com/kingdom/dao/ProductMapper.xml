@@ -159,4 +159,9 @@
         productId = #{id,jdbcType=INTEGER}
     </select>
 
+    <select id="selectProductByConsultantId" resultType="com.kingdom.pojo.Product">
+        select * from product where consultantId=#{consultantId}
+
+    </select>
+
 </mapper>

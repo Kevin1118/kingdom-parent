@@ -4,6 +4,7 @@ import org.springframework.util.DigestUtils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Calendar;
 import java.util.UUID;
 
 /**
@@ -50,5 +51,20 @@ public class CommonUtils {
             }
         }
         return null;
+    }
+
+    /**
+     * 获取当前时间到凌晨的秒数
+     * @return 秒数
+     */
+    public static Long getSecondsNextEarlyMorning() {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_YEAR, 1);
+        // 改成这样就好了
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        return (cal.getTimeInMillis() - System.currentTimeMillis()) / 1000;
     }
 }
