@@ -21,5 +21,5 @@ public class Order implements Serializable {
     private int transactiondate;
     private int productid;
     private int consultantid;
-    private String status;
+    private int status;
 }

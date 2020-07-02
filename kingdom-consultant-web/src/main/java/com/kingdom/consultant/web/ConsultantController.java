@@ -4,10 +4,12 @@ import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.kingdom.commonutils.CommonUtils;
 import com.kingdom.commonutils.Constant;
+import com.kingdom.dto.consultant.PasswordDTO;
 import com.kingdom.interfaceservice.consultant.ConsultantService;
 import com.kingdom.pojo.Consultant;
 import com.kingdom.pojo.HostHolder;
 import com.kingdom.pojo.LoginTicket;
+import com.kingdom.pojo.Order;
 import com.kingdom.result.Result;
 import com.kingdom.result.ResultCode;
 import com.kingdom.result.ResultGenerator;
@@ -68,7 +70,7 @@ public class ConsultantController implements Constant {
     @ApiOperation("投顾人注册,目前采用邮箱注册")
     @PostMapping("/registerConsultant")
     @ResponseBody
-    public Result register(Consultant consultant) {
+    public Result register(@RequestBody Consultant consultant) {
         //判空处理，如果参数为空，返回空值错误
         if (consultant == null) {
             return ResultGenerator.genFailResult(ResultCode.EMPTY_ARG);
@@ -85,7 +87,9 @@ public class ConsultantController implements Constant {
     @ApiOperation("投顾人登录")
     @PostMapping("/loginConsultant")
     @ResponseBody
-    public Result login(String email, String password, HttpServletResponse response) {
+    public Result login(@RequestBody Consultant consultant, HttpServletResponse response) {
+        String email=consultant.getEmail();
+        String password=consultant.getPassword();
         //判空处理，参数为空则返回空值错误
         if (StringUtils.isEmpty(email) || StringUtils.isEmpty(password)) {
             return ResultGenerator.genFailResult(ResultCode.EMPTY_ARG);
@@ -189,18 +193,20 @@ public class ConsultantController implements Constant {
     @ApiOperation("实名认证")
     @ResponseBody
     @PostMapping("/authentication")
-    public Result authentication(String name, String idnumber) {
+    public Result authentication(@RequestBody Consultant consultant) {
+        String name=consultant.getName();
+        String idNumber=consultant.getIdnumber();
         //判空处理，如果参数为空，返回空值响应码
-        if (StringUtils.isEmpty(name) || StringUtils.isEmpty(idnumber)) {
+        if (StringUtils.isEmpty(name) || StringUtils.isEmpty(idNumber)) {
             return ResultGenerator.genFailResult(ResultCode.EMPTY_ARG);
         }
-        Consultant consultant = hostHolder.getConsultant();
+        Consultant hostHolderConsultant = hostHolder.getConsultant();
         //如果consultant对象为空，则返回未登录响应码
-        if (consultant == null) {
+        if (hostHolderConsultant == null) {
             return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
         }
         //接收业务层响应码
-        ResultCode code = consultantService.updateNameAndId(consultant.getConsultantid(), name, idnumber);
+        ResultCode code = consultantService.updateNameAndId(hostHolderConsultant.getConsultantid(), consultant.getName(), consultant.getIdnumber());
         if (code.equals(ResultCode.SUCCESS)) {
             return ResultGenerator.genSuccessResult();
         } else {
@@ -232,18 +238,22 @@ public class ConsultantController implements Constant {
     @ApiOperation("设置支付密码")
     @ResponseBody
     @PostMapping("/setPayPassword")
-    public Result setPayPassword(String paypassword) {
-        //判空处理，空值返回参数空值响应码
-        if (StringUtils.isEmpty(paypassword)) {
-            return ResultGenerator.genFailResult(ResultCode.EMPTY_ARG);
-        }
-        Consultant consultant = hostHolder.getConsultant();
-        //对象空值判断，若空返回未登录响应码
-        if (consultant == null) {
+    public Result setPayPassword(@RequestBody PasswordDTO passwordDTO) {
+        Consultant consultant=hostHolder.getConsultant();
+        if (consultant==null){
             return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
         }
+        if (StringUtils.isNotEmpty(consultant.getPaypassword())){
+            return ResultGenerator.genFailResult(ResultCode.UPDATE_PWD_ERROR);
+        }
+
+        String payPassword=passwordDTO.getPaypassword();
+        //判空处理，空值返回参数空值响应码
+        if (StringUtils.isEmpty(payPassword)) {
+            return ResultGenerator.genFailResult(ResultCode.EMPTY_ARG);
+        }
         //接受业务层响应码，判断是否为成功响应
-        ResultCode code = consultantService.setPayPassword(consultant.getConsultantid(), paypassword);
+        ResultCode code = consultantService.setPayPassword(consultant.getConsultantid(), payPassword);
         if (code.equals(ResultCode.SUCCESS)) {
             return ResultGenerator.genSuccessResult();
         } else {
@@ -254,9 +264,11 @@ public class ConsultantController implements Constant {
     @ApiOperation("更新支付密码")
     @ResponseBody
     @PostMapping("/updatePayPassword")
-    public Result updatePayPassword(String oldpaypassword, String newpaypassword) {
+    public Result updatePayPassword(@RequestBody PasswordDTO passwordDTO) {
+        String oldPayPassword=passwordDTO.getOldpaypassword();
+        String newPayPassword=passwordDTO.getNewpaypassword();
         //判空处理，空值返回参数空值响应码
-        if (StringUtils.isEmpty(oldpaypassword) || StringUtils.isEmpty(newpaypassword)) {
+        if (StringUtils.isEmpty(oldPayPassword) || StringUtils.isEmpty(newPayPassword)) {
             return ResultGenerator.genFailResult(ResultCode.EMPTY_ARG);
         }
         Consultant consultant = hostHolder.getConsultant();
@@ -265,7 +277,7 @@ public class ConsultantController implements Constant {
             return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
         }
         //接收业务层响应码，判断是否为成功响应
-        ResultCode code = consultantService.updatePayPassword(consultant, oldpaypassword, newpaypassword);
+        ResultCode code = consultantService.updatePayPassword(consultant, oldPayPassword, newPayPassword);
         if (code.equals(ResultCode.SUCCESS)) {
             return ResultGenerator.genSuccessResult();
         } else {
@@ -275,7 +287,7 @@ public class ConsultantController implements Constant {
 
     @ApiOperation("查看投顾持有产品")
     @ResponseBody
-    @PostMapping("/loadProduct")
+    @GetMapping("/loadProduct")
     public Result loadProduct(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize){
         Consultant consultant=hostHolder.getConsultant();
         //判断对象是否为空，若空返回未登录的响应码
@@ -303,7 +315,9 @@ public class ConsultantController implements Constant {
     @ApiOperation("买入审批确认")
     @ResponseBody
     @PostMapping("/acceptApproval")
-    public Result acceptApproval(int id,int status){
+    public Result acceptApproval(@RequestBody Order order){
+        int status=order.getStatus();
+        int id=order.getId();
         //判断是否登录
         Consultant consultant=hostHolder.getConsultant();
         if (consultant==null){
