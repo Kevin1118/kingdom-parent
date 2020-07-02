@@ -28,12 +28,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="新增部分投顾接口">
-      <change afterPath="$PROJECT_DIR$/kingdom-dto/src/main/java/com/kingdom/dto/consultant/PasswordDTO.java" afterDir="false" />
+    <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-consultant-web/src/main/java/com/kingdom/consultant/web/ConsultantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-consultant-web/src/main/java/com/kingdom/consultant/web/ConsultantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-pojo/src/main/java/com/kingdom/pojo/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-pojo/src/main/java/com/kingdom/pojo/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ProductMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ProductMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-pojo/src/main/java/com/kingdom/pojo/FundAlternate.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-pojo/src/main/java/com/kingdom/pojo/FundAlternate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +84,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../community" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -152,6 +151,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+  <component name="RunManager" selected="Spring Boot.KingdomProductWebApplication">
     <configuration name="KingdomConsultantServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="kingdom-consultant-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.consultant.service.KingdomConsultantServiceApplication" />
@@ -244,6 +244,27 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <option name="contentProportion" value="0.20748988" />
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@53a049f7" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@53a049f7" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@d28fbe76" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -258,39 +279,22 @@
       <workItem from="1592295836916" duration="14107000" />
       <workItem from="1592361893531" duration="13301000" />
       <workItem from="1592449165065" duration="4309000" />
-      <workItem from="1592464772047" duration="417000" />
-      <workItem from="1592465231094" duration="6364000" />
-      <workItem from="1592619009237" duration="3092000" />
-      <workItem from="1592622623955" duration="308000" />
-      <workItem from="1592622945845" duration="178000" />
-      <workItem from="1592628166942" duration="5964000" />
-      <workItem from="1592634648116" duration="806000" />
-      <workItem from="1592635643737" duration="11449000" />
-      <workItem from="1592648268018" duration="1093000" />
-      <workItem from="1592649843634" duration="231000" />
-      <workItem from="1592650521087" duration="34000" />
-      <workItem from="1592651444933" duration="620000" />
-      <workItem from="1592748453732" duration="402000" />
-      <workItem from="1592748875109" duration="98000" />
-      <workItem from="1592875802683" duration="6356000" />
-      <workItem from="1592883249044" duration="1181000" />
-      <workItem from="1592962263707" duration="7190000" />
-      <workItem from="1592969607609" duration="2194000" />
-      <workItem from="1592988488607" duration="814000" />
-      <workItem from="1593217712135" duration="16982000" />
-      <workItem from="1593245724288" duration="3153000" />
-      <workItem from="1593248996202" duration="4351000" />
-      <workItem from="1593304770854" duration="232000" />
-      <workItem from="1593305301689" duration="84000" />
-      <workItem from="1593398593637" duration="521000" />
-      <workItem from="1593399885328" duration="2380000" />
-      <workItem from="1593427934717" duration="196000" />
-      <workItem from="1593481327198" duration="1299000" />
-      <workItem from="1593489320480" duration="4418000" />
-      <workItem from="1593505395797" duration="13668000" />
-      <workItem from="1593562526247" duration="11237000" />
-      <workItem from="1593579266912" duration="13142000" />
-      <workItem from="1593652909385" duration="1888000" />
+      <workItem from="1592642953945" duration="7691000" />
+      <workItem from="1592652156053" duration="5817000" />
+      <workItem from="1592707239606" duration="12010000" />
+      <workItem from="1592726456394" duration="350000" />
+      <workItem from="1592726890371" duration="10903000" />
+      <workItem from="1592792922147" duration="340000" />
+      <workItem from="1592832977403" duration="2571000" />
+      <workItem from="1593233621381" duration="212000" />
+      <workItem from="1593267767628" duration="4886000" />
+      <workItem from="1593311482505" duration="3568000" />
+      <workItem from="1593317722261" duration="4800000" />
+      <workItem from="1593326923557" duration="437000" />
+      <workItem from="1593357830417" duration="306000" />
+      <workItem from="1593395182275" duration="5379000" />
+      <workItem from="1593482350361" duration="11810000" />
+      <workItem from="1593657175480" duration="2440000" />
     </task>
     <task id="LOCAL-00001" summary="新增投顾人模块，包含注册方法">
       <created>1592633837802</created>
@@ -362,7 +366,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593606715261</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00008" summary="部署了完整的产品模块">
+      <created>1593511918613</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1593511918613</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

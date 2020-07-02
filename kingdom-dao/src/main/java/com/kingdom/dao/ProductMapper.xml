@@ -44,10 +44,12 @@
         name,
         code,
         riskType,
-        prevClose,
         upAndDown,
-        open,
-        peRatio
+        valueNow,
+        buyingRate
+--         prevClose,
+--         open,
+--         peRatio
         from `fund_alternate`
     </select>
 
