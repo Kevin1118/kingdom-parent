@@ -95,15 +95,19 @@
     </update>
 
     <insert id="addOrder" parameterType="com.kingdom.pojo.Order">
-        insert into `order` (orderId)
-        values(#{orderid})
+        insert into `order` (orderId,accountNo,sum,transactionDate,productId,consultantId,status)
+        values(#{orderid},#{accountno},#{sum},#{transactiondate},#{productid},#{consultantid},#{status})
     </insert>
 
     <select id="selectProductByName" resultType="com.kingdom.pojo.Product">
         select * from product
         where name=#{name}
     </select>
-    
+    <insert id="addSignAccount" parameterType="com.kingdom.pojo.SignAccount">
+        insert into sign_account(userId,productId,balance,signDate,status)
+        values(#{userid},#{productid},#{balance},#{signdate},#{status})
+    </insert>
+
     <select id="selectAccountNoByUserIdAndProductId" resultType="com.kingdom.pojo.SignAccount">
         select * from sign_account
         where userId=#{userId,jdbcType=INTEGER}
