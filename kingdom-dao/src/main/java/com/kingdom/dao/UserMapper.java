@@ -139,6 +139,13 @@ public interface UserMapper {
     Product selectProductByName(String name);
 
     /**
+     * 创建投顾账户
+     * @param signAccount
+     * @return
+     */
+    int addSignAccount(SignAccount signAccount);
+
+    /**
      * 根据用户id和产品id查询投顾账户账号
      * @param userid
      * @param productid

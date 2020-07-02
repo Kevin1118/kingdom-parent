@@ -160,12 +160,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int investUser(Order order,int userId,String name,double sum) {
-        int transactionDate=(int)(System.currentTimeMillis()/1000);
-        String orderId=transactionDate+""+userId;
         Product product=userMapper.selectProductByName(name);
         int productId=product.getProductid();
         int consultantId=product.getConsultantid();
         SignAccount signAccount=userMapper.selectAccountNoByUserIdAndProductId(userId,productId);
+        if (signAccount==null){
+            userMapper.addSignAccount(signAccount);
+        }
+        int transactionDate=(int)(System.currentTimeMillis()/1000);
+        String orderId=transactionDate+""+userId;
         int accountNo=signAccount.getSignaccountid();
 
         order.setOrderid(orderId);
