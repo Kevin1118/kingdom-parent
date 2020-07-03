@@ -26,7 +26,7 @@ public interface ConsultantMapper {
     Consultant selectByPhoneNumber(String phoneNumber);
 
     /**
-     * 通过邮箱查询投顾人信息
+     * 通过邮箱查询投顾人信息，可用于登录
      * @param email 邮箱号
      * @return 投顾人对象
      */
