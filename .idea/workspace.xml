@@ -29,12 +29,16 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="修改了post请求相应内容，可以暂时部署。协议和买入卖出暂时没做">
-      <change afterPath="$PROJECT_DIR$/kingdom-user-service/src/main/java/com/kingdom/user/service/impl/RedisConfig.java" afterDir="false" />
+    <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="部署了redis">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-dto/src/main/java/com/kingdom/dto/user/IndependentBalanceDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dto/src/main/java/com/kingdom/dto/user/TopUpDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-dto/src/main/java/com/kingdom/dto/user/InvestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dto/src/main/java/com/kingdom/dto/user/InvestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-interface/src/main/java/com/kingdom/interfaceservice/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-interface/src/main/java/com/kingdom/interfaceservice/user/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kingdom-user-service/src/main/java/com/kingdom/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-user-service/src/main/java/com/kingdom/user/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-user-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-user-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/commonutils/RedisKeyUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/commonutils/RedisKeyUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-user-web/src/main/java/com/kingdom/user/web/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-user-web/src/main/java/com/kingdom/user/web/UserController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +143,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.KingdomUserServiceApplication">
+  <component name="RunManager" selected="Spring Boot.KingdomUserWebApplication">
     <configuration name="KingdomConsultantWebApplicationTests.testStrings" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="kingdom-consultant-web" />
       <extension name="coverage">
@@ -185,13 +189,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="KingdomUserWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="kingdom-user-web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.kingdom.user.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.user.KingdomUserWebApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="JUnit.KingdomConsultantWebApplicationTests.testStrings" />
       <item itemvalue="JUnit.KingdomUtilApplicationTests.contextLoads" />
       <item itemvalue="Spring Boot.KingdomUserServiceApplication" />
+      <item itemvalue="Spring Boot.KingdomUserWebApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.KingdomUserWebApplication" />
         <item itemvalue="Spring Boot.KingdomUserServiceApplication" />
       </list>
     </recent_temporary>
@@ -200,53 +219,96 @@
     <configuration />
   </component>
   <component name="TaskManager">
+    <task id="LOCAL-00001" summary="部署了redis">
+      <created>1593685579805</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1593685579805</updated>
+    </task>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="部署了redis" />
+      <created>1593743029702</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1593743029702</updated>
+      <workItem from="1593743032624" duration="4947000" />
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/user" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="部署了redis" />
+    <option name="LAST_COMMIT_MESSAGE" value="部署了redis" />
+  </component>
   <component name="WindowStateProjectService">
-    <state width="1150" height="400" key="GridCell.Tab.0.bottom" timestamp="1593685350511">
+    <state x="574" y="117" key="#com.intellij.ide.util.MemberChooser" timestamp="1593703793448">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1150" height="400" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593685350511" />
-    <state width="1150" height="400" key="GridCell.Tab.0.center" timestamp="1593685350511">
+    <state x="574" y="117" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1593703793448" />
+    <state width="1150" height="303" key="GridCell.Tab.0.bottom" timestamp="1593748081843">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1150" height="400" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1593685350511" />
-    <state width="1150" height="400" key="GridCell.Tab.0.left" timestamp="1593685350511">
+    <state width="1150" height="303" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593748081843" />
+    <state width="1150" height="303" key="GridCell.Tab.0.center" timestamp="1593748081843">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1150" height="400" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1593685350511" />
-    <state width="1150" height="400" key="GridCell.Tab.0.right" timestamp="1593685350511">
+    <state width="1150" height="303" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1593748081843" />
+    <state width="1150" height="303" key="GridCell.Tab.0.left" timestamp="1593748081843">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1150" height="400" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1593685350511" />
-    <state width="1150" height="400" key="GridCell.Tab.1.bottom" timestamp="1593685350511">
+    <state width="1150" height="303" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1593748081843" />
+    <state width="1150" height="303" key="GridCell.Tab.0.right" timestamp="1593748081843">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1150" height="400" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593685350511" />
-    <state width="1150" height="400" key="GridCell.Tab.1.center" timestamp="1593685350511">
+    <state width="1150" height="303" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1593748081843" />
+    <state width="1150" height="303" key="GridCell.Tab.1.bottom" timestamp="1593748081843">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1150" height="400" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1593685350511" />
-    <state width="1150" height="400" key="GridCell.Tab.1.left" timestamp="1593685350511">
+    <state width="1150" height="303" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593748081843" />
+    <state width="1150" height="303" key="GridCell.Tab.1.center" timestamp="1593748081843">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1150" height="400" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1593685350511" />
-    <state width="1150" height="400" key="GridCell.Tab.1.right" timestamp="1593685350511">
+    <state width="1150" height="303" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1593748081843" />
+    <state width="1150" height="303" key="GridCell.Tab.1.left" timestamp="1593748081843">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1150" height="400" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1593685350511" />
+    <state width="1150" height="303" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1593748081843" />
+    <state width="1150" height="303" key="GridCell.Tab.1.right" timestamp="1593748081843">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1150" height="303" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1593748081843" />
+    <state x="361" y="131" key="Vcs.Push.Dialog.v2" timestamp="1593685588707">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="131" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1593685588707" />
     <state x="520" y="199" key="git4idea.merge.GitMergeDialog" timestamp="1593684661951">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

@@ -5,6 +5,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.kingdom.commonutils.CommonUtils;
 import com.kingdom.dto.user.InvestDTO;
 import com.kingdom.dto.user.PasswordDTO;
+import com.kingdom.dto.user.TopUpDTO;
 import com.kingdom.pojo.*;
 import com.kingdom.result.*;
 import com.kingdom.interfaceservice.user.UserService;
@@ -12,6 +13,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -157,6 +160,18 @@ public class UserController {
         }
     }
 
+    @ApiOperation("资产信息加载")
+    @ResponseBody
+    @GetMapping("/user/loadBalanceUser")
+    public Result loadBalanceUser(){
+        User user=hostHolder.getUser();
+        if(user!=null){
+            return ResultGenerator.genSuccessResult(userService.selectAccountByUserId(user.getUserid()));
+        }else {
+            return ResultGenerator.genFailResult("加载失败");
+        }
+    }
+
     @ApiOperation("投资人绑定银行卡")
     @PostMapping("/user/bindCardUser")
     @ResponseBody
@@ -214,20 +229,30 @@ public class UserController {
     @ApiOperation("投资人充值")
     @ResponseBody
     @PostMapping("/user/topUpUser")
-    public Result topUpUser(@RequestBody double topUpMoney){
+    public Result topUpUser(@RequestBody TopUpDTO topUpDTO){
+        double topUpMoney=topUpDTO.getTopUpMoney();
         User user=hostHolder.getUser();
         return ResultGenerator.genSuccessResult(userService.topUpUser(user.getUserid(),topUpMoney));
     }
 
-    @ApiOperation("买入")
+    @ApiOperation("发起买入申请")
     @ResponseBody
     @PostMapping("/user/investUser")
     public Result investUser(@RequestBody InvestDTO investDTO,Order order){
         String name=investDTO.getName();
-        int sum=investDTO.getSum();
+        double sum=investDTO.getSum();
         User user=hostHolder.getUser();
         return ResultGenerator.genSuccessResult(userService.investUser(order,user.getUserid(),name,sum));
     }
 
+    @ApiOperation("卖出申请发起")
+    @ResponseBody
+    @PostMapping("/user/sellUser")
+    public Result sellUser(@RequestBody InvestDTO investDTO,Order order){
+        String name=investDTO.getName();
+        double sum=investDTO.getSum();
+        User user=hostHolder.getUser();
+        return ResultGenerator.genSuccessResult(userService.sellUser(order,user.getUserid(),name,sum));
+    }
 }
 //查看协议  ，保存协议，买入，卖出
