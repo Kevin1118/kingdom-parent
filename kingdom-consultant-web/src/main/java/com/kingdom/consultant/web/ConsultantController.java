@@ -1,6 +1,6 @@
 package com.kingdom.consultant.web;
 
-import com.alibaba.dubbo.common.utils.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.kingdom.commonutils.CommonUtils;
 import com.kingdom.commonutils.Constant;
@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -312,7 +313,7 @@ public class ConsultantController implements Constant {
         return ResultGenerator.genSuccessResult(map);
     }
 
-    @ApiOperation("买入审批确认")
+    @ApiOperation("买卖审批确认")
     @ResponseBody
     @PostMapping("/acceptApproval")
     public Result acceptApproval(@RequestBody Order order){
@@ -349,5 +350,43 @@ public class ConsultantController implements Constant {
         }
         Map map=consultantService.selectOrders(pageNum,pageSize,consultant.getConsultantid(),TRANSACTION);
         return ResultGenerator.genSuccessResult(map);
+    }
+
+    @ApiOperation("买入基金股票")
+    @ResponseBody
+    @PostMapping("/buyStockAndFund")
+    public Result buyStockAndFund(@RequestBody List<Integer> ids){
+        Consultant consultant=hostHolder.getConsultant();
+        //判断对象是否为空，若空返回未登录
+        if (consultant==null){
+            return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
+        }
+        return ResultGenerator.genSuccessResult(consultantService.buyStockAndFund(ids));
+    }
+
+    @ApiOperation("卖出基金股票")
+    @ResponseBody
+    @PostMapping("sellStockAndFund")
+    public Result sellStockAndFund(@RequestBody List<Integer> ids){
+        Consultant consultant=hostHolder.getConsultant();
+        //判断对象是否为空，若空返回未登录
+        if (consultant==null){
+            return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
+        }
+        return ResultGenerator.genSuccessResult(consultantService.sellStockAndFund(ids));
+    }
+
+    @ApiOperation("查询交易明细")
+    @ResponseBody
+    @GetMapping("/loadTransactionDetail")
+    public Result loadTransactionDetail(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize,@RequestParam(defaultValue = "0") String orderId){
+        Consultant consultant=hostHolder.getConsultant();
+        //判断对象是否为空，若空返回未登录
+        if (consultant==null){
+            return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
+        }
+
+        Map result=consultantService.selectProperty(pageNum, pageSize, orderId,consultant.getConsultantid());
+        return ResultGenerator.genSuccessResult(result);
     }
 }

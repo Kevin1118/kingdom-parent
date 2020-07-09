@@ -3,48 +3,6 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Maven default annotation processors profile" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="kingdom-dto" />
-        <module name="kingdom-pojo" />
-        <module name="kingdom-user-service" />
-        <module name="kingdom-product-web" />
-        <module name="kingdom-vojo" />
-        <module name="kingdom-product-service" />
-        <module name="kingdom-interface" />
-        <module name="kingdom-consultant-service" />
-        <module name="kingdom-user-web" />
-        <module name="kingdom-util" />
-        <module name="kingdom-consultant-web" />
-        <module name="kingdom-dao" />
-      </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="kingdom-interface-consultant-service" target="1.8" />
-      <module name="kingdom-interface-sign-service" target="1.8" />
-      <module name="kingdom-interface-user-service" target="1.8" />
-    </bytecodeTargetLevel>
-  </component>
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="kingdom-consultant-service" options="-parameters" />
-      <module name="kingdom-consultant-web" options="-parameters" />
-      <module name="kingdom-dao" options="-parameters" />
-      <module name="kingdom-dto" options="-parameters" />
-      <module name="kingdom-interface" options="-parameters" />
-      <module name="kingdom-interface-consultant-service" options="-parameters" />
-      <module name="kingdom-interface-sign-service" options="-parameters" />
-      <module name="kingdom-interface-user-service" options="-parameters" />
-      <module name="kingdom-parent" options="-parameters" />
-      <module name="kingdom-pojo" options="-parameters" />
-      <module name="kingdom-product-service" options="-parameters" />
-      <module name="kingdom-product-web" options="-parameters" />
-      <module name="kingdom-user-service" options="-parameters" />
-      <module name="kingdom-user-web" options="-parameters" />
-      <module name="kingdom-util" options="-parameters" />
-      <module name="kingdom-vojo" options="-parameters" />
-    </option>
   </component>
 </project>

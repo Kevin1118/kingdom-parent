@@ -3,6 +3,18 @@
 
 <mapper namespace="com.kingdom.dao.ProductMapper">
 
+    <resultMap id="fundAlternateMap" type="com.kingdom.pojo.FundAlternate">
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+        <result column="valueNow" property="valueNow" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <resultMap id="stockAlternateMap" type="com.kingdom.pojo.StockAlternate">
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+        <result column="valueNow" property="valueNow" jdbcType="DECIMAL"/>
+    </resultMap>
+
     <select id="selectProductAll" resultType="com.kingdom.pojo.Product">
         select
         *
@@ -44,10 +56,12 @@
         name,
         code,
         riskType,
-        prevClose,
         upAndDown,
-        open,
-        peRatio
+        valueNow,
+        buyingRate
+--         prevClose,
+--         open,
+--         peRatio
         from `fund_alternate`
     </select>
 
@@ -160,6 +174,21 @@
     <select id="selectProductByConsultantId" resultType="com.kingdom.pojo.Product">
         select * from product where consultantId=#{consultantId}
 
+    </select>
+
+
+    <select id="selectFundAlternate" resultMap="fundAlternateMap">
+        select * from fund_alternate where code in
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="selectStockAlternate" resultMap="stockAlternateMap" >
+        select * from stock_alternate where code in
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
     </select>
 
 </mapper>
