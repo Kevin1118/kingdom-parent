@@ -58,6 +58,10 @@ public interface Constant {
     int WAIT_TO_SELL=4;
 
     /**
+     * 订单已完成
+     */
+    int FINISH=5;
+    /**
      * 审批
      */
     int APPROVAL=0;
@@ -65,4 +69,24 @@ public interface Constant {
      * 交易
      */
     int TRANSACTION=1;
+
+    /**
+     * 默认货币基金
+     */
+    String MONEY_FUND_CODE="000198";
+
+    /**
+     * 默认货币基金名字
+     */
+    String MONEY_FUND_NAME="天弘余额宝货币";
+
+    /**
+     * 股票最少购买数量限制
+     */
+    Float STOCK_AMOUNT_LIMIT=1.0f;
+
+    /**
+     * 基金最少购买数量限制
+     */
+    Float FUND_AMOUNT_LIMIT=1.0f;
 }

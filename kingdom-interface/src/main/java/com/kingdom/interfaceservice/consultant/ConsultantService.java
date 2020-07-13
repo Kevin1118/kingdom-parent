@@ -6,6 +6,7 @@ import com.kingdom.pojo.LoginTicket;
 import com.kingdom.result.Result;
 import com.kingdom.result.ResultCode;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -108,4 +109,28 @@ public interface ConsultantService {
      * @return 响应码
      */
     ResultCode updateOrderStatus(int id,int status);
+
+    /**
+     * 买入基金股票
+     * @param ids 订单
+     * @return 响应码
+     */
+    ResultCode buyStockAndFund(List<Integer> ids);
+
+//    /**
+//     * 卖出基金股票
+//     * @param ids 订单id
+//     * @return 响应码
+//     */
+//    ResultCode sellStockAndFund(List<Integer> ids);
+
+    /**
+     * 查询资产信息
+     * @param pageNum 页码
+     * @param pageSize 大小
+     * @param orderId 订单号
+     * @param consultantId 投顾人id
+     * @return 交易记录
+     */
+    Map selectProperty(int pageNum,int pageSize,String orderId,int consultantId);
 }

@@ -2,6 +2,7 @@ package com.kingdom.result;
 
 /**
  * 响应结果生成工具
+ * @author hjc
  */
 public class ResultGenerator {
     private static final String DEFAULT_SUCCESS_MESSAGE = "SUCCESS";

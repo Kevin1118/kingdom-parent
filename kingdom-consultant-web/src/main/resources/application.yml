@@ -25,8 +25,8 @@ swagger:
 #上传服务器时需要更改文件夹地址
 consultant:
   path:
-    domain: http://localhost:9002
-    upload: e:/workspace/communityData/upload
+    domain: http://123.57.46.173:9002
+    upload: /root/upload
 
 # RedisProperties
 spring:

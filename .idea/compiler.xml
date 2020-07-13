@@ -8,21 +8,21 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="kingdom-dto" />
+        <module name="kingdom-pojo" />
         <module name="kingdom-user-service" />
         <module name="kingdom-product-web" />
-        <module name="kingdom-vojo" />
-        <module name="kingdom-util" />
+        <module name="kingdom-consultant-service" />
         <module name="kingdom-product-service" />
         <module name="kingdom-interface" />
-        <module name="kingdom-consultant-service" />
+        <module name="kingdom-vojo" />
         <module name="kingdom-user-web" />
-        <module name="kingdom-pojo" />
+        <module name="kingdom-util" />
         <module name="kingdom-consultant-web" />
         <module name="kingdom-dao" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="kingdom-interface-product-service" target="1.8" />
+      <module name="kingdom-interface-consultant-service" target="1.8" />
       <module name="kingdom-interface-sign-service" target="1.8" />
       <module name="kingdom-interface-user-service" target="1.8" />
     </bytecodeTargetLevel>
@@ -34,7 +34,7 @@
       <module name="kingdom-dao" options="-parameters" />
       <module name="kingdom-dto" options="-parameters" />
       <module name="kingdom-interface" options="-parameters" />
-      <module name="kingdom-interface-product-service" options="-parameters" />
+      <module name="kingdom-interface-consultant-service" options="-parameters" />
       <module name="kingdom-interface-sign-service" options="-parameters" />
       <module name="kingdom-interface-user-service" options="-parameters" />
       <module name="kingdom-parent" options="-parameters" />
