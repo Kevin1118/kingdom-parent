@@ -34,6 +34,7 @@ import java.util.Map;
  * @date : 2020/6/20 13:15
  */
 @Controller
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 @RequestMapping("/consultant")
 public class ConsultantController implements Constant {
 

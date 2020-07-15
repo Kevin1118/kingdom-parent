@@ -33,6 +33,7 @@ import java.util.Map;
  * @date : 2020-06-16 12:08
  **/
 @Controller
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 public class UserController {
 
     @Reference
