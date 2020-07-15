@@ -114,4 +114,9 @@
         and productId=#{productId,jdbcType=INTEGER}
     </select>
 
+    <update id="updateSignAccountBalance" parameterType="com.kingdom.pojo.SignAccount">
+        update sign_account
+        set balance=#{balance}
+        where signAccountId=#{signaccountid}
+    </update>
 </mapper>

@@ -153,4 +153,12 @@ public interface UserMapper {
      */
     SignAccount selectAccountNoByUserIdAndProductId(@Param("userId") Integer userid,@Param("productId") Integer productid);
 
+    /**
+     * 根据投顾账号更新账户金额
+     * @param signaccountid
+     * @param balance
+     * @return
+     */
+    int updateSignAccountBalance(Integer signaccountid,double balance);
+
 }

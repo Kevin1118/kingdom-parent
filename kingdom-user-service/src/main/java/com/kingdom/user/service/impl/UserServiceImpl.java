@@ -169,17 +169,37 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public IndependentAccount selectAccountByUserId(int userId) {
+        return userMapper.selectIndependetAccountById(userId);
+    }
+
+    @Override
     public int investUser(Order order,int userId,String name,double sum) {
         Product product=userMapper.selectProductByName(name);
         int productId=product.getProductid();
         int consultantId=product.getConsultantid();
-        SignAccount signAccount=userMapper.selectAccountNoByUserIdAndProductId(userId,productId);
-        if (signAccount==null){
-            userMapper.addSignAccount(signAccount);
-        }
         int transactionDate=(int)(System.currentTimeMillis()/1000);
+        SignAccount sa=userMapper.selectAccountNoByUserIdAndProductId(userId,productId);
         String orderId=transactionDate+""+userId;
-        int accountNo=signAccount.getSignaccountid();
+        int accountNo=sa.getSignaccountid();
+        //账户不存在择创建投顾账户
+        if (sa==null){
+            sa.setUserid(userId);
+            sa.setProductid(productId);
+            sa.setBalance(sum);
+            sa.setSigndate(transactionDate);
+            //1代表可用
+            sa.setStatus("1");
+            userMapper.addSignAccount(sa);
+            //账户存在则更新账户余额
+        }else{
+            double balance=sa.getBalance()+sum;
+            userMapper.updateSignAccountBalance(accountNo,balance);
+        }
+        //更新独立账户资金
+        IndependentAccount independentAccount=userMapper.selectIndependetAccountById(userId);
+        double independentBalance=independentAccount.getIndependentbalance()-sum;
+        userMapper.updateIndependentBalance(userId,independentBalance);
 
         order.setOrderid(orderId);
         order.setAccountno(accountNo);
@@ -187,7 +207,39 @@ public class UserServiceImpl implements UserService {
         order.setTransactiondate(transactionDate);
         order.setProductid(productId);
         order.setConsultantid(consultantId);
+        //1表示买入申请
         order.setStatus(1);
+
+        return userMapper.addOrder(order);
+    }
+
+    @Override
+    public int sellUser(Order order, int userId, String name, double sum) {
+        Product product=userMapper.selectProductByName(name);
+        int productId=product.getProductid();
+        int consultanId=product.getConsultantid();
+        SignAccount signAccount=userMapper.selectAccountNoByUserIdAndProductId(userId,productId);
+        int accountNo=signAccount.getSignaccountid();
+        int transactionDate=(int)(System.currentTimeMillis()/1000);
+        String orderId=transactionDate+""+userId;
+        //更新投顾账户余额
+        double balance=signAccount.getBalance()-sum;
+        userMapper.updateSignAccountBalance(accountNo,balance);
+
+        //更新独立账户余额 ,这里假定用户发起卖出申请，平台直接使用自身资金池转账给账户，不需要在投顾卖出后转账
+        IndependentAccount independentAccount=userMapper.selectIndependetAccountById(userId);
+        double independentBalance=independentAccount.getIndependentbalance()+sum;
+        userMapper.updateIndependentBalance(userId,independentBalance);
+
+        order.setOrderid(orderId);
+        order.setAccountno(accountNo);
+        order.setSum(sum);
+        order.setTransactiondate(transactionDate);
+        order.setProductid(productId);
+        order.setConsultantid(consultanId);
+        //2代表卖出申请
+        order.setStatus(2);
+
 
         return userMapper.addOrder(order);
     }
