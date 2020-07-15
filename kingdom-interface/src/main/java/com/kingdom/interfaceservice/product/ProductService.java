@@ -1,7 +1,9 @@
 package com.kingdom.interfaceservice.product;
 
 import com.kingdom.dto.product.ProductInitDTO;
+import com.kingdom.pojo.FundAlternate;
 import com.kingdom.pojo.Product;
+import com.kingdom.pojo.StockAlternate;
 import com.kingdom.vojo.product.ProductPieChart;
 
 import java.text.ParseException;
@@ -34,7 +36,6 @@ public interface ProductService {
     Map selectProductAll(Integer pageNum, Integer pageSize);
 
     /**
-     * 产品服务组件 组件编号 Jc4
      * 获取备选库生成规则，带分页功能
      *
      * @param pageNum  当前页数
@@ -70,7 +71,7 @@ public interface ProductService {
      * @param list 备选股票id、基金id及其比例
      * @return List<?> 暂时返回 null
      */
-    List<?> initProduct(List<ProductInitDTO> list);
+    Map<String,Object> initProduct(List<ProductInitDTO> list);
 
     /**
      * 根据产品 id 获取股票比例饼状图
@@ -80,5 +81,15 @@ public interface ProductService {
      */
     List<ProductPieChart> selectProportionFromDetail(Integer productId);
 
+    /**
+     * 组合产品页，股票涨跌幅排行榜,带分页
+     * @return List<StockAlternate> 备选库股票的涨跌幅排行 list
+     */
+    List<StockAlternate> showStockUpAndDown();
 
+    /**
+     * 组合产品页，股票涨跌幅排行榜,带分页
+     * @return List<FundAlternate> 备选库基金的涨跌幅排行 list
+     */
+    List<FundAlternate> showFundUpAndDown();
 }
