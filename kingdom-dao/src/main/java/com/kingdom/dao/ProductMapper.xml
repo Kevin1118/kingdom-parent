@@ -159,6 +159,55 @@
         productId = #{id,jdbcType=INTEGER}
     </select>
 
+    <select id="existInitProductFromProduct" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT
+        IFNULL(
+            (
+                SELECT
+                    1
+                FROM
+                    product
+                WHERE
+                    productId = #{productId}
+                AND STATUS = 2
+                LIMIT 1
+            ),
+            "0"
+        )
+
+    </select>
+
+    <update id="updateStatusFromProductAfterInit" parameterType="java.lang.Integer">
+        update
+        product
+        set
+        status = 2
+        where
+        productId = #{productId}
+    </update>
+
+    <select id="selectStockUpAndDownFromAlternateOrderByDesc" resultType="com.kingdom.pojo.StockAlternate">
+        select
+        s.code,s.name,s.upAndDown
+        from
+        stock_alternate s
+        order by
+        s.upAndDown
+        DESC
+        LIMIT 10
+    </select>
+
+    <select id="selectFundUpAndDownFromAlternateOrderByDesc" resultType="com.kingdom.pojo.FundAlternate">
+        select
+        f.code,f.name,f.upAndDown
+        from
+        fund_alternate f
+        order by
+        f.upAndDown
+        DESC
+        LIMIT 10
+    </select>
+
     <select id="selectProductByConsultantId" resultType="com.kingdom.pojo.Product">
         select * from product where consultantId=#{consultantId}
 

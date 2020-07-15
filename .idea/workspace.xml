@@ -30,12 +30,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="修改了post请求相应内容，可以暂时部署。协议和买入卖出暂时没做">
-      <change afterPath="$PROJECT_DIR$/kingdom-user-service/src/main/java/com/kingdom/user/service/impl/RedisConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kingdom-pojo/src/main/java/com/kingdom/pojo/ExcelBean.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/datautils/ExcelUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_6_30_12_17_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_6_30_12_17__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_6_30_12_19_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_6_30_12_19__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_6_30_12_20_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_6_30_12_20__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_6_30_12_37_[Default_Changelist]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_6_30_12_37__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_6_30_12_37__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_6_30_12_37__Default_Changelist_1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-user-service/src/main/java/com/kingdom/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-user-service/src/main/java/com/kingdom/user/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-user-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-user-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/commonutils/RedisKeyUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/commonutils/RedisKeyUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-consultant-web/src/main/java/com/kingdom/consultant/web/ConsultantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-consultant-web/src/main/java/com/kingdom/consultant/web/ConsultantController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ProductMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ProductMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ProductMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-interface/src/main/java/com/kingdom/interfaceservice/product/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-interface/src/main/java/com/kingdom/interfaceservice/product/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-product-service/src/main/java/com/kingdom/product/service/impl/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-product-service/src/main/java/com/kingdom/product/service/impl/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-product-web/src/main/java/com/kingdom/product/web/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-product-web/src/main/java/com/kingdom/product/web/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-user-web/src/main/java/com/kingdom/user/web/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-user-web/src/main/java/com/kingdom/user/web/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-util/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-util/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/result/ResultCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/result/ResultCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -98,7 +116,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../kingdom-data" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -109,11 +127,20 @@
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\kevin\workspace\kingdom-parent\kingdom-interface\src\main\java\com\kingdom\interfaceservice" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.kingdom.pojo" />
       <recent name="com.kingdom.product.service" />
       <recent name="com.kingdom.product" />
       <recent name="com.kingdom.user" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.kingdom.user.service.impl" />
+      <recent name="com.kingdom.consultant.service.impl" />
+      <recent name="com.kingdom.consultant" />
+      <recent name="com.kingdom.user.web" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Administrator\Desktop\kingdom-parent\kingdom-dao\src\main\java\com\kingdom\dao" />
@@ -122,15 +149,6 @@
       <recent name="C:\Users\kevin\workspace\kingdom-parent\kingdom-util\src\main\java\com\kingdom\result" />
       <recent name="C:\Users\kevin\workspace\kingdom-parent\kingdom-interface\src\main\resources" />
     </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.kingdom.user.service.impl" />
-      <recent name="com.kingdom.consultant.service.impl" />
-      <recent name="com.kingdom.consultant" />
-      <recent name="com.kingdom.user.web" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\kevin\workspace\kingdom-parent\kingdom-interface\src\main\java\com\kingdom\interfaceservice" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
@@ -138,8 +156,18 @@
         <option value="SpringBootApplicationConfigurationType" />
       </set>
     </option>
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.KingdomUserServiceApplication">
+  <component name="RunManager" selected="Spring Boot.KingdomProductWebApplication">
     <configuration name="KingdomConsultantWebApplicationTests.testStrings" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="kingdom-consultant-web" />
       <extension name="coverage">
@@ -172,6 +200,41 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="KingdomConsultantServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="kingdom-consultant-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.consultant.service.KingdomConsultantServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="KingdomConsultantWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="kingdom-consultant-web" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.consultant.KingdomConsultantWebApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="KingdomPojoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="kingdom-pojo" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.pojo.KingdomPojoApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="KingdomProductServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="kingdom-product-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.product.service.KingdomProductServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="KingdomProductWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="kingdom-product-web" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.product.KingdomProductWebApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="KingdomUserServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="kingdom-user-service" />
       <extension name="coverage">
@@ -185,9 +248,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="KingdomUserWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="kingdom-user-web" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.user.KingdomUserWebApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="JUnit.KingdomConsultantWebApplicationTests.testStrings" />
       <item itemvalue="JUnit.KingdomUtilApplicationTests.contextLoads" />
+      <item itemvalue="Spring Boot.KingdomProductWebApplication" />
+      <item itemvalue="Spring Boot.KingdomConsultantWebApplication" />
+      <item itemvalue="Spring Boot.KingdomProductServiceApplication" />
+      <item itemvalue="Spring Boot.KingdomUserWebApplication" />
+      <item itemvalue="Spring Boot.KingdomPojoApplication" />
+      <item itemvalue="Spring Boot.KingdomConsultantServiceApplication" />
       <item itemvalue="Spring Boot.KingdomUserServiceApplication" />
     </list>
     <recent_temporary>
@@ -196,60 +272,80 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <option name="contentProportion" value="0.13917004" />
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@78efa67a" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@78efa67a" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@c0795390" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="修改了post请求相应内容，可以暂时部署。协议和买入卖出暂时没做" />
+      <created>1593694209422</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1593694209422</updated>
+      <workItem from="1593694215295" duration="479000" />
+      <workItem from="1593695788845" duration="772000" />
+      <workItem from="1594111121124" duration="64000" />
+      <workItem from="1594111444769" duration="1601000" />
+      <workItem from="1594734812931" duration="1994000" />
+      <workItem from="1594796693325" duration="7266000" />
+    </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1150" height="400" key="GridCell.Tab.0.bottom" timestamp="1593685350511">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1150" height="400" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593685350511" />
-    <state width="1150" height="400" key="GridCell.Tab.0.center" timestamp="1593685350511">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1150" height="400" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1593685350511" />
-    <state width="1150" height="400" key="GridCell.Tab.0.left" timestamp="1593685350511">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1150" height="400" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1593685350511" />
-    <state width="1150" height="400" key="GridCell.Tab.0.right" timestamp="1593685350511">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1150" height="400" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1593685350511" />
-    <state width="1150" height="400" key="GridCell.Tab.1.bottom" timestamp="1593685350511">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1150" height="400" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593685350511" />
-    <state width="1150" height="400" key="GridCell.Tab.1.center" timestamp="1593685350511">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1150" height="400" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1593685350511" />
-    <state width="1150" height="400" key="GridCell.Tab.1.left" timestamp="1593685350511">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1150" height="400" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1593685350511" />
-    <state width="1150" height="400" key="GridCell.Tab.1.right" timestamp="1593685350511">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1150" height="400" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1593685350511" />
-    <state x="520" y="199" key="git4idea.merge.GitMergeDialog" timestamp="1593684661951">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="520" y="199" key="git4idea.merge.GitMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1593684661951" />
+    <state width="1150" height="400" key="GridCell.Tab.0.bottom" />
+    <state width="1150" height="400" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" />
+    <state width="1150" height="400" key="GridCell.Tab.0.center" />
+    <state width="1150" height="400" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" />
+    <state width="1150" height="400" key="GridCell.Tab.0.left" />
+    <state width="1150" height="400" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" />
+    <state width="1150" height="400" key="GridCell.Tab.0.right" />
+    <state width="1150" height="400" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" />
+    <state width="1150" height="400" key="GridCell.Tab.1.bottom" />
+    <state width="1150" height="400" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" />
+    <state width="1150" height="400" key="GridCell.Tab.1.center" />
+    <state width="1150" height="400" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" />
+    <state width="1150" height="400" key="GridCell.Tab.1.left" />
+    <state width="1150" height="400" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" />
+    <state width="1150" height="400" key="GridCell.Tab.1.right" />
+    <state width="1150" height="400" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" />
+    <state x="520" y="199" key="git4idea.merge.GitMergeDialog" />
+    <state x="520" y="199" key="git4idea.merge.GitMergeDialog/0.0.1536.824@0.0.1536.824" />
   </component>
 </project>
