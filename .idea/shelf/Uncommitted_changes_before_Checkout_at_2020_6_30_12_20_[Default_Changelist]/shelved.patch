@@ -1,0 +1,233 @@
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"CompilerConfiguration\">\r\n    <annotationProcessing>\r\n      <profile default=\"true\" name=\"Default\" enabled=\"true\" />\r\n      <profile name=\"Maven default annotation processors profile\" enabled=\"true\">\r\n        <sourceOutputDir name=\"target/generated-sources/annotations\" />\r\n        <sourceTestOutputDir name=\"target/generated-test-sources/test-annotations\" />\r\n        <outputRelativeToContentRoot value=\"true\" />\r\n        <module name=\"kingdom-dto\" />\r\n        <module name=\"kingdom-user-service\" />\r\n        <module name=\"kingdom-product-web\" />\r\n        <module name=\"kingdom-vojo\" />\r\n        <module name=\"kingdom-util\" />\r\n        <module name=\"kingdom-product-service\" />\r\n        <module name=\"kingdom-interface\" />\r\n        <module name=\"kingdom-consultant-service\" />\r\n        <module name=\"kingdom-user-web\" />\r\n        <module name=\"kingdom-pojo\" />\r\n        <module name=\"kingdom-consultant-web\" />\r\n        <module name=\"kingdom-dao\" />\r\n      </profile>\r\n    </annotationProcessing>\r\n    <bytecodeTargetLevel>\r\n      <module name=\"kingdom-interface-consultant-service\" target=\"1.8\" />\r\n      <module name=\"kingdom-interface-sign-service\" target=\"1.8\" />\r\n      <module name=\"kingdom-interface-user-service\" target=\"1.8\" />\r\n    </bytecodeTargetLevel>\r\n  </component>\r\n  <component name=\"JavacSettings\">\r\n    <option name=\"ADDITIONAL_OPTIONS_OVERRIDE\">\r\n      <module name=\"kingdom-consultant-service\" options=\"-parameters\" />\r\n      <module name=\"kingdom-consultant-web\" options=\"-parameters\" />\r\n      <module name=\"kingdom-dao\" options=\"-parameters\" />\r\n      <module name=\"kingdom-dto\" options=\"-parameters\" />\r\n      <module name=\"kingdom-interface\" options=\"-parameters\" />\r\n      <module name=\"kingdom-interface-consultant-service\" options=\"-parameters\" />\r\n      <module name=\"kingdom-interface-sign-service\" options=\"-parameters\" />\r\n      <module name=\"kingdom-interface-user-service\" options=\"-parameters\" />\r\n      <module name=\"kingdom-parent\" options=\"-parameters\" />\r\n      <module name=\"kingdom-pojo\" options=\"-parameters\" />\r\n      <module name=\"kingdom-product-service\" options=\"-parameters\" />\r\n      <module name=\"kingdom-product-web\" options=\"-parameters\" />\r\n      <module name=\"kingdom-user-service\" options=\"-parameters\" />\r\n      <module name=\"kingdom-user-web\" options=\"-parameters\" />\r\n      <module name=\"kingdom-util\" options=\"-parameters\" />\r\n      <module name=\"kingdom-vojo\" options=\"-parameters\" />\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/compiler.xml	(revision 4a766135b345bba81d5db1f3830f0447567baef2)
++++ .idea/compiler.xml	(date 1593490778604)
+@@ -8,15 +8,15 @@
+         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+         <outputRelativeToContentRoot value="true" />
+         <module name="kingdom-dto" />
++        <module name="kingdom-pojo" />
+         <module name="kingdom-user-service" />
+         <module name="kingdom-product-web" />
+-        <module name="kingdom-vojo" />
+-        <module name="kingdom-util" />
++        <module name="kingdom-consultant-service" />
+         <module name="kingdom-product-service" />
+         <module name="kingdom-interface" />
+-        <module name="kingdom-consultant-service" />
++        <module name="kingdom-vojo" />
+         <module name="kingdom-user-web" />
+-        <module name="kingdom-pojo" />
++        <module name="kingdom-util" />
+         <module name="kingdom-consultant-web" />
+         <module name="kingdom-dao" />
+       </profile>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AnalysisUIOptions\">\r\n    <option name=\"GROUP_BY_SEVERITY\" value=\"true\" />\r\n  </component>\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"BRANCH:master\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </select>\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"6b5da52b-d946-4635-b8a9-a45d518c8e0f\" name=\"Default Changelist\" comment=\"无用\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/compiler.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/compiler.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/encodings.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/encodings.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/kingdom-consultant-service/src/main/java/com/kingdom/consultant/service/KingdomConsultantServiceApplication.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/kingdom-consultant-service/src/main/java/com/kingdom/consultant/service/KingdomConsultantServiceApplication.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/kingdom-consultant-service/src/main/resources/application.properties\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/kingdom-consultant-service/src/main/resources/application.properties\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/kingdom-consultant-service/src/main/resources/application.yml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/kingdom-consultant-service/src/main/resources/application.yml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/kingdom-user-service/pom.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/kingdom-user-service/pom.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/pom.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/pom.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"EXCLUDED_CONVERTED_TO_IGNORED\" value=\"true\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Tag Library Descriptor\" />\r\n        <option value=\"Interface\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"JsFlowSettings\">\r\n    <service-enabled>true</service-enabled>\r\n    <exe-path />\r\n    <other-services-enabled>true</other-services-enabled>\r\n    <auto-save>true</auto-save>\r\n  </component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"localRepository\" value=\"C:\\Users\\77564\\.m2\\repository\" />\r\n        <option name=\"mavenHome\" value=\"C:/Program Files/apache-maven-3.6.1\" />\r\n        <option name=\"outputLevel\" value=\"DEBUG\" />\r\n        <option name=\"userSettingsFile\" value=\"C:\\Program Files\\apache-maven-3.6.1\\conf\\settings.xml\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n    <option name=\"importingSettings\">\r\n      <MavenImportingSettings>\r\n        <option name=\"vmOptionsForImporter\" value=\"-Xmx768m\" />\r\n      </MavenImportingSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1dNwP3O90Pczcs4n3PxG5IvFvrL\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\r\n    <property name=\"RequestMappingsPanelOrder0\" value=\"0\" />\r\n    <property name=\"RequestMappingsPanelOrder1\" value=\"1\" />\r\n    <property name=\"RequestMappingsPanelWidth0\" value=\"75\" />\r\n    <property name=\"RequestMappingsPanelWidth1\" value=\"75\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\r\n    <property name=\"project.structure.last.edited\" value=\"Project\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.15\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.27941176\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"settings.github\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveClassesOrPackagesDialog.RECENTS_KEY\">\r\n      <recent name=\"com.kingdom.user\" />\r\n    </key>\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"com.kingdom.consultant\" />\r\n      <recent name=\"com.kingdom.user.web\" />\r\n    </key>\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"E:\\workspace\\kingdom-repo\\kingdom-consultant-web\\src\\main\\resources\" />\r\n      <recent name=\"E:\\workspace\\kingdom-repo\\kingdom-consultant-service\\src\\main\\resources\" />\r\n      <recent name=\"E:\\workspace\\kingdom-repo\" />\r\n      <recent name=\"C:\\Users\\kevin\\workspace\\kingdom-parent\\kingdom-dao\\src\\main\\java\\com\\kingdom\\dao\" />\r\n      <recent name=\"C:\\Users\\kevin\\workspace\\kingdom-parent\\kingdom-util\\src\\main\\java\\com\\kingdom\\result\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunDashboard\">\r\n    <option name=\"configurationTypes\">\r\n      <set>\r\n        <option value=\"SpringBootApplicationConfigurationType\" />\r\n      </set>\r\n    </option>\r\n    <option name=\"ruleStates\">\r\n      <list>\r\n        <RuleState>\r\n          <option name=\"name\" value=\"ConfigurationTypeDashboardGroupingRule\" />\r\n        </RuleState>\r\n        <RuleState>\r\n          <option name=\"name\" value=\"StatusDashboardGroupingRule\" />\r\n        </RuleState>\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Spring Boot.KingdomConsultantWebApplication\">\r\n    <configuration name=\"KingdomConsultantServiceApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\">\r\n      <module name=\"kingdom-consultant-service\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.kingdom.consultant.service.KingdomConsultantServiceApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"KingdomConsultantWebApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\">\r\n      <module name=\"kingdom-consultant-web\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.kingdom.consultant.KingdomConsultantWebApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"KingdomPojoApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\">\r\n      <module name=\"kingdom-pojo\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.kingdom.pojo.KingdomPojoApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"KingdomProductServiceApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\">\r\n      <module name=\"kingdom-product-service\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.kingdom.product.service.KingdomProductServiceApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"KingdomProductWebApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\">\r\n      <module name=\"kingdom-product-web\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.kingdom.product.KingdomProductWebApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"KingdomUserServiceApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\">\r\n      <module name=\"kingdom-user-service\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.kingdom.user.service.KingdomUserServiceApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"KingdomUserWebApplication (1)\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"kingdom-user-web\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.kingdom.user.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.kingdom.user.KingdomUserWebApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"KingdomUserWebApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\">\r\n      <module name=\"kingdom-user-web\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.kingdom.user.KingdomUserWebApplication\" />\r\n      <option name=\"ALTERNATIVE_JRE_PATH\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"KingdomUtilApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\">\r\n      <module name=\"kingdom-util\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.kingdom.KingdomUtilApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"KingdomVojoApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\">\r\n      <module name=\"kingdom-vojo\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.kingdom.vojo.KingdomVojoApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"Spring Boot.KingdomUserServiceApplication\" />\r\n      <item itemvalue=\"Spring Boot.KingdomUserWebApplication\" />\r\n      <item itemvalue=\"Spring Boot.KingdomUtilApplication\" />\r\n      <item itemvalue=\"Spring Boot.KingdomVojoApplication\" />\r\n      <item itemvalue=\"Spring Boot.KingdomProductWebApplication\" />\r\n      <item itemvalue=\"Spring Boot.KingdomProductServiceApplication\" />\r\n      <item itemvalue=\"Spring Boot.KingdomUserWebApplication (1)\" />\r\n      <item itemvalue=\"Spring Boot.KingdomPojoApplication\" />\r\n      <item itemvalue=\"Spring Boot.KingdomConsultantWebApplication\" />\r\n      <item itemvalue=\"Spring Boot.KingdomConsultantServiceApplication\" />\r\n    </list>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Spring Boot.KingdomUserWebApplication (1)\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"ServiceViewManager\">\r\n    <option name=\"allServicesViewState\">\r\n      <serviceView>\r\n        <option name=\"contentProportion\" value=\"0.20748988\" />\r\n        <treeState>\r\n          <expand>\r\n            <path>\r\n              <item name=\"services root\" type=\"e789fda9:ObjectUtils$Sentinel\" />\r\n              <item name=\"com.intellij.execution.services.ServiceModel$ServiceGroupNode@e588efb0\" type=\"7427dc5b:ServiceModel$ServiceGroupNode\" />\r\n            </path>\r\n            <path>\r\n              <item name=\"services root\" type=\"e789fda9:ObjectUtils$Sentinel\" />\r\n              <item name=\"com.intellij.execution.services.ServiceModel$ServiceGroupNode@e588efb0\" type=\"7427dc5b:ServiceModel$ServiceGroupNode\" />\r\n              <item name=\"com.intellij.execution.services.ServiceModel$ServiceGroupNode@16e2976d\" type=\"7427dc5b:ServiceModel$ServiceGroupNode\" />\r\n            </path>\r\n          </expand>\r\n          <select />\r\n        </treeState>\r\n      </serviceView>\r\n    </option>\r\n  </component>\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration />\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"6b5da52b-d946-4635-b8a9-a45d518c8e0f\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1592278831113</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1592278831113</updated>\r\n      <workItem from=\"1592278835532\" duration=\"3259000\" />\r\n      <workItem from=\"1592295836916\" duration=\"14107000\" />\r\n      <workItem from=\"1592361893531\" duration=\"13301000\" />\r\n      <workItem from=\"1592449165065\" duration=\"4309000\" />\r\n      <workItem from=\"1592642953945\" duration=\"7691000\" />\r\n      <workItem from=\"1592652156053\" duration=\"5817000\" />\r\n      <workItem from=\"1592707239606\" duration=\"12010000\" />\r\n      <workItem from=\"1592726456394\" duration=\"350000\" />\r\n      <workItem from=\"1592726890371\" duration=\"10903000\" />\r\n      <workItem from=\"1592792922147\" duration=\"340000\" />\r\n      <workItem from=\"1592832977403\" duration=\"2571000\" />\r\n      <workItem from=\"1593233621381\" duration=\"212000\" />\r\n      <workItem from=\"1593267767628\" duration=\"4886000\" />\r\n      <workItem from=\"1593311482505\" duration=\"3568000\" />\r\n      <workItem from=\"1593317722261\" duration=\"4683000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"新增投顾人模块，包含注册方法\">\r\n      <created>1592633837802</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1592633837803</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"新增投顾人登录模块\">\r\n      <created>1592644683485</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1592644683485</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"尝试合并\">\r\n      <created>1592646657345</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1592646657345</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"无用\">\r\n      <created>1592876123984</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1592876123984</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Controller层配置解决了跨域问题\">\r\n      <created>1592835086179</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1592835086179</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"更新产品管理页面的接口\">\r\n      <created>1593272591180</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1593272591180</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"7\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"1\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"master\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n              <option name=\"COLUMN_ORDER\" />\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n    <ignored-roots>\r\n      <path value=\"$PROJECT_DIR$/kingdom-parent\" />\r\n      <path value=\"$PROJECT_DIR$/kingdom-repo\" />\r\n    </ignored-roots>\r\n    <MESSAGE value=\"新增了product-web模块，在父依赖中引入\" />\r\n    <MESSAGE value=\"新增了product-service模块，实现了两个接口\" />\r\n    <MESSAGE value=\"新增产品接口，投资人登陆的demo\" />\r\n    <MESSAGE value=\"更改了项目结构，部署了产品模块的demo接口\" />\r\n    <MESSAGE value=\"Controller层配置解决了跨域问题\" />\r\n    <MESSAGE value=\"更新产品管理页面的接口\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"更新产品管理页面的接口\" />\r\n  </component>\r\n  <component name=\"WindowStateProjectService\">\r\n    <state x=\"574\" y=\"117\" key=\"#com.intellij.ide.util.MemberChooser\" />\r\n    <state x=\"574\" y=\"117\" key=\"#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824\" />\r\n    <state x=\"707\" y=\"165\" key=\"FileChooserDialogImpl\" />\r\n    <state x=\"707\" y=\"165\" key=\"FileChooserDialogImpl/0.0.1536.824@0.0.1536.824\" />\r\n    <state width=\"1150\" height=\"177\" key=\"GridCell.Tab.0.bottom\" />\r\n    <state width=\"1150\" height=\"177\" key=\"GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824\" />\r\n    <state width=\"1150\" height=\"177\" key=\"GridCell.Tab.0.center\" />\r\n    <state width=\"1150\" height=\"177\" key=\"GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824\" />\r\n    <state width=\"1150\" height=\"177\" key=\"GridCell.Tab.0.left\" />\r\n    <state width=\"1150\" height=\"177\" key=\"GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824\" />\r\n    <state width=\"1150\" height=\"177\" key=\"GridCell.Tab.0.right\" />\r\n    <state width=\"1150\" height=\"177\" key=\"GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824\" />\r\n    <state width=\"1150\" height=\"177\" key=\"GridCell.Tab.1.bottom\" />\r\n    <state width=\"1150\" height=\"177\" key=\"GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824\" />\r\n    <state width=\"1150\" height=\"177\" key=\"GridCell.Tab.1.center\" />\r\n    <state width=\"1150\" height=\"177\" key=\"GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824\" />\r\n    <state width=\"1150\" height=\"177\" key=\"GridCell.Tab.1.left\" />\r\n    <state width=\"1150\" height=\"177\" key=\"GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824\" />\r\n    <state width=\"1150\" height=\"177\" key=\"GridCell.Tab.1.right\" />\r\n    <state width=\"1150\" height=\"177\" key=\"GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824\" />\r\n    <state width=\"1150\" height=\"378\" key=\"GridCell.Tab.2.bottom\" />\r\n    <state width=\"1150\" height=\"378\" key=\"GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824\" />\r\n    <state width=\"1150\" height=\"378\" key=\"GridCell.Tab.2.center\" />\r\n    <state width=\"1150\" height=\"378\" key=\"GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824\" />\r\n    <state width=\"1150\" height=\"378\" key=\"GridCell.Tab.2.left\" />\r\n    <state width=\"1150\" height=\"378\" key=\"GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824\" />\r\n    <state width=\"1150\" height=\"378\" key=\"GridCell.Tab.2.right\" />\r\n    <state width=\"1150\" height=\"378\" key=\"GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824\" />\r\n    <state x=\"270\" y=\"56\" key=\"SettingsEditor\" />\r\n    <state x=\"270\" y=\"56\" key=\"SettingsEditor/0.0.1536.824@0.0.1536.824\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision 4a766135b345bba81d5db1f3830f0447567baef2)
++++ .idea/workspace.xml	(date 1593490778579)
+@@ -28,17 +28,7 @@
+     </select>
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="无用">
+-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/kingdom-consultant-service/src/main/java/com/kingdom/consultant/service/KingdomConsultantServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-consultant-service/src/main/java/com/kingdom/consultant/service/KingdomConsultantServiceApplication.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/kingdom-consultant-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-consultant-service/src/main/resources/application.properties" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/kingdom-consultant-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-consultant-service/src/main/resources/application.yml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/kingdom-user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-user-service/pom.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+-    </list>
+-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
++    <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="无用" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -56,7 +46,7 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="master" />
++        <entry key="$PROJECT_DIR$" value="user" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+@@ -71,7 +61,7 @@
+     <option name="generalSettings">
+       <MavenGeneralSettings>
+         <option name="localRepository" value="C:\Users\77564\.m2\repository" />
+-        <option name="mavenHome" value="C:/Program Files/apache-maven-3.6.1" />
++        <option name="mavenHome" value="$PROJECT_DIR$/../../../../Program Files/apache-maven-3.6.1" />
+         <option name="outputLevel" value="DEBUG" />
+         <option name="userSettingsFile" value="C:\Program Files\apache-maven-3.6.1\conf\settings.xml" />
+       </MavenGeneralSettings>
+@@ -113,11 +103,11 @@
+       <recent name="com.kingdom.user.web" />
+     </key>
+     <key name="CopyFile.RECENT_KEYS">
++      <recent name="C:\Users\Administrator\Desktop\kingdom-parent\kingdom-user-web\src\main\java\com\kingdom\user\web" />
++      <recent name="C:\Users\Administrator\Desktop\kingdom-parent\kingdom-product-web\src\main\java\com\kingdom\product\web" />
+       <recent name="E:\workspace\kingdom-repo\kingdom-consultant-web\src\main\resources" />
+       <recent name="E:\workspace\kingdom-repo\kingdom-consultant-service\src\main\resources" />
+       <recent name="E:\workspace\kingdom-repo" />
+-      <recent name="C:\Users\kevin\workspace\kingdom-parent\kingdom-dao\src\main\java\com\kingdom\dao" />
+-      <recent name="C:\Users\kevin\workspace\kingdom-parent\kingdom-util\src\main\java\com\kingdom\result" />
+     </key>
+   </component>
+   <component name="RunDashboard">
+@@ -126,16 +116,6 @@
+         <option value="SpringBootApplicationConfigurationType" />
+       </set>
+     </option>
+-    <option name="ruleStates">
+-      <list>
+-        <RuleState>
+-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+-        </RuleState>
+-        <RuleState>
+-          <option name="name" value="StatusDashboardGroupingRule" />
+-        </RuleState>
+-      </list>
+-    </option>
+   </component>
+   <component name="RunManager" selected="Spring Boot.KingdomConsultantWebApplication">
+     <configuration name="KingdomConsultantServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+@@ -222,38 +202,19 @@
+       <item itemvalue="Spring Boot.KingdomVojoApplication" />
+       <item itemvalue="Spring Boot.KingdomProductWebApplication" />
+       <item itemvalue="Spring Boot.KingdomProductServiceApplication" />
+-      <item itemvalue="Spring Boot.KingdomUserWebApplication (1)" />
+       <item itemvalue="Spring Boot.KingdomPojoApplication" />
+       <item itemvalue="Spring Boot.KingdomConsultantWebApplication" />
+       <item itemvalue="Spring Boot.KingdomConsultantServiceApplication" />
++      <item itemvalue="Spring Boot.KingdomUserWebApplication (1)" />
+     </list>
+     <recent_temporary>
+       <list>
+         <item itemvalue="Spring Boot.KingdomUserWebApplication (1)" />
++        <item itemvalue="Spring Boot.KingdomUserWebApplication (1)" />
++        <item itemvalue="Spring Boot.KingdomUserWebApplication (1)" />
+       </list>
+     </recent_temporary>
+   </component>
+-  <component name="ServiceViewManager">
+-    <option name="allServicesViewState">
+-      <serviceView>
+-        <option name="contentProportion" value="0.20748988" />
+-        <treeState>
+-          <expand>
+-            <path>
+-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e588efb0" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+-            </path>
+-            <path>
+-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e588efb0" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@16e2976d" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+-            </path>
+-          </expand>
+-          <select />
+-        </treeState>
+-      </serviceView>
+-    </option>
+-  </component>
+   <component name="SvnConfiguration">
+     <configuration />
+   </component>
+@@ -345,12 +306,12 @@
+                   </entry>
+                 </map>
+               </option>
+-              <option name="COLUMN_ORDER" />
+             </State>
+           </value>
+         </entry>
+       </map>
+     </option>
++    <option name="oldMeFiltersMigrated" value="true" />
+   </component>
+   <component name="VcsManagerConfiguration">
+     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+@@ -367,35 +328,39 @@
+     <option name="LAST_COMMIT_MESSAGE" value="更新产品管理页面的接口" />
+   </component>
+   <component name="WindowStateProjectService">
+-    <state x="574" y="117" key="#com.intellij.ide.util.MemberChooser" />
+-    <state x="574" y="117" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" />
+-    <state x="707" y="165" key="FileChooserDialogImpl" />
+-    <state x="707" y="165" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" />
+-    <state width="1150" height="177" key="GridCell.Tab.0.bottom" />
+-    <state width="1150" height="177" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" />
+-    <state width="1150" height="177" key="GridCell.Tab.0.center" />
+-    <state width="1150" height="177" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" />
+-    <state width="1150" height="177" key="GridCell.Tab.0.left" />
+-    <state width="1150" height="177" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" />
+-    <state width="1150" height="177" key="GridCell.Tab.0.right" />
+-    <state width="1150" height="177" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" />
+-    <state width="1150" height="177" key="GridCell.Tab.1.bottom" />
+-    <state width="1150" height="177" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" />
+-    <state width="1150" height="177" key="GridCell.Tab.1.center" />
+-    <state width="1150" height="177" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" />
+-    <state width="1150" height="177" key="GridCell.Tab.1.left" />
+-    <state width="1150" height="177" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" />
+-    <state width="1150" height="177" key="GridCell.Tab.1.right" />
+-    <state width="1150" height="177" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" />
+-    <state width="1150" height="378" key="GridCell.Tab.2.bottom" />
+-    <state width="1150" height="378" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" />
+-    <state width="1150" height="378" key="GridCell.Tab.2.center" />
+-    <state width="1150" height="378" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" />
+-    <state width="1150" height="378" key="GridCell.Tab.2.left" />
+-    <state width="1150" height="378" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" />
+-    <state width="1150" height="378" key="GridCell.Tab.2.right" />
+-    <state width="1150" height="378" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" />
+-    <state x="270" y="56" key="SettingsEditor" />
+-    <state x="270" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" />
++    <state x="574" y="117" key="#com.intellij.ide.util.MemberChooser" timestamp="1593490716452" />
++    <state x="574" y="117" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1593490716452" />
++    <state x="707" y="165" key="FileChooserDialogImpl" timestamp="1593490716452" />
++    <state x="707" y="165" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1593490716452" />
++    <state width="1150" height="177" key="GridCell.Tab.0.bottom" timestamp="1593490716452" />
++    <state width="1150" height="177" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593490716452" />
++    <state width="1150" height="177" key="GridCell.Tab.0.center" timestamp="1593490716452" />
++    <state width="1150" height="177" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1593490716452" />
++    <state width="1150" height="177" key="GridCell.Tab.0.left" timestamp="1593490716452" />
++    <state width="1150" height="177" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1593490716452" />
++    <state width="1150" height="177" key="GridCell.Tab.0.right" timestamp="1593490716452" />
++    <state width="1150" height="177" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1593490716452" />
++    <state width="1150" height="177" key="GridCell.Tab.1.bottom" timestamp="1593490716452" />
++    <state width="1150" height="177" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593490716452" />
++    <state width="1150" height="177" key="GridCell.Tab.1.center" timestamp="1593490716452" />
++    <state width="1150" height="177" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1593490716452" />
++    <state width="1150" height="177" key="GridCell.Tab.1.left" timestamp="1593490716452" />
++    <state width="1150" height="177" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1593490716452" />
++    <state width="1150" height="177" key="GridCell.Tab.1.right" timestamp="1593490716452" />
++    <state width="1150" height="177" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1593490716452" />
++    <state width="1150" height="378" key="GridCell.Tab.2.bottom" timestamp="1593490716452" />
++    <state width="1150" height="378" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593490716452" />
++    <state width="1150" height="378" key="GridCell.Tab.2.center" timestamp="1593490716452" />
++    <state width="1150" height="378" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1593490716452" />
++    <state width="1150" height="378" key="GridCell.Tab.2.left" timestamp="1593490716452" />
++    <state width="1150" height="378" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1593490716452" />
++    <state width="1150" height="378" key="GridCell.Tab.2.right" timestamp="1593490716452" />
++    <state width="1150" height="378" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1593490716452" />
++    <state x="270" y="56" key="SettingsEditor" timestamp="1593490716452" />
++    <state x="270" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1593490716452" />
++    <state x="516" y="124" key="git4idea.branch.GitSmartOperationDialog" timestamp="1593490753160">
++      <screen x="0" y="0" width="1536" height="824" />
++    </state>
++    <state x="516" y="124" key="git4idea.branch.GitSmartOperationDialog/0.0.1536.824@0.0.1536.824" timestamp="1593490753160" />
+   </component>
+ </project>
+\ No newline at end of file

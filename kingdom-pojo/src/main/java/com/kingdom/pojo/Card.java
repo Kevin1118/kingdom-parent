@@ -1,9 +1,14 @@
 package com.kingdom.pojo;
 
 import lombok.Data;
+
+import java.io.Serializable;
+
 @Data
-public class Card {
+public class Card implements Serializable {
     private Integer cardid;
     private String realname;
     private String cardnumber;
+    private Integer createdtime;
+    private String status;
 }

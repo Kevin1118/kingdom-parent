@@ -5,7 +5,7 @@
 
 
 
-    <select id="selectByIdDemo" resultType="com.kingdom.pojo.User" parameterType="java.lang.Integer">
+    <select id="selectUserById" resultType="com.kingdom.pojo.User" parameterType="java.lang.Integer">
         select
         *
         from `user`
@@ -26,70 +26,92 @@
         </where>
     </select>
 
-    <insert id="addUser" parameterType="com.kingdom.pojo.User" useGeneratedKeys="true" keyColumn="userId">
-        insert into user
-        <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="userid != null" >
-                userId,
-            </if>
-            <if test="username != null" >
-                userName,
-            </if>
-            <if test="email != null" >
-                email,
-            </if>
-            <if test="password != null" >
-                password,
-            </if>
-            <if test="phonenumber != null" >
-                phoneNumber,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="userid != null" >
-                #{userid,jdbcType=INTEGER},
-            </if>
-            <if test="username != null" >
-                #{username,jdbcType=INTEGER},
-            </if>
-            <if test="email != null" >
-                #{email,jdbcType=VARCHAR},
-            </if>
-            <if test="username != null" >
-                #{password,jdbcType=INTEGER},
-            </if>
-            <if test="email != null" >
-                #{phonenumber,jdbcType=VARCHAR},
-            </if>
-        </trim>
+    <insert id="addUser" parameterType="com.kingdom.pojo.User">
+        insert into user(userName,email,phoneNumber,password,salt,avatar,createdTime,status)
+        values(#{username},#{email},#{phonenumber},#{password},#{salt},#{avatar},#{createdtime},#{status})
     </insert>
 
-    <insert id="addCard" parameterType="com.kingdom.pojo.Card" useGeneratedKeys="true" keyColumn="cardId">
-        insert into card
-        <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="cardid != null" >
-                cardId,
-            </if>
-            <if test="realname != null" >
-                realName,
-            </if>
-            <if test="cardnumber != null" >
-                cardNumber,
-            </if>
-
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="cardid != null" >
-                #{cardid,jdbcType=INTEGER},
-            </if>
-            <if test="realname != null" >
-                #{realname,jdbcType=INTEGER},
-            </if>
-            <if test="cardnumber != null" >
-                #{cardnumber,jdbcType=VARCHAR},
-            </if>
-
-        </trim>
+    <insert id="addIndependentAccount" parameterType="com.kingdom.pojo.IndependentAccount">
+        insert into independent_account(independentBalance,accountAmount,status)
+        values(#{independentbalance},#{accountamount},#{status})
     </insert>
+
+    <select id="selectIndependetAccountById" resultType="com.kingdom.pojo.IndependentAccount">
+        select *
+        from independent_account
+        where userId=#{userid}
+    </select>
+
+    <update id="updateIndependentBalance" parameterType="com.kingdom.pojo.IndependentAccount">
+        update independent_account
+        set independentBalance=#{independentbalance}
+        where userId=#{userid}
+    </update>
+    <select id="selectUserByPhoneNumber" resultType="com.kingdom.pojo.User">
+        select *
+        from `user`
+        where phoneNumber=#{phonenumber}
+    </select>
+
+    <update id="updateAvatar" parameterType="com.kingdom.pojo.User">
+        update user
+        set avatar=#{avatar}
+        where userId=#{userid}
+    </update>
+
+    <insert id="addCard" parameterType="com.kingdom.pojo.Card">
+        insert into card(realName,cardNumber,createdTime,status)
+        values(#{realname},#{cardnumber},#{createdtime},#{status})
+    </insert>
+
+    <update id="updatePayPassword" parameterType="com.kingdom.pojo.User">
+        update `user`
+        set payPassword=#{paypassword},payPasswordSalt=#{paypasswordsalt}
+        where userId=#{userid}
+    </update>
+
+    <update id="updateName" parameterType="com.kingdom.pojo.User">
+        update `user`
+        set name=#{name},idNumber=#{idnumber},approvalStatus=#{approvalstatus},approvalTime=#{approvaltime}
+        where userId=#{userid}
+    </update>
+
+    <update id="updatePassword" parameterType="com.kingdom.pojo.User">
+        update `user`
+        set password=#{password},salt=#{salt}
+        where userId=#{userid}
+    </update>
+
+    <update id="updatePhoneNumber" parameterType="com.kingdom.pojo.User">
+        update `user`
+        set phoneNumber=#{phonenumber}
+        where userId=#{userid}
+    </update>
+
+    <update id="updateUserName" parameterType="com.kingdom.pojo.User">
+        update `user`
+        set userName=#{username}
+        where userId=#{userid}
+    </update>
+
+    <insert id="addOrder" parameterType="com.kingdom.pojo.Order">
+        insert into `order` (orderId,accountNo,sum,transactionDate,productId,consultantId,status)
+        values(#{orderid},#{accountno},#{sum},#{transactiondate},#{productid},#{consultantid},#{status})
+    </insert>
+
+    <select id="selectProductByName" resultType="com.kingdom.pojo.Product">
+        select * from product
+        where name=#{name}
+    </select>
+    <insert id="addSignAccount" parameterType="com.kingdom.pojo.SignAccount">
+        insert into sign_account(userId,productId,balance,signDate,status)
+        values(#{userid},#{productid},#{balance},#{signdate},#{status})
+    </insert>
+
+    <select id="selectAccountNoByUserIdAndProductId" resultType="com.kingdom.pojo.SignAccount">
+        select * from sign_account
+        where userId=#{userId,jdbcType=INTEGER}
+        and productId=#{productId,jdbcType=INTEGER}
+    </select>
 
 </mapper>
