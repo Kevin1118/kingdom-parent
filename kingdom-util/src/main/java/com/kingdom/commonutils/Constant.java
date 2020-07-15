@@ -89,4 +89,9 @@ public interface Constant {
      * 基金最少购买数量限制
      */
     Float FUND_AMOUNT_LIMIT=1.0f;
+
+    /**
+     * 风险调仓阈值
+     */
+    int ADJUST_THRESHOLD=-3;
 }

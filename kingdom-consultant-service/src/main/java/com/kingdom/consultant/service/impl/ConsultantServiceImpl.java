@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 
 
-
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -277,11 +277,11 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
         //查询出每个产品的统计信息
         for (Product product : selectProductList) {
             int productId = product.getProductid();
-            HashMap productCount = getProductCountCache(productId);
-            if (productCount == null) {
-                productCount = initProductCache(productId);
+            HashMap productRedis = getProductCache(productId);
+            if (productRedis == null) {
+                productRedis = initProductCache(productId);
             }
-            productCountList.add(productCount);
+            productCountList.add(productRedis);
         }
         Map map = new HashMap(3);
         map.put("total", pageObject.getTotal());
@@ -330,8 +330,8 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
      *
      * @param productId productId
      */
-    private HashMap getProductCountCache(int productId) {
-        String redisKey = RedisKeyUtil.getProductCountKey(productId);
+    private HashMap getProductCache(int productId) {
+        String redisKey = RedisKeyUtil.getProductKey(productId);
         return (HashMap) redisTemplate.opsForValue().get(redisKey);
     }
 
@@ -342,13 +342,18 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
      * @return
      */
     private HashMap initProductCache(int productId) {
-        HashMap productCount = new HashMap(2);
-        productCount.put("productId", productId);
-        productCount.put("peopleCount", 0);
-        productCount.put("moneyCount", 0);
-        String redisKey = RedisKeyUtil.getProductCountKey(productId);
-        redisTemplate.opsForValue().set(redisKey, productCount, CommonUtils.getSecondsNextEarlyMorning(), TimeUnit.SECONDS);
-        return productCount;
+        Product productMysql = productMapper.selectProductById(productId);
+        HashMap product = new HashMap(16);
+        product.put("productId", productId);
+        product.put("productName", productMysql.getName());
+        product.put("stockAmount", productMysql.getStockamount());
+        product.put("fundAmount", productMysql.getFundamount());
+        product.put("expectedYield", productMysql.getExpectedYield());
+        product.put("peopleCount", 0);
+        product.put("moneyCount", 0);
+        String redisKey = RedisKeyUtil.getProductKey(productId);
+        redisTemplate.opsForValue().set(redisKey, product);
+        return product;
     }
 
 
@@ -394,8 +399,23 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
      * @return
      */
     @Override
-    public ResultCode updateOrderStatus(int id, int status) {
-        int rows = orderMapper.updateOrderStatus(id, status);
+    public ResultCode updateOrderStatus(int id, int status, int productId, float sum) {
+        //判断当前审批订单是买入还是卖出，并修改为对应的状态
+        int rows;
+        if (status == APPROVAL_BUY) {
+            rows = orderMapper.updateOrderStatus(id, WAIT_TO_BUY);
+            HashMap product = getProductCache(productId);
+            if (product != null) {
+                product = initProductCache(productId);
+                int peopleCount = (int) product.get("peopleCount");
+                int moneyCount = (int) product.get("moneyCount");
+                product.put("peopleCount", peopleCount + 1);
+                product.put("moneyCount", moneyCount + sum);
+                redisTemplate.opsForValue().set(RedisKeyUtil.getProductKey(productId), product);
+            }
+        } else {
+            rows = orderMapper.updateOrderStatus(id, WAIT_TO_SELL);
+        }
         if (rows == 1) {
             return ResultCode.SUCCESS;
         } else {
@@ -403,12 +423,17 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
         }
     }
 
+    /**
+     * 买入基金和股票
+     * @param ids 订单
+     * @return 响应码
+     */
     @Override
     public ResultCode buyStockAndFund(List<Integer> ids) {
         //查出所有订单详情。
         List<Order> orders = orderMapper.selectByIds(ids);
         for (Order order : orders) {
-            if (order.getStatus()!=WAIT_TO_BUY){
+            if (order.getStatus() != WAIT_TO_BUY) {
                 continue;
             }
             float oriSum = order.getSum();
@@ -505,29 +530,14 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
     }
 
 
-//    @Override
-//    public ResultCode sellStockAndFund(List<Integer> ids) {
-//        //查出所有订单详情。
-//        List<Order> orders = orderMapper.selectByIds(ids);
-//        for (Order order:orders){
-//            if (order.getStatus()!=WAIT_TO_SELL){
-//                continue;
-//            }
-//            float oriSum = order.getSum();
-//            //查询每个订单对应的产品
-//            Product product = productMapper.selectProductById(order.getProductid());
-//            //查询每个订单对应的基金和股票明细
-//            List<ProductStockDetail> stockList = productMapper.selectStockProportionFromDetail(order.getProductid());
-//            List<ProductFundDetail> fundList = productMapper.selectFundProportionFromDetail(order.getProductid());
-////            获取所有股票的代码,并获取股票当前价格
-//            List<String> stockCodes = new ArrayList<>();
-//            for (ProductStockDetail detail : stockList) {
-//                stockCodes.add(detail.getStockCode());
-//            }
-//        }
-//        return null;
-//    }
-
+    /**
+     * 查询交易记录
+     * @param pageNum 页码
+     * @param pageSize 大小
+     * @param orderId 订单号
+     * @param consultantId 投顾人id
+     * @return 交易记录列表
+     */
     @Override
     public Map selectProperty(int pageNum, int pageSize, String orderId, int consultantId) {
         Map<String, List<Property>> map = new HashMap<>(16);
@@ -538,13 +548,38 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
 
                 for (Order order : orders) {
                     List<Property> properties = propertyMapper.loadProperty(order.getOrderid());
-                    map.put(order.getOrderid(),properties);
+                    map.put(order.getOrderid(), properties);
                 }
             }
 
-        }else {
-            List<Property> properties=propertyMapper.loadProperty(orderId);
+        } else {
+            List<Property> properties = propertyMapper.loadProperty(orderId);
         }
         return map;
+    }
+
+
+    @Override
+    public Map selectRiskList(int consultantId) {
+        Map<String,Object> result=new HashMap<>(4);
+        List<StockAlternate> resultList=new ArrayList<>();
+        //查询投顾人所属产品列表
+        List<Product> selectProductList = productMapper.selectProductByConsultantId(consultantId);
+        for (Product product:selectProductList){
+            List<ProductStockDetail> stockList = productMapper.selectStockProportionFromDetail(product.getProductid());
+            List<String> codes=new ArrayList<>();
+            for (ProductStockDetail detail:stockList){
+                codes.add(detail.getStockCode());
+            }
+            List<StockAlternate> alternates=productMapper.selectStockAlternate(codes);
+            for (StockAlternate alternate:alternates){
+                if (alternate.getUpAndDown().intValue()<ADJUST_THRESHOLD){
+                    resultList.add(alternate);
+                }
+            }
+        }
+        result.put("adjustList",resultList);
+        result.put("adjustThreshold",ADJUST_THRESHOLD);
+        return result;
     }
 }

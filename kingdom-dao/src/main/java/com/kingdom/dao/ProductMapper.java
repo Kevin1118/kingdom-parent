@@ -94,4 +94,6 @@ public interface ProductMapper {
      * @return 股票备选库
      */
     List<StockAlternate> selectStockAlternate(List<String> stockCodes);
+
+
 }

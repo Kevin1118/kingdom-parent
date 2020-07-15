@@ -1,5 +1,8 @@
 package com.kingdom.commonutils;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 /**
  * @author : long
  * @date : 2020/6/30 17:10
@@ -8,7 +11,7 @@ public class RedisKeyUtil {
     private static final String SPLIT=":";
     private static final String PREFIX_TICKET="ticket";
     private static final String PREFIX_CONSULTANT="consultant";
-    private static final String PREFIX_PRODUCT_COUNT="productCount";
+    private static final String PREFIX_PRODUCT="product";
 
     /**
      * 生成redis中的指定格式key
@@ -33,7 +36,8 @@ public class RedisKeyUtil {
      * @param productId 产品id
      * @return 指定格式的key
      */
-    public static String getProductCountKey(int productId){
-        return PREFIX_PRODUCT_COUNT+SPLIT+productId;
+    public static String getProductKey(int productId){
+        String date=new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        return PREFIX_PRODUCT+SPLIT+productId+date;
     }
 }
