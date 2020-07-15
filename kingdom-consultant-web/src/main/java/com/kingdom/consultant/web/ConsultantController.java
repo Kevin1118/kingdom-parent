@@ -322,7 +322,7 @@ public class ConsultantController implements Constant {
         int status=order.getStatus();
         int id=order.getId();
         int productId=order.getProductid();
-        float sum=order.getSum();
+        float sum= (float) order.getSum();
         //判断是否登录
         Consultant consultant=hostHolder.getConsultant();
         if (consultant==null){

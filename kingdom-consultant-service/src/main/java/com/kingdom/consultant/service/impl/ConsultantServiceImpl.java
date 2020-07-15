@@ -382,12 +382,13 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
                 HashMap product=getProductCache(order.getProductid());
                 String productName=product.get("productName").toString();
                 BigDecimal expected= (BigDecimal) product.get("expectedYield");
-                float expectedYield=order.getSum()*expected.floatValue()*0.01f;
+                float expectedYield= (float) (order.getSum()*expected.floatValue()*0.01f);
 
                 OrderVo orderVo=new OrderVo();
                 orderVo.setId(order.getId());
                 orderVo.setOrderid(order.getOrderid());
-                orderVo.setSum(order.getSum());
+                orderVo.setProductid(order.getProductid());
+                orderVo.setSum((float) order.getSum());
                 orderVo.setProductname(productName);
                 orderVo.setExpectedyield(expectedYield);
                 orderVo.setStatus(order.getStatus());
@@ -401,16 +402,17 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
                 HashMap product=getProductCache(order.getProductid());
                 String productName=product.get("productName").toString();
                 BigDecimal expected= (BigDecimal) product.get("expectedYield");
-                float expectedYield=order.getSum()*expected.floatValue()*0.01f;
+                float expectedYield= (float) (order.getSum()*expected.floatValue()*0.01f);
                 OrderVo orderVo=new OrderVo();
                 orderVo.setId(order.getId());
                 orderVo.setOrderid(order.getOrderid());
-                orderVo.setSum(order.getSum());
+                orderVo.setProductid(order.getProductid());
+                orderVo.setSum((float) order.getSum());
                 orderVo.setProductname(productName);
                 orderVo.setExpectedyield(expectedYield);
                 orderVo.setStatus(order.getStatus());
                 orderVo.setTransactiondate(order.getTransactiondate());
-                buyListVo.add(orderVo);
+                sellListVo.add(orderVo);
             }
             map.put("buyApproval", buyListVo);
             map.put("sellApproval", sellListVo);
@@ -422,11 +424,12 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
                 HashMap product=getProductCache(order.getProductid());
                 String productName=product.get("productName").toString();
                 BigDecimal expected= (BigDecimal) product.get("expectedYield");
-                float expectedYield=order.getSum()*expected.floatValue()*0.01f;
+                float expectedYield= (float) (order.getSum()*expected.floatValue()*0.01f);
                 OrderVo orderVo=new OrderVo();
                 orderVo.setId(order.getId());
                 orderVo.setOrderid(order.getOrderid());
-                orderVo.setSum(order.getSum());
+                orderVo.setProductid(order.getProductid());
+                orderVo.setSum((float) order.getSum());
                 orderVo.setProductname(productName);
                 orderVo.setExpectedyield(expectedYield);
                 orderVo.setStatus(order.getStatus());
@@ -439,11 +442,12 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
                 HashMap product=getProductCache(order.getProductid());
                 String productName=product.get("productName").toString();
                 BigDecimal expected= (BigDecimal) product.get("expectedYield");
-                float expectedYield=order.getSum()*expected.floatValue()*0.01f;
+                float expectedYield= (float) (order.getSum()*expected.floatValue()*0.01f);
                 OrderVo orderVo=new OrderVo();
                 orderVo.setId(order.getId());
                 orderVo.setOrderid(order.getOrderid());
-                orderVo.setSum(order.getSum());
+                orderVo.setProductid(order.getProductid());
+                orderVo.setSum((float) order.getSum());
                 orderVo.setProductname(productName);
                 orderVo.setExpectedyield(expectedYield);
                 orderVo.setStatus(order.getStatus());
@@ -503,7 +507,7 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
             if (order.getStatus() != WAIT_TO_BUY) {
                 continue;
             }
-            float oriSum = order.getSum();
+            float oriSum = (float) order.getSum();
             //查询每个订单对应的产品
             Product product = productMapper.selectProductById(order.getProductid());
             //查询每个订单对应的基金和股票明细
@@ -576,11 +580,11 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
 
             //剩余金额购买货币基金
             if (order.getSum() > 0) {
-                int amount = Math.round(order.getSum() / fundPrices.get(fundPrices.size() - 1).getValueNow().floatValue());
+                int amount = (int) Math.round(order.getSum() / fundPrices.get(fundPrices.size() - 1).getValueNow().floatValue());
                 Property property = new Property();
                 property.setSignaccountid(order.getAccountno());
                 property.setOrderid(order.getOrderid());
-                property.setType("货币基金");
+                property.setType("货币市场型");
                 property.setCode(MONEY_FUND_CODE);
                 property.setPropertyname(MONEY_FUND_NAME);
                 property.setAmount(amount);
