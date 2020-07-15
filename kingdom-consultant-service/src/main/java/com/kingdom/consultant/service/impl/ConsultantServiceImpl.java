@@ -13,6 +13,8 @@ import com.kingdom.interfaceservice.consultant.ConsultantService;
 import com.kingdom.dao.ConsultantMapper;
 import com.kingdom.pojo.*;
 import com.kingdom.result.ResultCode;
+import com.kingdom.vojo.product.OrderVo;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 
@@ -375,16 +377,81 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
         if (type == APPROVAL) {
             //查询买入审批列表
             buyList = orderMapper.selectOrderByConsultantIdAndStatus(consultantId, APPROVAL_BUY);
+            List<OrderVo> buyListVo=new ArrayList<>();
+            for (Order order:buyList){
+                HashMap product=getProductCache(order.getProductid());
+                String productName=product.get("productName").toString();
+                BigDecimal expected= (BigDecimal) product.get("expectedYield");
+                float expectedYield=order.getSum()*expected.floatValue()*0.01f;
+
+                OrderVo orderVo=new OrderVo();
+                orderVo.setId(order.getId());
+                orderVo.setOrderid(order.getOrderid());
+                orderVo.setSum(order.getSum());
+                orderVo.setProductname(productName);
+                orderVo.setExpectedyield(expectedYield);
+                orderVo.setStatus(order.getStatus());
+                orderVo.setTransactiondate(order.getTransactiondate());
+                buyListVo.add(orderVo);
+            }
             //查询卖出审批列表
             sellList = orderMapper.selectOrderByConsultantIdAndStatus(consultantId, APPROVAL_SELL);
-            map.put("buyApproval", buyList);
-            map.put("sellApproval", sellList);
+            List<OrderVo> sellListVo=new ArrayList<>();
+            for (Order order:sellList){
+                HashMap product=getProductCache(order.getProductid());
+                String productName=product.get("productName").toString();
+                BigDecimal expected= (BigDecimal) product.get("expectedYield");
+                float expectedYield=order.getSum()*expected.floatValue()*0.01f;
+                OrderVo orderVo=new OrderVo();
+                orderVo.setId(order.getId());
+                orderVo.setOrderid(order.getOrderid());
+                orderVo.setSum(order.getSum());
+                orderVo.setProductname(productName);
+                orderVo.setExpectedyield(expectedYield);
+                orderVo.setStatus(order.getStatus());
+                orderVo.setTransactiondate(order.getTransactiondate());
+                buyListVo.add(orderVo);
+            }
+            map.put("buyApproval", buyListVo);
+            map.put("sellApproval", sellListVo);
 
         } else {
             buyList = orderMapper.selectOrderByConsultantIdAndStatus(consultantId, WAIT_TO_BUY);
+            List<OrderVo> buyTransactionListVo=new ArrayList<>();
+            for (Order order:buyList){
+                HashMap product=getProductCache(order.getProductid());
+                String productName=product.get("productName").toString();
+                BigDecimal expected= (BigDecimal) product.get("expectedYield");
+                float expectedYield=order.getSum()*expected.floatValue()*0.01f;
+                OrderVo orderVo=new OrderVo();
+                orderVo.setId(order.getId());
+                orderVo.setOrderid(order.getOrderid());
+                orderVo.setSum(order.getSum());
+                orderVo.setProductname(productName);
+                orderVo.setExpectedyield(expectedYield);
+                orderVo.setStatus(order.getStatus());
+                orderVo.setTransactiondate(order.getTransactiondate());
+                buyTransactionListVo.add(orderVo);
+            }
             sellList = orderMapper.selectOrderByConsultantIdAndStatus(consultantId, WAIT_TO_SELL);
-            map.put("buyTransaction", buyList);
-            map.put("sellTransaction", sellList);
+            List<OrderVo> sellTransactionListVo=new ArrayList<>();
+            for (Order order:sellList){
+                HashMap product=getProductCache(order.getProductid());
+                String productName=product.get("productName").toString();
+                BigDecimal expected= (BigDecimal) product.get("expectedYield");
+                float expectedYield=order.getSum()*expected.floatValue()*0.01f;
+                OrderVo orderVo=new OrderVo();
+                orderVo.setId(order.getId());
+                orderVo.setOrderid(order.getOrderid());
+                orderVo.setSum(order.getSum());
+                orderVo.setProductname(productName);
+                orderVo.setExpectedyield(expectedYield);
+                orderVo.setStatus(order.getStatus());
+                orderVo.setTransactiondate(order.getTransactiondate());
+                sellTransactionListVo.add(orderVo);
+            }
+            map.put("buyTransaction", buyTransactionListVo);
+            map.put("sellTransaction", sellTransactionListVo);
         }
 
         return map;
