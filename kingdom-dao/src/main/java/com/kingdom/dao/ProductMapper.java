@@ -106,4 +106,20 @@ public interface ProductMapper {
      */
     List<Product> selectProductByConsultantId(int consultantId);
 
+    /**
+     * 根据基金代码查询基金信息
+     * @param fundCodes 基金代码
+     * @return 基金备选库
+     */
+    List<FundAlternate> selectFundAlternate(List<String> fundCodes);
+
+    /**
+     * 根据股票代码查询股票信息
+     * @param stockCodes 股票代码
+     * @return 股票备选库
+     */
+    List<StockAlternate> selectStockAlternate(List<String> stockCodes);
+
+
+
 }

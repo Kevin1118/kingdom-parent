@@ -3,6 +3,15 @@
 
 <mapper namespace="com.kingdom.dao.OrderMapper">
 
+    <resultMap id="orderMap" type="com.kingdom.pojo.Order">
+        <result column="orderId" property="orderid" jdbcType="INTEGER"/>
+        <result column="accountNo" property="accountno" jdbcType="INTEGER"/>
+        <result column="sum" property="sum" jdbcType="INTEGER"/>
+        <result column="productId" property="productid" jdbcType="INTEGER"/>
+
+
+    </resultMap>
+
     <select id="selectOrderByConsultantIdAndStatus" resultType="com.kingdom.pojo.Order">
         select * from `order` where consultantId=#{consultantId} and status=#{status}
     </select>
@@ -11,4 +20,10 @@
         update `order` set status=#{status} where id = #{id}
     </update>
 
+    <select id="selectByIds" resultMap="orderMap">
+        select * from `order` where id in
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+        #{item}
+        </foreach>
+    </select>
 </mapper>
