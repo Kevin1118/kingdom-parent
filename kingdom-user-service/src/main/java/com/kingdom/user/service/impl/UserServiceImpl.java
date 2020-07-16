@@ -243,6 +243,7 @@ public class UserServiceImpl implements UserService {
         userMapper.updateIndependentBalance(userId,independentBalance);
 
         order.setOrderid(orderId);
+        order.setUserid(userId);
         order.setAccountno(accountNo);
         order.setPercent(percent);
         order.setTransactiondate(transactionDate);

@@ -106,8 +106,8 @@
     </update>
 
     <insert id="addOrder" parameterType="com.kingdom.pojo.Order">
-        insert into `order` (orderId,accountNo,userId,sum,percent,transactionDate,productId,consultantId,status)
-        values(#{orderid},#{accountno},#{userid},#{sum},#{percent},#{transactiondate},#{productid},#{consultantid},#{status})
+        insert into `order` (orderId,userId,accountNo,sum,percent,transactionDate,productId,consultantId,status)
+        values(#{orderid},#{userid},#{accountno},#{sum},#{percent},#{transactiondate},#{productid},#{consultantid},#{status})
     </insert>
 
     <select id="selectProductByName" resultType="com.kingdom.pojo.Product">
