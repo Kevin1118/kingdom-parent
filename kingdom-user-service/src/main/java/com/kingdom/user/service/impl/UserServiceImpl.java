@@ -9,9 +9,7 @@ import com.kingdom.pojo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -107,7 +105,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int bindCardUser(Card card){
+    public int bindCardUser(Card card,int userId){
+        card.setUserid(userId);
         //设置当前时间为绑卡时间
         card.setCreatedtime((int)(System.currentTimeMillis()/1000));
         //设置状态1，代表激活成功
@@ -115,6 +114,17 @@ public class UserServiceImpl implements UserService {
         return userMapper.addCard(card);
     }
 
+    /**
+     * 查询银行卡接口
+     * 使用userId，获取该Id绑定的卡号
+     * @param userId
+     * @return List<Card> 包含所有产品信息的 list
+     */
+    @Override
+    public List<Card> loadCardUser(int userId) {
+        List<Card> list=userMapper.selectCardNumber(userId);
+        return list;
+    }
 
 
     @Override
@@ -202,6 +212,7 @@ public class UserServiceImpl implements UserService {
         userMapper.updateIndependentBalance(userId,independentBalance);
 
         order.setOrderid(orderId);
+        order.setUserid(userId);
         order.setAccountno(accountNo);
         order.setSum(sum);
         order.setTransactiondate(transactionDate);
@@ -214,7 +225,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int sellUser(Order order, int userId, String name, double sum) {
+    public int sellUser(Order order, int userId, String name,String percent) {
         Product product=userMapper.selectProductByName(name);
         int productId=product.getProductid();
         int consultanId=product.getConsultantid();
@@ -223,17 +234,17 @@ public class UserServiceImpl implements UserService {
         int transactionDate=(int)(System.currentTimeMillis()/1000);
         String orderId=transactionDate+""+userId;
         //更新投顾账户余额
-        double balance=signAccount.getBalance()-sum;
+        double balance=signAccount.getBalance();
         userMapper.updateSignAccountBalance(accountNo,balance);
 
         //更新独立账户余额 ,这里假定用户发起卖出申请，平台直接使用自身资金池转账给账户，不需要在投顾卖出后转账
         IndependentAccount independentAccount=userMapper.selectIndependetAccountById(userId);
-        double independentBalance=independentAccount.getIndependentbalance()+sum;
+        double independentBalance=independentAccount.getIndependentbalance();
         userMapper.updateIndependentBalance(userId,independentBalance);
 
         order.setOrderid(orderId);
         order.setAccountno(accountNo);
-        order.setSum(sum);
+        order.setPercent(percent);
         order.setTransactiondate(transactionDate);
         order.setProductid(productId);
         order.setConsultantid(consultanId);

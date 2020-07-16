@@ -60,9 +60,20 @@
     </update>
 
     <insert id="addCard" parameterType="com.kingdom.pojo.Card">
-        insert into card(realName,cardNumber,createdTime,status)
-        values(#{realname},#{cardnumber},#{createdtime},#{status})
+        insert into card(cardId,userId,realName,cardNumber,createdTime,status)
+        values(#{cardid},#{userid},#{realname},#{cardnumber},#{createdtime},#{status})
     </insert>
+
+    <select id="selectCardNumber" parameterType="java.lang.Integer" resultType="com.kingdom.pojo.Card">
+        select
+        c.cardNumber
+        from `card` c
+        <where>
+        <if test="userid != null">
+        c.userId =  #{userid,jdbcType=VARCHAR}
+        </if>
+        </where>
+    </select>
 
     <update id="updatePayPassword" parameterType="com.kingdom.pojo.User">
         update `user`
@@ -95,8 +106,8 @@
     </update>
 
     <insert id="addOrder" parameterType="com.kingdom.pojo.Order">
-        insert into `order` (orderId,accountNo,sum,transactionDate,productId,consultantId,status)
-        values(#{orderid},#{accountno},#{sum},#{transactiondate},#{productid},#{consultantid},#{status})
+        insert into `order` (orderId,accountNo,userId,sum,percent,transactionDate,productId,consultantId,status)
+        values(#{orderid},#{accountno},#{userid},#{sum},#{percent},#{transactiondate},#{productid},#{consultantid},#{status})
     </insert>
 
     <select id="selectProductByName" resultType="com.kingdom.pojo.Product">

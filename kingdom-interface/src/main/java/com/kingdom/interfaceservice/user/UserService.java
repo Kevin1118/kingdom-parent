@@ -2,6 +2,7 @@ package com.kingdom.interfaceservice.user;
 
 import com.kingdom.pojo.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,7 +34,15 @@ public interface UserService {
      * @param card
      * @return int
      */
-    int bindCardUser(Card card);
+    int bindCardUser(Card card,int userId);
+
+    /**
+     * 查询银行卡接口
+     * 使用userId，获取该Id绑定的卡号
+     * @param userId
+     * @return List<Card> 包含所有产品信息的 list
+     */
+    List<Card> loadCardUser(int userId);
 
     /**
      * 投资人登录
@@ -126,8 +135,8 @@ public interface UserService {
      * @param order
      * @param userId
      * @param name
-     * @param sum
+     * @param percent
      * @return
      */
-    int sellUser(Order order,int userId,String name,double sum);
+    int sellUser(Order order,int userId,String name,String percent);
 }
