@@ -29,17 +29,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="部署了redis">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-dto/src/main/java/com/kingdom/dto/user/IndependentBalanceDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dto/src/main/java/com/kingdom/dto/user/TopUpDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-dto/src/main/java/com/kingdom/dto/user/InvestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dto/src/main/java/com/kingdom/dto/user/InvestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-interface/src/main/java/com/kingdom/interfaceservice/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-interface/src/main/java/com/kingdom/interfaceservice/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-user-service/src/main/java/com/kingdom/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-user-service/src/main/java/com/kingdom/user/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-user-web/src/main/java/com/kingdom/user/web/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-user-web/src/main/java/com/kingdom/user/web/UserController.java" afterDir="false" />
-    </list>
+    <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="redis部署" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -234,7 +224,21 @@
       <updated>1593743029702</updated>
       <workItem from="1593743032624" duration="4947000" />
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="redis部署">
+      <created>1594871122722</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1594871122722</updated>
+    </task>
+    <task id="LOCAL-00003" summary="redis部署">
+      <created>1594871292320</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1594871292320</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,7 +270,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="部署了redis" />
-    <option name="LAST_COMMIT_MESSAGE" value="部署了redis" />
+    <MESSAGE value="redis部署" />
+    <option name="LAST_COMMIT_MESSAGE" value="redis部署" />
   </component>
   <component name="WindowStateProjectService">
     <state x="574" y="117" key="#com.intellij.ide.util.MemberChooser" timestamp="1593703793448">
@@ -309,10 +314,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="270" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1594870950443" />
-    <state x="361" y="131" key="Vcs.Push.Dialog.v2" timestamp="1593685588707">
+    <state x="361" y="131" key="Vcs.Push.Dialog.v2" timestamp="1594871294839">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="131" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1593685588707" />
+    <state x="361" y="131" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1594871294839" />
     <state x="520" y="199" key="git4idea.merge.GitMergeDialog" timestamp="1593684661951">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
