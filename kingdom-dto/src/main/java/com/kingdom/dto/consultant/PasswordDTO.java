@@ -13,4 +13,6 @@ public class PasswordDTO implements Serializable {
     private String oldpaypassword;
     private String newpaypassword;
     private String paypassword;
+    private String oldpassword;
+    private String newpassword;
 }

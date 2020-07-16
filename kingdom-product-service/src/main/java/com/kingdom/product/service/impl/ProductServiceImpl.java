@@ -7,6 +7,7 @@ import com.kingdom.dao.ProductMapper;
 import com.kingdom.dto.product.ProductInitDTO;
 import com.kingdom.interfaceservice.product.ProductService;
 import com.kingdom.pojo.*;
+import com.kingdom.result.ResultCode;
 import com.kingdom.vojo.product.ProductPieChart;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -81,11 +82,19 @@ public class ProductServiceImpl implements ProductService {
      * 针对异常情况的事务开启，需要同时在 controller 层和 impl 加上事务注解
      * @Transactional(rollbackFor = Exception.class)
      */
-    public List<?> initProduct(List<ProductInitDTO> list){
+    public Map<String,Object> initProduct(List<ProductInitDTO> list){
 
 //        String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 //        long time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(date).getTime();
 //        int currentTime = (int) (time / 1000);
+        Map<String,Object> result = new HashMap<>();
+
+        Integer productId = list.get(0).getProductId();
+        //若产品已经初始化过，则报错
+        if(productMapper.existInitProductFromProduct(productId) == 1){
+            result.put("ResultCode", ResultCode.INITIAL_PRODUCT_ERROR);
+            return result;
+        }
 
         for (ProductInitDTO productInitDTO:list) {
             if(productInitDTO.getStockAlternateId() != null){
@@ -109,7 +118,12 @@ public class ProductServiceImpl implements ProductService {
                 productMapper.initFundAlternate(productFundDetail);
             }
         }
-        return null;
+        //初始化成功 更改组合产品状态为 2
+        int i = productMapper.updateStatusFromProductAfterInit(productId);
+        if(i == 1){
+            result.put("ResultCode",ResultCode.SUCCESS);
+        }
+        return result;
     }
 
     @Override
@@ -138,6 +152,18 @@ public class ProductServiceImpl implements ProductService {
             }
         }
         return list;
+    }
+
+    @Override
+    public List<StockAlternate> showStockUpAndDown() {
+        List<StockAlternate> showStockUpAndDown = productMapper.selectStockUpAndDownFromAlternateOrderByDesc();
+        return showStockUpAndDown;
+    }
+
+    @Override
+    public List<FundAlternate> showFundUpAndDown() {
+        List<FundAlternate> showFundUpAndDown = productMapper.selectFundUpAndDownFromAlternateOrderByDesc();
+        return showFundUpAndDown;
     }
 
 

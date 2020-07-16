@@ -75,6 +75,31 @@ public interface ProductMapper {
     List<ProductFundDetail> selectFundProportionFromDetail(Integer productId);
 
     /**
+     * 判断是否产品是否已经初始化
+     * @return int 1 代表已经初始化 0代表没有初始化
+     */
+    int existInitProductFromProduct(Integer productId);
+
+    /**
+     * 产品初始化完成，更改组合产品状态
+     * @return int 1 代表更改操作成功 0 代表更改操作失败
+     */
+    int updateStatusFromProductAfterInit(Integer productId);
+
+    /**
+     * 查询股票涨跌幅排行榜，限制前 10 条
+     * @return List<StockAlternate> 股票备选库
+     */
+    List<StockAlternate> selectStockUpAndDownFromAlternateOrderByDesc();
+
+    /**
+     * 查询基金涨跌幅排行榜，限制前 10 条
+     * @return List<FundAlternate> 基金备选库
+     */
+    List<FundAlternate> selectFundUpAndDownFromAlternateOrderByDesc();
+
+
+    /**
      * 查询投顾所拥有产品
      * @param consultantId 投顾id
      * @return 产品列表
@@ -94,4 +119,7 @@ public interface ProductMapper {
      * @return 股票备选库
      */
     List<StockAlternate> selectStockAlternate(List<String> stockCodes);
+
+
+
 }

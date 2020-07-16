@@ -17,6 +17,10 @@ public enum ResultCode {
     NOT_FOUND(404),
     //服务器内部错误
     INTERNAL_SERVER_ERROR(500),
+
+    //初始化产品错误，产品已初始化
+    INITIAL_PRODUCT_ERROR(5001),
+
     //注册邮箱错误,邮箱已注册
     REGISTER_EMAIL_ERROR(6001),
     //登录错误，账号不存在或者账号已停用

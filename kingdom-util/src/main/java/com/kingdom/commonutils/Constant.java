@@ -73,12 +73,12 @@ public interface Constant {
     /**
      * 默认货币基金
      */
-    String MONEY_FUND_CODE="000198";
+    String MONEY_FUND_CODE="511830.SH";
 
     /**
      * 默认货币基金名字
      */
-    String MONEY_FUND_NAME="天弘余额宝货币";
+    String MONEY_FUND_NAME="华泰货币ETF";
 
     /**
      * 股票最少购买数量限制
@@ -89,4 +89,9 @@ public interface Constant {
      * 基金最少购买数量限制
      */
     Float FUND_AMOUNT_LIMIT=1.0f;
+
+    /**
+     * 风险调仓阈值
+     */
+    int ADJUST_THRESHOLD=-3;
 }

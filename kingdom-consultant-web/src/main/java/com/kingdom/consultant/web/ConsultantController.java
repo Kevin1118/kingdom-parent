@@ -1,5 +1,6 @@
 package com.kingdom.consultant.web;
 
+import com.kingdom.commonutils.RedisKeyUtil;
 import org.apache.commons.lang3.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.kingdom.commonutils.CommonUtils;
@@ -27,6 +28,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +37,7 @@ import java.util.Map;
  * @date : 2020/6/20 13:15
  */
 @Controller
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 @RequestMapping("/consultant")
 public class ConsultantController implements Constant {
 
@@ -319,18 +322,15 @@ public class ConsultantController implements Constant {
     public Result acceptApproval(@RequestBody Order order){
         int status=order.getStatus();
         int id=order.getId();
+        int productId=order.getProductid();
+        float sum= (float) order.getSum();
         //判断是否登录
         Consultant consultant=hostHolder.getConsultant();
         if (consultant==null){
             return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
         }
         ResultCode code;
-        //判断当前审批订单是买入还是卖出，并修改为对应的状态
-        if (status==APPROVAL_BUY){
-            code=consultantService.updateOrderStatus(id,WAIT_TO_BUY);
-        }else{
-            code=consultantService.updateOrderStatus(id,WAIT_TO_SELL);
-        }
+        code=consultantService.updateOrderStatus(id,status,productId,sum);
         if (code.equals(ResultCode.SUCCESS)){
             return ResultGenerator.genSuccessResult();
         }else {
@@ -364,17 +364,7 @@ public class ConsultantController implements Constant {
         return ResultGenerator.genSuccessResult(consultantService.buyStockAndFund(ids));
     }
 
-    @ApiOperation("卖出基金股票")
-    @ResponseBody
-    @PostMapping("sellStockAndFund")
-    public Result sellStockAndFund(@RequestBody List<Integer> ids){
-        Consultant consultant=hostHolder.getConsultant();
-        //判断对象是否为空，若空返回未登录
-        if (consultant==null){
-            return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
-        }
-        return ResultGenerator.genSuccessResult(consultantService.sellStockAndFund(ids));
-    }
+
 
     @ApiOperation("查询交易明细")
     @ResponseBody
@@ -387,6 +377,20 @@ public class ConsultantController implements Constant {
         }
 
         Map result=consultantService.selectProperty(pageNum, pageSize, orderId,consultant.getConsultantid());
+        return ResultGenerator.genSuccessResult(result);
+    }
+
+
+    @ApiOperation("加载风险调仓列表")
+    @ResponseBody
+    @GetMapping("/loadRiskList")
+    public Result loadRiskList(){
+        Consultant consultant=hostHolder.getConsultant();
+        //判断对象是否为空，若空返回未登录
+        if (consultant==null){
+            return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
+        }
+        Map result=consultantService.selectRiskList(consultant.getConsultantid());
         return ResultGenerator.genSuccessResult(result);
     }
 }
