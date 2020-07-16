@@ -6,5 +6,5 @@ import java.io.Serializable;
 @Data
 public class InvestDTO implements Serializable {
     private String name;
-    private int sum;
+    private double sum;
 }

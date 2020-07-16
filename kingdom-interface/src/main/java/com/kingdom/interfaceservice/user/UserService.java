@@ -106,10 +106,28 @@ public interface UserService {
     int changeUserName(int userId,String userName);
 
     /**
-     * 投资人买入
-     * @param order
+     * 查询独立账户余额
      * @param userId
      * @return
      */
+    IndependentAccount selectAccountByUserId(int userId);
+    /**
+     * 投资人买入
+     * @param order
+     * @param name
+     * @param userId
+     * @param sum
+     * @return
+     */
     int investUser(Order order,int userId,String name,double sum);
+
+    /**
+     * 投资人卖出
+     * @param order
+     * @param userId
+     * @param name
+     * @param sum
+     * @return
+     */
+    int sellUser(Order order,int userId,String name,double sum);
 }
