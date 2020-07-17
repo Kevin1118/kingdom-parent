@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 import java.util.Map;
 
 
@@ -177,8 +178,18 @@ public class UserController {
     @PostMapping("/user/bindCardUser")
     @ResponseBody
     public Result bindCardUser(@RequestBody Card card){
-        int i = userService.bindCardUser(card);
+        User user=hostHolder.getUser();
+        int i = userService.bindCardUser(card,user.getUserid());
         return ResultGenerator.genSuccessResult(i);
+    }
+
+    @ApiOperation("加载银行卡号")
+    @PostMapping("/user/loadCardNumberUser")
+    @ResponseBody
+    public Result loadCardNumberUser(){
+        User user=hostHolder.getUser();
+        List<Card> list = userService.loadCardUser(user.getUserid());
+        return ResultGenerator.genSuccessResult(list);
     }
 
     @ApiOperation("投资人设置支付密码")
@@ -251,9 +262,9 @@ public class UserController {
     @PostMapping("/user/sellUser")
     public Result sellUser(@RequestBody InvestDTO investDTO,Order order){
         String name=investDTO.getName();
-        double sum=investDTO.getSum();
+        String percent=investDTO.getPercent();
         User user=hostHolder.getUser();
-        return ResultGenerator.genSuccessResult(userService.sellUser(order,user.getUserid(),name,sum));
+        return ResultGenerator.genSuccessResult(userService.sellUser(order,user.getUserid(),name,percent));
     }
 }
 //查看协议  ，保存协议，买入，卖出

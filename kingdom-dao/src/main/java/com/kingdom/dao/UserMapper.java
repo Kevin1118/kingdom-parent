@@ -3,6 +3,8 @@ package com.kingdom.dao;
 import com.kingdom.pojo.*;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 
 /**
  * 测试 demo，接口文件，访问数据库
@@ -71,6 +73,12 @@ public interface UserMapper {
      */
     int addCard(Card card);
 
+    /**
+     * 查询用户卡号
+     * @param userid
+     * @return int 操作行数
+     */
+    List<Card> selectCardNumber(Integer userid);
     /**
      * 投资人登录功能，从数据库中查询密码
      * @param email
