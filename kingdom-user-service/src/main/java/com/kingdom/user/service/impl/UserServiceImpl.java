@@ -3,7 +3,9 @@ package com.kingdom.user.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.kingdom.commonutils.CommonUtils;
 import com.kingdom.commonutils.RedisKeyUtil;
+import com.kingdom.dao.ProductMapper;
 import com.kingdom.dao.UserMapper;
+import com.kingdom.dto.user.ReturnDetailDTO;
 import com.kingdom.interfaceservice.user.UserService;
 import com.kingdom.pojo.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private ProductMapper productMapper;
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -254,6 +259,101 @@ public class UserServiceImpl implements UserService {
 
 
         return userMapper.addOrder(order);
+    }
+
+
+    /**
+     * 投资人查询收益详情
+     * 首先在property表查询持有的资产详情 List 包含 orderId，持有份额 amount，唯一代码 code
+     * 拿orderId 到order表查询买入的总金额sum，和产品productId，
+     * 再分别到单一产品的 detail 表查询比例，计算各个单一产品的初始持仓金额
+     * 最后分别到 alternate 表查询单一产品的当前市值 valueNow，计算收益返回给前端
+     * @author HuangJingchao
+     * @date 2020/7/17 19:48
+     * @param userId
+     * @return List<ReturnDetailDTO>
+     */
+    @Override
+    public List<ReturnDetailDTO> searchUserReturnDetail(Integer userId) {
+        List<ReturnDetailDTO> list = new ArrayList<>(16);
+
+        List<Property> propertyList = userMapper.selectPropertyByUserId(userId);
+        //map用来存储股票或基金代码以及对应的份额
+        HashMap<String, Integer> map = new HashMap<String, Integer>(16);
+        for(Property p:propertyList){
+            map.put(p.getCode(),p.getAmount());
+        }
+
+        String orderId = propertyList.get(0).getOrderid();
+
+        Order order = userMapper.selectOrderByOrderId(orderId);
+        double sum = order.getSum();
+        Integer productId = order.getProductid();
+
+        Product product = productMapper.selectProductById(productId);
+        Integer stockAmount = product.getStockamount();
+        Integer fundAmount = product.getFundamount();
+
+        //查询出组合产品中 股票所占的份额
+        List<ProductStockDetail> productStockDetailList = productMapper.selectStockProportionFromDetail(productId);
+        for(ProductStockDetail psd:productStockDetailList){
+            ReturnDetailDTO dto = new ReturnDetailDTO();
+            dto.setType("股票");
+            dto.setCode(psd.getStockCode());
+            dto.setPropertyName(psd.getStockName());
+            //持有份额
+            dto.setAmount(map.get(dto.getCode()));
+
+            //单一产品买入金额 = 下单金额 * 股票比例 * 单个股票的比例
+            double buyInAmount = sum * stockAmount*0.01 * psd.getProportion().doubleValue();
+            //计算单一产品当前持仓
+            StockAlternate stockValueNow = userMapper.selectValueNowByStockCode(psd.getStockCode());
+            //持有份额 * 当前市值 = 当前持仓金额
+            double d = dto.getAmount() * stockValueNow.getValueNow().doubleValue();
+
+
+            //单一产品当前持仓金额
+            dto.setAmountNow(d);
+
+            //计算收益（可能为负）
+            dto.setAmountOfReturnOne(d - buyInAmount);
+
+            //计算收益率
+            dto.setRateOfReturn(dto.getAmountOfReturnOne()/buyInAmount);
+
+            list.add(dto);
+        }
+
+        //查询出组合产品中 基金所占的份额
+        List<ProductFundDetail> ProductFundDetailList = productMapper.selectFundProportionFromDetail(productId);
+        for(ProductFundDetail pfd:ProductFundDetailList){
+            ReturnDetailDTO dto = new ReturnDetailDTO();
+            dto.setType("基金");
+            dto.setCode(pfd.getFundCode());
+            dto.setPropertyName(pfd.getFundName());
+            //持有份额
+            dto.setAmount(map.get(pfd.getFundCode()));
+
+            //单一产品买入金额 = 下单金额 * 股票比例 * 单个股票的比例
+            double buyInAmount = sum * fundAmount*0.01 * pfd.getProportion().doubleValue();
+
+            //计算单一产品当前持仓
+            FundAlternate fundValueNow = userMapper.selectValueNowByFundCode(pfd.getFundCode());
+
+            //持有份额 * 当前市值 = 当前持仓金额
+            double d = dto.getAmount() * fundValueNow.getValueNow().doubleValue();
+            //单一产品当前持仓金额
+            dto.setAmountNow(d);
+
+            //计算收益（可能为负）
+            dto.setAmountOfReturnOne(d - buyInAmount);
+
+            //计算收益率
+            dto.setRateOfReturn(dto.getAmountOfReturnOne()/buyInAmount);
+
+            list.add(dto);
+        }
+        return list;
     }
 
 

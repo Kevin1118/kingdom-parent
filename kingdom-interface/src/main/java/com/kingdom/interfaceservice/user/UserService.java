@@ -1,5 +1,6 @@
 package com.kingdom.interfaceservice.user;
 
+import com.kingdom.dto.user.ReturnDetailDTO;
 import com.kingdom.pojo.*;
 
 import java.util.List;
@@ -139,4 +140,14 @@ public interface UserService {
      * @return
      */
     int sellUser(Order order,int userId,String name,String percent);
+
+    /**
+     * 投资人查询收益详情
+     * @param userId
+     * @return List<ReturnDetailDTO> 收益详情列表
+     * @author HuangJingchao
+     * @date 2020/7/17 20:04
+     **/
+    List<ReturnDetailDTO> searchUserReturnDetail(Integer userId);
+
 }

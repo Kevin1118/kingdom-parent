@@ -266,5 +266,19 @@ public class UserController {
         User user=hostHolder.getUser();
         return ResultGenerator.genSuccessResult(userService.sellUser(order,user.getUserid(),name,percent));
     }
+
+
+    /**
+     * @author HuangJingchao
+     * @date 2020/7/17 22:25
+     */
+    @ApiOperation("收益及持仓详情")
+    @ResponseBody
+    @GetMapping("/user/searchUserReturnDetail")
+    public Result searchUserReturnDetail(@RequestParam Integer userId){
+//        User user=hostHolder.getUser();
+        return ResultGenerator.genSuccessResult(userService.searchUserReturnDetail(userId));
+    }
+
 }
 //查看协议  ，保存协议，买入，卖出

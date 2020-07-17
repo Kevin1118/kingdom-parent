@@ -130,4 +130,41 @@
         set balance=#{balance}
         where signAccountId=#{signaccountid}
     </update>
+
+
+    <select id="selectPropertyByUserId" parameterType="java.lang.Integer" resultType="com.kingdom.pojo.Property">
+        select
+        orderId,code,propertyName,amount
+        from
+        property
+        where
+        userId = #{userId,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectOrderByOrderId" parameterType="java.lang.String" resultType="com.kingdom.pojo.Order">
+        select
+        o.sum,o.productId
+        from
+        `order` o
+        where o.orderId = #{orderId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectValueNowByStockCode" parameterType="java.lang.String" resultType="com.kingdom.pojo.StockAlternate">
+        select
+        valueNow
+        from
+        stock_alternate
+        where
+        code = #{stockCode,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectValueNowByFundCode" parameterType="java.lang.String" resultType="com.kingdom.pojo.FundAlternate">
+        select
+        valueNow
+        from
+        fund_alternate
+        where
+        code = #{fundCode,jdbcType=VARCHAR}
+    </select>
+
 </mapper>
