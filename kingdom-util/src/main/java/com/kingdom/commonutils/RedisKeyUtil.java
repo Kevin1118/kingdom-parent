@@ -12,6 +12,7 @@ public class RedisKeyUtil {
     private static final String PREFIX_TICKET="ticket";
     private static final String PREFIX_CONSULTANT="consultant";
     private static final String PREFIX_PRODUCT="product";
+    private static final String PREFIX_USER="user";
 
     /**
      * 生成redis中的指定格式key
@@ -40,4 +41,5 @@ public class RedisKeyUtil {
         String date=new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
         return PREFIX_PRODUCT+SPLIT+productId+date;
     }
+
 }
