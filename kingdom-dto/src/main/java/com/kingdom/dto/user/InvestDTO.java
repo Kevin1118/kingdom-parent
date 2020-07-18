@@ -7,4 +7,5 @@ import java.io.Serializable;
 public class InvestDTO implements Serializable {
     private String name;
     private double sum;
+    private String percent;
 }

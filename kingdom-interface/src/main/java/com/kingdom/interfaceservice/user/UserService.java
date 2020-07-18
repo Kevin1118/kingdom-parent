@@ -1,7 +1,9 @@
 package com.kingdom.interfaceservice.user;
 
+import com.kingdom.dto.user.ReturnDetailDTO;
 import com.kingdom.pojo.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,7 +35,15 @@ public interface UserService {
      * @param card
      * @return int
      */
-    int bindCardUser(Card card);
+    int bindCardUser(Card card,int userId);
+
+    /**
+     * 查询银行卡接口
+     * 使用userId，获取该Id绑定的卡号
+     * @param userId
+     * @return List<Card> 包含所有产品信息的 list
+     */
+    List<Card> loadCardUser(int userId);
 
     /**
      * 投资人登录
@@ -126,8 +136,18 @@ public interface UserService {
      * @param order
      * @param userId
      * @param name
-     * @param sum
+     * @param percent
      * @return
      */
-    int sellUser(Order order,int userId,String name,double sum);
+    int sellUser(Order order,int userId,String name,String percent);
+
+    /**
+     * 投资人查询收益详情
+     * @param userId
+     * @return List<ReturnDetailDTO> 收益详情列表
+     * @author HuangJingchao
+     * @date 2020/7/17 20:04
+     **/
+    List<ReturnDetailDTO> searchUserReturnDetail(Integer userId);
+
 }

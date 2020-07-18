@@ -3,6 +3,8 @@ package com.kingdom.dao;
 import com.kingdom.pojo.*;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 
 /**
  * 测试 demo，接口文件，访问数据库
@@ -71,6 +73,12 @@ public interface UserMapper {
      */
     int addCard(Card card);
 
+    /**
+     * 查询用户卡号
+     * @param userid
+     * @return int 操作行数
+     */
+    List<Card> selectCardNumber(Integer userid);
     /**
      * 投资人登录功能，从数据库中查询密码
      * @param email
@@ -160,5 +168,35 @@ public interface UserMapper {
      * @return
      */
     int updateSignAccountBalance(Integer signaccountid,double balance);
+
+
+    /**
+     * 多表联查，查询收益详情的 sql 语句
+     * @param userId 投资人Id
+     * @author HuangJingchao
+     * @return Property 资产列表，包含orderId，持有份额 amount，唯一代码 code,名称 name
+     */
+    List<Property> selectPropertyByUserId(Integer userId);
+
+    /**
+     * 根据订单id 查询出下单金额 sum，购买的产品 productId
+     * @param orderId
+     * @return Order
+     */
+    Order selectOrderByOrderId(String orderId);
+
+    /**
+     * 根据股票代码查询当前市值 valueNow
+     * @param stockCode
+     * @return StockAlternate
+     */
+    StockAlternate selectValueNowByStockCode(String stockCode);
+
+    /**
+     * 根据基金代码查询当前市值 valueNow
+     * @param fundCode
+     * @return FundAlternate
+     */
+    FundAlternate selectValueNowByFundCode(String fundCode);
 
 }
