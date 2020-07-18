@@ -15,6 +15,9 @@ import java.math.BigDecimal;
 @Data
 public class ReturnDetailDTO implements Serializable {
 
+    //组合产品名称
+    private String productName;
+
     //产品类型
     private String Type;
 
