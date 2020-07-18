@@ -143,7 +143,7 @@
 
     <select id="selectOrderByOrderId" parameterType="java.lang.String" resultType="com.kingdom.pojo.Order">
         select
-        o.sum,o.productId
+        o.sum,o.productId,transactionDate,status
         from
         `order` o
         where o.orderId = #{orderId,jdbcType=VARCHAR}

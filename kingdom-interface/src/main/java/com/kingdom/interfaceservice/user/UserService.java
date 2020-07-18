@@ -1,5 +1,7 @@
 package com.kingdom.interfaceservice.user;
 
+import com.kingdom.dto.user.OrderDetailDTO;
+import com.kingdom.dto.user.OrderDetailValueNowAllDTO;
 import com.kingdom.dto.user.ReturnDetailDTO;
 import com.kingdom.pojo.*;
 
@@ -149,5 +151,19 @@ public interface UserService {
      * @date 2020/7/17 20:04
      **/
     List<ReturnDetailDTO> searchUserReturnDetail(Integer userId);
+
+    /**
+     * 投资人查询交易明细
+     * @param userId
+     * @return List<OrderDetailDTO>
+     */
+    List<OrderDetailDTO> searchUserOrderDetail(Integer userId);
+
+    /**
+     * 投资人资产概览，总持仓情况
+     * @param userId
+     * @return DTO
+     */
+    OrderDetailValueNowAllDTO searchValueNowAll(Integer userId);
 
 }

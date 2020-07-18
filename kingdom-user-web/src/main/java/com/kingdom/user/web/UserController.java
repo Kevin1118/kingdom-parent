@@ -272,12 +272,36 @@ public class UserController {
      * @author HuangJingchao
      * @date 2020/7/17 22:25
      */
-    @ApiOperation("收益及持仓详情")
+    @ApiOperation("投资人收益及持仓详情")
     @ResponseBody
     @GetMapping("/user/searchUserReturnDetail")
     public Result searchUserReturnDetail(@RequestParam Integer userId){
 //        User user=hostHolder.getUser();
         return ResultGenerator.genSuccessResult(userService.searchUserReturnDetail(userId));
+    }
+
+    /**
+     * @author HuangJingchao
+     * @date 2020/7/18 20:25
+     */
+    @ApiOperation("投资人交易订单明细")
+    @ResponseBody
+    @GetMapping("/user/searchUserOrderDetail")
+    public Result searchUserOrderDetail(@RequestParam Integer userId){
+//        User user=hostHolder.getUser();
+        return ResultGenerator.genSuccessResult(userService.searchUserOrderDetail(userId));
+    }
+
+    /**
+     * @author HuangJingchao
+     * @date 2020/7/18 20:35
+     */
+    @ApiOperation("投资人总持仓概览")
+    @ResponseBody
+    @GetMapping("/user/searchValueNowAll")
+    public Result searchValueNowAll(@RequestParam Integer userId){
+//        User user=hostHolder.getUser();
+        return ResultGenerator.genSuccessResult(userService.searchValueNowAll(userId));
     }
 
 }
