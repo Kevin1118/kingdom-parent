@@ -10,6 +10,8 @@ import com.kingdom.dto.user.OrderDetailValueNowAllDTO;
 import com.kingdom.dto.user.ReturnDetailDTO;
 import com.kingdom.interfaceservice.user.UserService;
 import com.kingdom.pojo.*;
+import com.kingdom.result.ResultCode;
+import com.kingdom.vojo.user.CardNumber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 
@@ -126,7 +128,7 @@ public class UserServiceImpl implements UserService {
      * 查询银行卡接口
      * 使用userId，获取该Id绑定的卡号
      *
-     * @param userId
+     * @param
      * @return List<Card> 包含所有产品信息的 list
      */
     @Override
@@ -144,10 +146,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int setPayPasswordUser(int userid, String payPassword) {
+    public ResultCode setPayPasswordUser(int userId, String payPassword) {
         String salt = CommonUtils.generateUUID().substring(0, 5);
         payPassword = CommonUtils.md5(payPassword + salt);
-        return userMapper.updatePayPassword(userid, payPassword, salt);
+        int rows = userMapper.updatePayPassword(userId, payPassword, salt);
+        if (rows == 1) {
+            clearCache(userId);
+            return ResultCode.SUCCESS;
+        } else {
+            return ResultCode.MYSQL_CURD_ERROR;
+        }
+    }
+
+    @Override
+    public ResultCode checkPayPasswordUser(User user, String payPassword) {
+        if (CommonUtils.md5(payPassword + user.getPaypasswordsalt()).equals(user.getPaypassword())) {
+            return ResultCode.SUCCESS;
+        } else {
+            return ResultCode.WRONG_PAYPASSWORD;
+        }
     }
 
     @Override
@@ -193,16 +210,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int investUser(Order order, int userId, String name, double sum) {
+    public ResultCode investUser(Order order, int userId, String name, double sum) {
         Product product = userMapper.selectProductByName(name);
         int productId = product.getProductid();
         int consultantId = product.getConsultantid();
         int transactionDate = (int) (System.currentTimeMillis() / 1000);
         SignAccount sa = userMapper.selectAccountNoByUserIdAndProductId(userId, productId);
         String orderId = transactionDate + "" + userId;
-        int accountNo = sa.getSignaccountid();
+        int accountNo;
         //账户不存在择创建投顾账户
         if (sa == null) {
+            sa = new SignAccount();
             sa.setUserid(userId);
             sa.setProductid(productId);
             sa.setBalance(sum);
@@ -210,27 +228,36 @@ public class UserServiceImpl implements UserService {
             //1代表可用
             sa.setStatus("1");
             userMapper.addSignAccount(sa);
-            //账户存在则更新账户余额
-        } else {
+            sa = userMapper.selectAccountNoByUserIdAndProductId(userId, productId);
+            accountNo = sa.getSignaccountid();
+        }//账户存在则更新账户余额
+        else {
+            accountNo = sa.getSignaccountid();
             double balance = sa.getBalance() + sum;
             userMapper.updateSignAccountBalance(accountNo, balance);
         }
         //更新独立账户资金
         IndependentAccount independentAccount = userMapper.selectIndependetAccountById(userId);
-        double independentBalance = independentAccount.getIndependentbalance() - sum;
-        userMapper.updateIndependentBalance(userId, independentBalance);
+        if (independentAccount.getIndependentbalance() < sum) {
+            return ResultCode.OYT_OF_MONEY;
+        } else {
+            double independentBalance = independentAccount.getIndependentbalance() - sum;
+            userMapper.updateIndependentBalance(userId, independentBalance);
 
-        order.setOrderid(orderId);
-        order.setUserid(userId);
-        order.setAccountno(accountNo);
-        order.setSum(sum);
-        order.setTransactiondate(transactionDate);
-        order.setProductid(productId);
-        order.setConsultantid(consultantId);
-        //1表示买入申请
-        order.setStatus(1);
+            order.setOrderid(orderId);
+            order.setUserid(userId);
+            order.setAccountno(accountNo);
+            order.setSum(sum);
+            order.setTransactiondate(transactionDate);
+            order.setProductid(productId);
+            order.setConsultantid(consultantId);
+            //1表示买入申请
+            order.setStatus(1);
+            userMapper.addOrder(order);
+            return ResultCode.SUCCESS;
+        }
 
-        return userMapper.addOrder(order);
+
     }
 
     @Override
@@ -265,6 +292,39 @@ public class UserServiceImpl implements UserService {
         return userMapper.addOrder(order);
     }
 
+    /**
+     * 投资人转出金额
+     *
+     * @param userId
+     * @param withdrawMoney 需要转出的金额
+     * @return 操作行数
+     */
+    @Override
+    public ResultCode withdrawUser(int userId, double withdrawMoney) {
+        IndependentAccount independentAccount = userMapper.selectIndependetAccountById(userId);
+        double independentBalance = independentAccount.getIndependentbalance();
+        //判断余额是否充足
+        int rows;
+        if (independentBalance < withdrawMoney) {
+            return ResultCode.OYT_OF_MONEY;
+        } else {
+            double newBalance = independentBalance - withdrawMoney;
+            rows = userMapper.updateIndependentBalance(userId, newBalance);
+        }
+        if (rows == 1) {
+            clearCache(userId);
+            return ResultCode.SUCCESS;
+        } else {
+            return ResultCode.MYSQL_CURD_ERROR;
+        }
+
+
+    }
+
+    @Override
+    public void exit(int userId) {
+        clearCache(userId);
+    }
 
     /**
      * 投资人查询收益详情
@@ -484,5 +544,4 @@ public class UserServiceImpl implements UserService {
         String redisKey = RedisKeyUtil.getUserKey(userId);
         redisTemplate.delete(redisKey);
     }
-
 }

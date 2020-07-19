@@ -7,9 +7,8 @@ package com.kingdom.vojo.user;
  * @author : HuangJingChao
  * @date : 2020-06-16 22:44
  **/
-public class UserVoShowDemo {
+public class CardNumber {
 
-    private int id;
-    private String first;
+    private String cardNumber;
 
 }

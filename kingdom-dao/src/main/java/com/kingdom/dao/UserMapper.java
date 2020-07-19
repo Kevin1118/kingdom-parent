@@ -88,6 +88,12 @@ public interface UserMapper {
     User selectPasswordByEmailOrPhoneNumber(@Param("email")String email,@Param("phonenumber") String phoneNumber);
 
     /**
+     *根据用户id查询支付密码
+     * @param userid
+     * @return User
+     */
+    User selectPayPassword(Integer userid);
+    /**
      * 投资人更新支付密码
      * @param userid
      * @param paypassword
@@ -139,6 +145,7 @@ public interface UserMapper {
      */
     int addOrder(Order order);
 
+
     /**
      * 查询产品
      * @param name
@@ -168,6 +175,13 @@ public interface UserMapper {
      * @return
      */
     int updateSignAccountBalance(Integer signaccountid,double balance);
+
+    /**
+     * 根据产品ID选择投顾账户
+     * @param productid
+     * @return
+     */
+    List<SignAccount> selectAccountByProductID(Integer productid);
 
 
     /**

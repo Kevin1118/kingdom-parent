@@ -131,6 +131,12 @@
         where signAccountId=#{signaccountid}
     </update>
 
+    <select id="selectAccountByProductID" parameterType="java.lang.Integer" resultType="com.kingdom.pojo.SignAccount">
+        select s.signAccountId
+        from `sign_account` s
+        where s.productId=#{productid}
+    </select>
+
 
     <select id="selectPropertyByUserId" parameterType="java.lang.Integer" resultType="com.kingdom.pojo.Property">
         select

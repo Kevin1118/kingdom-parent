@@ -9,6 +9,7 @@ import com.kingdom.dto.user.TopUpDTO;
 import com.kingdom.pojo.*;
 import com.kingdom.result.*;
 import com.kingdom.interfaceservice.user.UserService;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +75,7 @@ public class UserController {
         if (userService.registerUser(user,independentAccount)==0){
             return(ResultGenerator.genFailResult(ResultCode.EMPTY_ARG));
         }
+
         return ResultGenerator.genSuccessResult(userService.registerUser(user,independentAccount));
     }
 
@@ -200,6 +202,18 @@ public class UserController {
         User hostHolderUser=hostHolder.getUser();
         return ResultGenerator.genSuccessResult(userService.setPayPasswordUser(hostHolderUser.getUserid(),payPassword));
     }
+    @ApiOperation("校验支付密码")
+    @ResponseBody
+    @PostMapping("user/checkPayPasswordUser")
+    public Result checkPayPasswordUser(@RequestParam String payPassword){
+        User user=hostHolder.getUser();
+        ResultCode code=userService.checkPayPasswordUser(user,payPassword);
+        if (code.equals(ResultCode.SUCCESS)){
+            return ResultGenerator.genSuccessResult(code);
+        }else{
+            return ResultGenerator.genFailResult(code);
+        }
+    }
 
     @ApiOperation("密码管理")
     @ResponseBody
@@ -267,7 +281,27 @@ public class UserController {
         return ResultGenerator.genSuccessResult(userService.sellUser(order,user.getUserid(),name,percent));
     }
 
+    @ApiOperation("资金转出")
+    @ResponseBody
+    @PostMapping("/user/withdrawUser")
+    public Result withdrawUser(@RequestParam double withdrawMoney){
+        User user=hostHolder.getUser();
+        ResultCode code=userService.withdrawUser(user.getUserid(),withdrawMoney);
+        if (code.equals(ResultCode.SUCCESS)){
+            return  ResultGenerator.genSuccessResult();
+        }
+        else{
+            return ResultGenerator.genFailResult(code);
+        }
+    }
 
+    @ApiOperation("退出登录")
+    @ResponseBody
+    @PostMapping("/user/exitUser")
+    public void exitUser(){
+        User user=hostHolder.getUser();
+        userService.exit(user.getUserid());
+    }
     /**
      * @author HuangJingchao
      * @date 2020/7/17 22:25
@@ -275,9 +309,9 @@ public class UserController {
     @ApiOperation("投资人收益及持仓详情")
     @ResponseBody
     @GetMapping("/user/searchUserReturnDetail")
-    public Result searchUserReturnDetail(@RequestParam Integer userId){
-//        User user=hostHolder.getUser();
-        return ResultGenerator.genSuccessResult(userService.searchUserReturnDetail(userId));
+    public Result searchUserReturnDetail(){
+        User user=hostHolder.getUser();
+        return ResultGenerator.genSuccessResult(userService.searchUserReturnDetail(user.getUserid()));
     }
 
     /**
@@ -287,9 +321,9 @@ public class UserController {
     @ApiOperation("投资人交易订单明细")
     @ResponseBody
     @GetMapping("/user/searchUserOrderDetail")
-    public Result searchUserOrderDetail(@RequestParam Integer userId){
-//        User user=hostHolder.getUser();
-        return ResultGenerator.genSuccessResult(userService.searchUserOrderDetail(userId));
+    public Result searchUserOrderDetail(){
+        User user=hostHolder.getUser();
+        return ResultGenerator.genSuccessResult(userService.searchUserOrderDetail(user.getUserid()));
     }
 
     /**
@@ -299,9 +333,9 @@ public class UserController {
     @ApiOperation("投资人总持仓概览")
     @ResponseBody
     @GetMapping("/user/searchValueNowAll")
-    public Result searchValueNowAll(@RequestParam Integer userId){
-//        User user=hostHolder.getUser();
-        return ResultGenerator.genSuccessResult(userService.searchValueNowAll(userId));
+    public Result searchValueNowAll(){
+        User user=hostHolder.getUser();
+        return ResultGenerator.genSuccessResult(userService.searchValueNowAll(user.getUserid()));
     }
 
 }

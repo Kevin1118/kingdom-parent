@@ -240,4 +240,22 @@
         </foreach>
     </select>
 
+    <select id="selectStockFromDetail" parameterType="java.lang.Integer" resultType="com.kingdom.pojo.ProductStockDetail">
+        select
+        stockName,proportion,stockCode
+        from
+        product_stock_detail
+        where
+        productId = #{productId,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectFundFromDetail" parameterType="java.lang.Integer" resultType="com.kingdom.pojo.ProductFundDetail">
+        select
+        fundName,proportion,fundCode
+        from
+        product_fund_detail
+        where
+        productId = #{productId,jdbcType=INTEGER}
+    </select>
+
 </mapper>

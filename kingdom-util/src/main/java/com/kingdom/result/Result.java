@@ -1,6 +1,7 @@
 package com.kingdom.result;
 
 import com.alibaba.fastjson.JSON;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 
 import java.io.Serializable;
 
@@ -38,6 +39,8 @@ public class Result implements Serializable {
         this.data = data;
         return this;
     }
+
+
 
     @Override
     public String toString() {
