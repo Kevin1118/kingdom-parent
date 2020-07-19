@@ -24,4 +24,17 @@
         from property
         where signAccountId=#{accountno}
     </select>
+
+    <update id="updatePropertyByOrederIdAndCode">
+        update `property`
+        set amount=#{amount}
+        <where>
+            <if test="orderid != null">
+                orderId =  #{orderid,jdbcType=VARCHAR}
+            </if>
+            <if test="code!= null">
+                AND code = #{code,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </update>
 </mapper>
