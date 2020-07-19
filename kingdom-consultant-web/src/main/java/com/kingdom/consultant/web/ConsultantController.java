@@ -1,7 +1,6 @@
 package com.kingdom.consultant.web;
 
 import com.kingdom.commonutils.RedisKeyUtil;
-import com.kingdom.dto.consultant.RiskDTO;
 import io.swagger.annotations.Api;
 import org.apache.commons.lang3.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
@@ -48,7 +47,6 @@ public class ConsultantController implements Constant {
      */
     @Reference
     private ConsultantService consultantService;
-
 
     /**
      * 注入application中配置的文件上传路径
@@ -322,14 +320,18 @@ public class ConsultantController implements Constant {
     @ApiOperation("买卖审批确认")
     @ResponseBody
     @PostMapping("/acceptApproval")
-    public Result acceptApproval(@RequestBody List<Order> order){
+    public Result acceptApproval(@RequestBody Order order){
+        int status=order.getStatus();
+        int id=order.getId();
+        int productId=order.getProductid();
+        float sum= (float) order.getSum();
         //判断是否登录
         Consultant consultant=hostHolder.getConsultant();
         if (consultant==null){
             return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
         }
         ResultCode code;
-        code=consultantService.updateOrderStatus(order);
+        code=consultantService.updateOrderStatus(id,status,productId,sum);
         if (code.equals(ResultCode.SUCCESS)){
             return ResultGenerator.genSuccessResult();
         }else {
@@ -364,31 +366,18 @@ public class ConsultantController implements Constant {
     }
 
 
-    @ApiOperation("卖出基金股票")
-    @ResponseBody
-    @PostMapping("/sellStockAndFund")
-    public Result sellStockAndFund(@RequestBody List<Integer> ids){
-        Consultant consultant=hostHolder.getConsultant();
-        //判断对象是否为空，若空返回未登录
-        if (consultant==null){
-            return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
-        }
-        return ResultGenerator.genSuccessResult(consultantService.sellStockAndFund(ids));
-    }
-
-
 
     @ApiOperation("查询交易明细")
     @ResponseBody
     @GetMapping("/loadTransactionDetail")
-    public Result loadTransactionDetail(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize,@RequestParam(defaultValue = "0") String orderId,@RequestParam(defaultValue = "0") int status){
+    public Result loadTransactionDetail(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize,@RequestParam(defaultValue = "0") String orderId){
         Consultant consultant=hostHolder.getConsultant();
         //判断对象是否为空，若空返回未登录
         if (consultant==null){
             return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
         }
 
-        Map result=consultantService.selectRecord(pageNum, pageSize, orderId,consultant.getConsultantid(),status);
+        Map result=consultantService.selectProperty(pageNum, pageSize, orderId,consultant.getConsultantid());
         return ResultGenerator.genSuccessResult(result);
     }
 
@@ -409,13 +398,13 @@ public class ConsultantController implements Constant {
     @ApiOperation("查看产品原始组合占比")
     @ResponseBody
     @GetMapping("/productAndRatio")
-    public Result productAndRatio(){
+    public Result productAndRatio(@RequestParam int productId){
         Consultant consultant=hostHolder.getConsultant();
         //判断对象是否为空，若空返回未登录
         if (consultant==null){
             return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
         }
-        Map result=consultantService.selectProductAndRatio(consultant.getConsultantid());
+        Map result=consultantService.selectProductAndRatio(consultant.getConsultantid(),productId);
         return ResultGenerator.genSuccessResult(result);
     }
 
@@ -432,46 +421,17 @@ public class ConsultantController implements Constant {
         return ResultGenerator.genSuccessResult(result);
     }
 
-
-
-    @ApiOperation("风险调仓操作")
-    @PostMapping("/changeRisk")
+    @ApiOperation("资产再平衡")
     @ResponseBody
-    public Result changeRisk(@RequestBody RiskDTO riskDTO){
+    @PostMapping("/assetRebalancing")
+    public Result assetReBalancing(@RequestParam int productId){
         Consultant consultant=hostHolder.getConsultant();
         //判断对象是否为空，若空返回未登录
-        if (consultant==null){
+        if (consultant==null) {
             return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
         }
-
-        int productId=0;
-        productId=riskDTO.getProductid();
-        String oldCode=riskDTO.getOldstockcode();
-        String newCode=riskDTO.getNewstockcode();
-        if (productId==0 || oldCode==null || newCode==null){
-            return ResultGenerator.genFailResult(ResultCode.EMPTY_ARG);
-        }
-        ResultCode code=consultantService.changeRisk(productId,oldCode,newCode);
-        if (code.equals(ResultCode.SUCCESS)){
-            return ResultGenerator.genSuccessResult();
-        }else {
-            return ResultGenerator.genFailResult(code);
-        }
+        int rows=consultantService.assetRebalancing(consultant.getConsultantid(),productId);
+        return ResultGenerator.genSuccessResult(rows);
     }
-
-
-    @ApiOperation("数据统计")
-    @GetMapping("/loadCounts")
-    @ResponseBody
-    public Result loadCounts(){
-        Consultant consultant=hostHolder.getConsultant();
-        //判断对象是否为空，若空返回未登录
-        if (consultant==null){
-            return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
-        }
-        Map result=consultantService.selectCounts(consultant.getConsultantid());
-        return ResultGenerator.genSuccessResult(result);
-    }
-
 
 }

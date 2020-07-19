@@ -3,7 +3,7 @@ package com.kingdom.interfaceservice.consultant;
 
 import com.kingdom.pojo.Consultant;
 import com.kingdom.pojo.LoginTicket;
-import com.kingdom.pojo.Order;
+import com.kingdom.pojo.Property;
 import com.kingdom.result.Result;
 import com.kingdom.result.ResultCode;
 
@@ -105,11 +105,14 @@ public interface ConsultantService {
 
 
     /**
-     * 更新订单状态
-     * @param orders 订单列表
+     * 更改订单状态
+     * @param id 订单id
+     * @param status 状态
+     * @param productId 产品id
+     * @param sum 金额
      * @return 响应码
      */
-    ResultCode updateOrderStatus(List<Order> orders);
+    ResultCode updateOrderStatus(int id,int status,int productId,float sum);
 
     /**
      * 买入基金股票
@@ -120,23 +123,14 @@ public interface ConsultantService {
 
 
     /**
-     * 卖出基金股票
-     * @param ids 订单号
-     * @return 响应码
-     */
-    ResultCode sellStockAndFund(List<Integer> ids);
-
-
-    /**
      * 查询资产信息
      * @param pageNum 页码
      * @param pageSize 大小
      * @param orderId 订单号
      * @param consultantId 投顾人id
-     * @param status 订单状态
      * @return 交易记录
      */
-    Map selectRecord(int pageNum,int pageSize,String orderId,int consultantId,int status);
+    Map selectProperty(int pageNum,int pageSize,String orderId,int consultantId);
 
 
     /**
@@ -147,26 +141,11 @@ public interface ConsultantService {
     Map selectRiskList(int consultantId);
 
     /**
-     * 更换风险股票
-     * @param productId 产品id
-     * @param oldCode 旧股票代码
-     * @param newCode 新股票代码
-     * @return 响应码
-     */
-    ResultCode changeRisk(int productId,String oldCode,String newCode);
-
-    /**
-     * 查询统计数据
-     * @param consultantId
-     * @return
-     */
-    Map selectCounts(int consultantId);
-    /**
      * 返回原计划产品及产品内股票-基金比例
      * @param consultantId
      * @return 投顾人对应的产品
      */
-    Map selectProductAndRatio(int consultantId);
+    Map selectProductAndRatio(int consultantId,int productId);
 
     /**
      * 返回真实产品成分占比
@@ -176,6 +155,13 @@ public interface ConsultantService {
      */
     Map selectProductAndRatioNow(int consultantId,int productId);
 
+    /**
+     * 资产再平衡
+     * @param consultantId
+     * @param productId
+     * @return 操作行数
+     */
+    int assetRebalancing(int consultantId, int productId);
 
 
 
