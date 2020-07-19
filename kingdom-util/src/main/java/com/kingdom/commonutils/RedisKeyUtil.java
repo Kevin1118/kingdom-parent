@@ -50,4 +50,12 @@ public class RedisKeyUtil {
         return PREFIX_PRODUCT+SPLIT+productId+date;
     }
 
+    /**
+     * 生成redis中的指定格式的key
+     * @param productId 产品id
+     * @return 指定格式的key
+     */
+    public static String getProductKey(int productId,String date){
+        return PREFIX_PRODUCT+SPLIT+productId+date;
+    }
 }

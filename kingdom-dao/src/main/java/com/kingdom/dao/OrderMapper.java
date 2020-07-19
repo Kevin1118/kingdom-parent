@@ -34,4 +34,11 @@ public interface OrderMapper {
      * @return 订单对象
      */
     List<Order> selectByIds(List<Integer> ids);
+
+    /**
+     * 根据订单编号查询订单
+     * @param orderId 订单编号
+     * @return 订单
+     */
+    Order selectByOrderId(String orderId);
 }

@@ -24,4 +24,21 @@ public interface PropertyMapper {
      */
     List<Property> loadProperty(String orderId);
 
+    /**
+     * 查询资产表
+     * @param signAccountId 签约账户id
+     * @param code 资产代码
+     * @return 资产表
+     */
+    Property loadPropertyByCode(int signAccountId,String code);
+
+    /**
+     * 更新资产表
+     * @param propertyId 资产id
+     * @param amount 份额
+     * @param updateTime 更新时间
+     * @return 操作行数
+     */
+    int updatePropertyAmount(int propertyId,int amount,int updateTime);
+
 }

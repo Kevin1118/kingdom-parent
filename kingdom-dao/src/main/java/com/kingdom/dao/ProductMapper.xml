@@ -240,4 +240,7 @@
         </foreach>
     </select>
 
+    <update id="updateProductStockDetail">
+        update product_stock_detail set stockCode=#{stockCode},stockName=#{stockName} where productId=#{productId} and stockCode=#{oldCode}
+    </update>
 </mapper>

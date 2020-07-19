@@ -13,7 +13,11 @@
     </resultMap>
 
     <select id="selectOrderByConsultantIdAndStatus" resultType="com.kingdom.pojo.Order">
-        select * from `order` where consultantId=#{consultantId} and status=#{status}
+        select * from `order` where consultantId=#{consultantId}
+        <if test="status!=0">
+            and status=#{status}
+        </if>
+
     </select>
 
     <update id="updateOrderStatus" >
@@ -25,5 +29,9 @@
         <foreach collection="list" item="item" open="(" separator="," close=")">
         #{item}
         </foreach>
+    </select>
+
+    <select id="selectByOrderId" resultType="com.kingdom.pojo.Order">
+        select * from `order` where orderId=#{orderId}
     </select>
 </mapper>
