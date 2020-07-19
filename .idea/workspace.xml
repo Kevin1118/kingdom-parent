@@ -30,14 +30,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="新增收益明细及持仓详情">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_6_30_12_37__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_6_30_12_37__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2020_7_13_19_36__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2020_7_13_19_36__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-consultant-service/src/main/java/com/kingdom/consultant/service/impl/ConsultantServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-consultant-service/src/main/java/com/kingdom/consultant/service/impl/ConsultantServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-consultant-web/src/main/java/com/kingdom/consultant/web/ConsultantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-consultant-web/src/main/java/com/kingdom/consultant/web/ConsultantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/PropertyMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/PropertyMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/PropertyMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/PropertyMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-interface/src/main/java/com/kingdom/interfaceservice/consultant/ConsultantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-interface/src/main/java/com/kingdom/interfaceservice/consultant/ConsultantService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-user-web/src/main/java/com/kingdom/user/web/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-user-web/src/main/java/com/kingdom/user/web/UserController.java" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,10 +75,10 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="localRepository" value="C:\Users\Administrator\.m2" />
-        <option name="mavenHome" value="E:/apache-maven-3.6.3" />
+        <option name="localRepository" value="C:\Users\77564\.m2" />
+        <option name="mavenHome" value="C:/Program Files/apache-maven-3.6.1" />
         <option name="outputLevel" value="DEBUG" />
-        <option name="userSettingsFile" value="E:\apache-maven-3.6.3\conf\settings.xml" />
+        <option name="userSettingsFile" value="C:\Program Files\apache-maven-3.6.1\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
     <option name="importingSettings">
@@ -136,6 +135,16 @@
       <set>
         <option value="SpringBootApplicationConfigurationType" />
       </set>
+    </option>
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.KingdomConsultantWebApplication">
@@ -311,6 +320,7 @@
       <workItem from="1595077527154" duration="5050000" />
       <workItem from="1595118632152" duration="40937000" />
       <workItem from="1595175121262" duration="411000" />
+      <workItem from="1595176287452" duration="1464000" />
     </task>
     <task id="LOCAL-00001" summary="新增投顾人模块，包含注册方法">
       <created>1592633837802</created>
@@ -365,7 +375,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -384,12 +394,12 @@
                   </entry>
                 </map>
               </option>
+              <option name="COLUMN_ORDER" />
             </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
