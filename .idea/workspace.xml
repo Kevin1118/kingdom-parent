@@ -19,40 +19,14 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/Kevin_branch" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </select>
+    <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="新增收益明细及持仓详情">
+    <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="新增卖出，风险调仓，数据查询，修复审批">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_6_30_12_37__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_6_30_12_37__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2020_7_13_19_36__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2020_7_13_19_36__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kingdom-consultant-service/src/main/java/com/kingdom/consultant/service/impl/ConsultantServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-consultant-service/src/main/java/com/kingdom/consultant/service/impl/ConsultantServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-consultant-web/src/main/java/com/kingdom/consultant/web/ConsultantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-consultant-web/src/main/java/com/kingdom/consultant/web/ConsultantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ConsultantMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ConsultantMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ConsultantMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ConsultantMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ProductMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ProductMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ProductMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/PropertyMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/PropertyMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/PropertyMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/PropertyMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-dto/src/main/java/com/kingdom/dto/user/TopUpDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dto/src/main/java/com/kingdom/dto/user/TopUpDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-interface/src/main/java/com/kingdom/interfaceservice/consultant/ConsultantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-interface/src/main/java/com/kingdom/interfaceservice/consultant/ConsultantService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-interface/src/main/java/com/kingdom/interfaceservice/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-interface/src/main/java/com/kingdom/interfaceservice/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-user-service/src/main/java/com/kingdom/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-user-service/src/main/java/com/kingdom/user/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-user-web/src/main/java/com/kingdom/user/web/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-user-web/src/main/java/com/kingdom/user/web/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/result/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/result/Result.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/result/ResultCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/result/ResultCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/result/ResultGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/result/ResultGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-vojo/src/main/java/com/kingdom/vojo/user/UserVoShowDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-vojo/src/main/java/com/kingdom/vojo/user/CardNumber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-vojo/src/main/java/com/kingdom/vojo/product/OrderVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-vojo/src/main/java/com/kingdom/vojo/product/OrderVo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,10 +66,8 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="localRepository" value="C:\Users\77564\.m2\repository" />
-        <option name="mavenHome" value="$PROJECT_DIR$/../../../../../Program Files/apache-maven-3.6.1" />
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
         <option name="outputLevel" value="DEBUG" />
-        <option name="userSettingsFile" value="C:\Program Files\apache-maven-3.6.1\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
     <option name="importingSettings">
@@ -103,6 +75,9 @@
         <option name="vmOptionsForImporter" value="-Xmx768m" />
       </MavenImportingSettings>
     </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
   </component>
   <component name="ProjectId" id="1dNwP3O90Pczcs4n3PxG5IvFvrL" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -126,7 +101,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.27941176" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -324,6 +299,9 @@
       <workItem from="1593317722261" duration="4683000" />
       <workItem from="1595077527154" duration="5050000" />
       <workItem from="1595118632152" duration="24454000" />
+      <workItem from="1595162397889" duration="545000" />
+      <workItem from="1595163193786" duration="498000" />
+      <workItem from="1595164061830" duration="4389000" />
     </task>
     <task id="LOCAL-00001" summary="新增投顾人模块，包含注册方法">
       <created>1592633837802</created>
@@ -428,38 +406,46 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="707" y="165" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1595083269079" />
-    <state width="1150" height="291" key="GridCell.Tab.0.bottom" timestamp="1595145634387">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2151" height="336" key="GridCell.Tab.0.bottom" timestamp="1595167742133">
+      <screen x="0" y="0" width="2194" height="1204" />
     </state>
     <state width="1150" height="291" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1595145634387" />
-    <state width="1150" height="291" key="GridCell.Tab.0.center" timestamp="1595145634387">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2151" height="336" key="GridCell.Tab.0.bottom/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1595167742133" />
+    <state width="2151" height="336" key="GridCell.Tab.0.center" timestamp="1595167742133">
+      <screen x="0" y="0" width="2194" height="1204" />
     </state>
     <state width="1150" height="291" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1595145634387" />
-    <state width="1150" height="291" key="GridCell.Tab.0.left" timestamp="1595145634387">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2151" height="336" key="GridCell.Tab.0.center/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1595167742133" />
+    <state width="2151" height="336" key="GridCell.Tab.0.left" timestamp="1595167742133">
+      <screen x="0" y="0" width="2194" height="1204" />
     </state>
     <state width="1150" height="291" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1595145634387" />
-    <state width="1150" height="291" key="GridCell.Tab.0.right" timestamp="1595145634387">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2151" height="336" key="GridCell.Tab.0.left/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1595167742133" />
+    <state width="2151" height="336" key="GridCell.Tab.0.right" timestamp="1595167742133">
+      <screen x="0" y="0" width="2194" height="1204" />
     </state>
     <state width="1150" height="291" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1595145634387" />
-    <state width="1150" height="291" key="GridCell.Tab.1.bottom" timestamp="1595145634387">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2151" height="336" key="GridCell.Tab.0.right/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1595167742133" />
+    <state width="1694" height="356" key="GridCell.Tab.1.bottom" timestamp="1595167736122">
+      <screen x="0" y="0" width="2194" height="1204" />
     </state>
     <state width="1150" height="291" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1595145634387" />
-    <state width="1150" height="291" key="GridCell.Tab.1.center" timestamp="1595145634387">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1694" height="356" key="GridCell.Tab.1.bottom/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1595167736122" />
+    <state width="1694" height="356" key="GridCell.Tab.1.center" timestamp="1595167736122">
+      <screen x="0" y="0" width="2194" height="1204" />
     </state>
     <state width="1150" height="291" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1595145634387" />
-    <state width="1150" height="291" key="GridCell.Tab.1.left" timestamp="1595145634387">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1694" height="356" key="GridCell.Tab.1.center/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1595167736122" />
+    <state width="1694" height="356" key="GridCell.Tab.1.left" timestamp="1595167736122">
+      <screen x="0" y="0" width="2194" height="1204" />
     </state>
     <state width="1150" height="291" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1595145634387" />
-    <state width="1150" height="291" key="GridCell.Tab.1.right" timestamp="1595145634387">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1694" height="356" key="GridCell.Tab.1.left/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1595167736122" />
+    <state width="1694" height="356" key="GridCell.Tab.1.right" timestamp="1595167736122">
+      <screen x="0" y="0" width="2194" height="1204" />
     </state>
     <state width="1150" height="291" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1595145634387" />
+    <state width="1694" height="356" key="GridCell.Tab.1.right/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1595167736122" />
     <state width="1150" height="378" key="GridCell.Tab.2.bottom" timestamp="1595040714493" />
     <state width="1150" height="378" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1595040714493" />
     <state width="1150" height="378" key="GridCell.Tab.2.center" timestamp="1595040714493" />
@@ -468,12 +454,16 @@
     <state width="1150" height="378" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1595040714493" />
     <state width="1150" height="378" key="GridCell.Tab.2.right" timestamp="1595040714493" />
     <state width="1150" height="378" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1595040714493" />
-    <state x="270" y="56" key="SettingsEditor" timestamp="1595040714493" />
+    <state x="270" y="56" key="SettingsEditor" timestamp="1595167732920">
+      <screen x="0" y="0" width="2194" height="1204" />
+    </state>
     <state x="270" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1595040714493" />
-    <state x="494" y="199" key="git4idea.merge.GitMergeDialog" timestamp="1595084342028">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="270" y="56" key="SettingsEditor/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1595167732920" />
+    <state x="706" y="291" key="git4idea.merge.GitMergeDialog" timestamp="1595157475063">
+      <screen x="0" y="0" width="2194" height="1204" />
     </state>
     <state x="494" y="199" key="git4idea.merge.GitMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1595084342028" />
+    <state x="706" y="291" key="git4idea.merge.GitMergeDialog/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1595157475063" />
     <state x="460" y="199" key="git4idea.merge.GitPullDialog" timestamp="1595084329947">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -486,9 +476,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1595142809421" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1595126006906">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="616" y="212" width="960" height="991" key="search.everywhere.popup" timestamp="1595164114078">
+      <screen x="0" y="0" width="2194" height="1204" />
     </state>
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1595126006906" />
+    <state x="616" y="212" width="960" height="991" key="search.everywhere.popup/922.2160.1536.822/0.0.2194.1204@0.0.2194.1204" timestamp="1595164114078" />
   </component>
 </project>

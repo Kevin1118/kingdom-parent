@@ -388,6 +388,8 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
 
                 OrderVo orderVo = new OrderVo();
                 orderVo.setId(order.getId());
+                orderVo.setAccountno(order.getAccountno());
+                orderVo.setConsultantid(order.getConsultantid());
                 orderVo.setOrderid(order.getOrderid());
                 orderVo.setProductid(order.getProductid());
                 orderVo.setSum((float) order.getSum());
@@ -410,6 +412,9 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
                 orderVo.setOrderid(order.getOrderid());
                 orderVo.setProductid(order.getProductid());
                 orderVo.setSum((float) order.getSum());
+                orderVo.setAccountno(order.getAccountno());
+                orderVo.setConsultantid(order.getConsultantid());
+                orderVo.setPercent(order.getPercent());
                 orderVo.setProductname(productName);
                 orderVo.setExpectedyield(expectedYield);
                 orderVo.setStatus(order.getStatus());
@@ -443,15 +448,12 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
             for (Order order : sellList) {
                 HashMap product = getProductCache(order.getProductid());
                 String productName = product.get("productName").toString();
-                BigDecimal expected = (BigDecimal) product.get("expectedYield");
-                float expectedYield = (float) (order.getSum() * expected.floatValue() * 0.01f);
                 OrderVo orderVo = new OrderVo();
                 orderVo.setId(order.getId());
                 orderVo.setOrderid(order.getOrderid());
                 orderVo.setProductid(order.getProductid());
                 orderVo.setSum((float) order.getSum());
                 orderVo.setProductname(productName);
-                orderVo.setExpectedyield(expectedYield);
                 orderVo.setStatus(order.getStatus());
                 orderVo.setTransactiondate(order.getTransactiondate());
                 sellTransactionListVo.add(orderVo);
@@ -479,15 +481,15 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
                 if (product == null) {
                     product = initProductCache(productId);
                 }
-                    int peopleCount = (int) product.get("peopleCount");
-                    int moneyCount = (int) product.get("moneyCount");
-                    product.put("peopleCount", peopleCount + 1);
-                    product.put("moneyCount", moneyCount + sum);
-                    redisTemplate.opsForValue().set(RedisKeyUtil.getProductKey(productId), product);
-                insertRecord(order,"产品买入",null,(int) order.getSum());
-            } else if (status == APPROVAL_SELL){
+                int peopleCount = (int) product.get("peopleCount");
+                int moneyCount = (int) product.get("moneyCount");
+                product.put("peopleCount", peopleCount + 1);
+                product.put("moneyCount", moneyCount + sum);
+                redisTemplate.opsForValue().set(RedisKeyUtil.getProductKey(productId), product);
+                insertRecord(order, "产品买入", null, (int) order.getSum());
+            } else if (status == APPROVAL_SELL) {
                 orderMapper.updateOrderStatus(id, WAIT_TO_SELL);
-                insertRecord(order,"产品卖出",null,(int) order.getSum());
+                insertRecord(order, "产品卖出", null, (int) order.getSum());
             }
 
         }
@@ -540,12 +542,14 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
                             property.setAmount(amount);
                             property.setUpdatetime((int) (System.currentTimeMillis() / 1000));
                             property.setStatus(0);
-                            propertyMapper.insertProperty(property);
+                            int rows=propertyMapper.insertProperty(property);
+                            System.out.println("null"+rows);
                             insertRecord(order, "股票买入", property, amount * price / STOCK_AMOUNT_LIMIT);
                         } else {
                             propertyMysql.setAmount(propertyMysql.getAmount() + amount);
                             propertyMysql.setUpdatetime((int) (System.currentTimeMillis() / 1000));
-                            propertyMapper.updatePropertyAmount(propertyMysql.getPropertyid(), propertyMysql.getAmount(), propertyMysql.getUpdatetime());
+                            int rows=propertyMapper.updatePropertyAmount(propertyMysql.getPropertyid(), propertyMysql.getAmount(), propertyMysql.getUpdatetime());
+                            System.out.println("notnull"+rows);
                             propertyMysql.setAmount(amount);
                             insertRecord(order, "股票买入", propertyMysql, amount * price / STOCK_AMOUNT_LIMIT);
                         }
@@ -694,15 +698,16 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
 
     /**
      * 临时方案，解决无法注入userService
+     *
      * @param userid
      * @param topUpMoney
      * @return
      */
     public int topUpUser(Integer userid, double topUpMoney) {
-        IndependentAccount independentAccount=userMapper.selectIndependetAccountById(userid);
-        double oldIndependentBalance=independentAccount.getIndependentbalance();
-        double newIndependentBalance=topUpMoney+oldIndependentBalance;
-        return userMapper.updateIndependentBalance(independentAccount.getUserid(),newIndependentBalance);
+        IndependentAccount independentAccount = userMapper.selectIndependetAccountById(userid);
+        double oldIndependentBalance = independentAccount.getIndependentbalance();
+        double newIndependentBalance = topUpMoney + oldIndependentBalance;
+        return userMapper.updateIndependentBalance(independentAccount.getUserid(), newIndependentBalance);
     }
 
     public List<ReturnDetailDTO> searchUserReturnDetail(Integer userId) {
@@ -717,12 +722,12 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
         HashSet<String> set = new HashSet<>(16);
         //
 
-        for(Property p:propertyList){
-            map.put(p.getCode(),p.getAmount());
+        for (Property p : propertyList) {
+            map.put(p.getCode(), p.getAmount());
             set.add(p.getOrderid());
         }
 
-        for (String s:set){
+        for (String s : set) {
             String orderId = s;
             Order order = userMapper.selectOrderByOrderId(orderId);
             double sum = order.getSum();
@@ -735,7 +740,7 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
 
             //查询出组合产品中 股票所占的份额
             List<ProductStockDetail> productStockDetailList = productMapper.selectStockProportionFromDetail(productId);
-            for(ProductStockDetail psd:productStockDetailList){
+            for (ProductStockDetail psd : productStockDetailList) {
                 ReturnDetailDTO dto = new ReturnDetailDTO();
                 dto.setProductName(product.getName());
                 dto.setType("股票");
@@ -745,7 +750,7 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
                 dto.setAmount(map.get(dto.getCode()));
 
                 //单一产品买入金额 = 下单金额 * 股票比例 * 单个股票的比例
-                double buyInAmount = sum * stockAmount*0.01 * psd.getProportion().doubleValue();
+                double buyInAmount = sum * stockAmount * 0.01 * psd.getProportion().doubleValue();
                 //计算单一产品当前持仓
                 StockAlternate stockValueNow = userMapper.selectValueNowByStockCode(psd.getStockCode());
                 //持有份额 * 当前市值 = 当前持仓金额
@@ -759,14 +764,14 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
                 dto.setAmountOfReturnOne(d - buyInAmount);
 
                 //计算收益率
-                dto.setRateOfReturn(dto.getAmountOfReturnOne()/buyInAmount);
+                dto.setRateOfReturn(dto.getAmountOfReturnOne() / buyInAmount);
 
                 list.add(dto);
             }
 
             //查询出组合产品中 基金所占的份额
             List<ProductFundDetail> ProductFundDetailList = productMapper.selectFundProportionFromDetail(productId);
-            for(ProductFundDetail pfd:ProductFundDetailList){
+            for (ProductFundDetail pfd : ProductFundDetailList) {
                 ReturnDetailDTO dto = new ReturnDetailDTO();
                 dto.setProductName(product.getName());
                 dto.setType("基金");
@@ -776,7 +781,7 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
                 dto.setAmount(map.get(pfd.getFundCode()));
 
                 //单一产品买入金额 = 下单金额 * 股票比例 * 单个股票的比例
-                double buyInAmount = sum * fundAmount*0.01 * pfd.getProportion().doubleValue();
+                double buyInAmount = sum * fundAmount * 0.01 * pfd.getProportion().doubleValue();
 
                 //计算单一产品当前持仓
                 FundAlternate fundValueNow = userMapper.selectValueNowByFundCode(pfd.getFundCode());
@@ -790,15 +795,12 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
                 dto.setAmountOfReturnOne(d - buyInAmount);
 
                 //计算收益率
-                dto.setRateOfReturn(dto.getAmountOfReturnOne()/buyInAmount);
+                dto.setRateOfReturn(dto.getAmountOfReturnOne() / buyInAmount);
 
                 list.add(dto);
             }
 
         }
-
-
-
 
 
         return list;
@@ -859,8 +861,8 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
                     resultList.add(alternate);
                 }
             }
-            result.put(product.getName(),resultList);
-            result.put(product.getProductid().toString(),product.getName());
+            result.put(product.getName(), resultList);
+            result.put(product.getProductid().toString(), product.getName());
         }
         result.put("adjustThreshold", ADJUST_THRESHOLD);
         return result;
@@ -892,33 +894,33 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
     @Override
     public ResultCode changeRisk(int productId, String oldCode, String newCode) {
         //卖出所有人的该股票，金额购买新股票，剩余钱购买货币基金
-        List<String> codes=new ArrayList<>();
+        List<String> codes = new ArrayList<>();
         codes.add(oldCode);
         codes.add(newCode);
-        List<StockAlternate> stockAlternates=productMapper.selectStockAlternate(codes);
+        List<StockAlternate> stockAlternates = productMapper.selectStockAlternate(codes);
         StockAlternate oldStock;
         StockAlternate newStock;
-        if (stockAlternates.get(0).getCode().equals(oldCode)){
-            oldStock=userMapper.selectValueNowByStockCode(stockAlternates.get(0).getCode());
-            newStock=userMapper.selectValueNowByStockCode(stockAlternates.get(1).getCode());
-        }else {
-            oldStock=userMapper.selectValueNowByStockCode(stockAlternates.get(1).getCode());
-            newStock=userMapper.selectValueNowByStockCode(stockAlternates.get(0).getCode());
+        if (stockAlternates.get(0).getCode().equals(oldCode)) {
+            oldStock = userMapper.selectValueNowByStockCode(stockAlternates.get(0).getCode());
+            newStock = userMapper.selectValueNowByStockCode(stockAlternates.get(1).getCode());
+        } else {
+            oldStock = userMapper.selectValueNowByStockCode(stockAlternates.get(1).getCode());
+            newStock = userMapper.selectValueNowByStockCode(stockAlternates.get(0).getCode());
         }
 
 
-        List<SignAccount> signAccounts=consultantMapper.selectSignAccountByProductId(productId);
-        for (SignAccount account:signAccounts){
-            Property property=propertyMapper.loadPropertyByCode(account.getSignaccountid(),oldCode);
-            Order order=orderMapper.selectByOrderId(property.getOrderid());
+        List<SignAccount> signAccounts = consultantMapper.selectSignAccountByProductId(productId);
+        for (SignAccount account : signAccounts) {
+            Property property = propertyMapper.loadPropertyByCode(account.getSignaccountid(), oldCode);
+            Order order = orderMapper.selectByOrderId(property.getOrderid());
             //卖出金额
-            float sum=property.getAmount()*oldStock.getValueNow().floatValue()*STOCK_AMOUNT_LIMIT;
-            topUpUser(account.getUserid(),sum);
-            propertyMapper.updatePropertyAmount(property.getPropertyid(),0,(int) (System.currentTimeMillis()/1000));
+            float sum = property.getAmount() * oldStock.getValueNow().floatValue() * STOCK_AMOUNT_LIMIT;
+            topUpUser(account.getUserid(), sum);
+            propertyMapper.updatePropertyAmount(property.getPropertyid(), 0, (int) (System.currentTimeMillis() / 1000));
             int amount = Math.round(sum / newStock.getValueNow().floatValue());
             //剩余金额
-            sum=sum-amount*newStock.getValueNow().floatValue();
-            Property propertyBuy=new Property();
+            sum = sum - amount * newStock.getValueNow().floatValue();
+            Property propertyBuy = new Property();
             propertyBuy.setSignaccountid(account.getSignaccountid());
             propertyBuy.setOrderid(property.getOrderid());
             propertyBuy.setUserid(property.getUserid());
@@ -933,8 +935,8 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
 
             //剩余金额购买货币基金
             if (sum > 0) {
-                FundAlternate fundAlternate=userMapper.selectValueNowByFundCode(MONEY_FUND_CODE);
-                amount = (int) Math.round(sum /fundAlternate.getValueNow().floatValue());
+                FundAlternate fundAlternate = userMapper.selectValueNowByFundCode(MONEY_FUND_CODE);
+                amount = (int) Math.round(sum / fundAlternate.getValueNow().floatValue());
                 Property propertyMysql = propertyMapper.loadPropertyByCode(order.getAccountno(), MONEY_FUND_CODE);
                 if (propertyMysql == null) {
                     property = new Property();
@@ -960,7 +962,7 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
 
         }
         //修改产品明细
-        productMapper.updateProductStockDetail(productId,oldCode,newCode,newStock.getName());
+        productMapper.updateProductStockDetail(productId, oldCode, newCode, newStock.getName());
 
         return ResultCode.SUCCESS;
     }
@@ -969,35 +971,37 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
     @Override
     public Map selectCounts(int consultantId) {
         //待审批，待买入，待卖出
-        HashMap<String,Integer> result=new HashMap<>(16);
-        int approvalBuy=consultantMapper.selectCountsByStatus(consultantId,APPROVAL_BUY);
-        int approvalSell=consultantMapper.selectCountsByStatus(consultantId,APPROVAL_SELL);
-        result.put("待审批",approvalBuy+approvalSell);
-        int buy=consultantMapper.selectCountsByStatus(consultantId,WAIT_TO_BUY);
-        result.put("待买入",buy);
-        int sell=consultantMapper.selectCountsByStatus(consultantId,WAIT_TO_SELL);
-        result.put("待卖出",sell);
+        HashMap<String, Integer> result = new HashMap<>(16);
+        int approvalBuy = consultantMapper.selectCountsByStatus(consultantId, APPROVAL_BUY);
+        int approvalSell = consultantMapper.selectCountsByStatus(consultantId, APPROVAL_SELL);
+        result.put("待审批", approvalBuy + approvalSell);
+        int buy = consultantMapper.selectCountsByStatus(consultantId, WAIT_TO_BUY);
+        result.put("待买入", buy);
+        int sell = consultantMapper.selectCountsByStatus(consultantId, WAIT_TO_SELL);
+        result.put("待卖出", sell);
         //查询历史记录
-        Calendar calendar=Calendar.getInstance();
-        List<Product> products=productMapper.selectProductByConsultantId(consultantId);
-        for (Product product:products){
+        Calendar calendar = Calendar.getInstance();
+        List<Product> products = productMapper.selectProductByConsultantId(consultantId);
+        for (Product product : products) {
             calendar.setTime(new Date());
-            calendar.add(Calendar.DATE,1);
-            for (int i=0;i<10;i++){
-                calendar.add(Calendar.DATE,-1);
-                String date=new SimpleDateFormat("yyyy-MM-dd").format(calendar.getTime());
-                String redisKey=RedisKeyUtil.getProductKey(product.getProductid(),date);
-                HashMap productRedis=(HashMap) redisTemplate.opsForValue().get(redisKey);
-                if (productRedis==null){
+            calendar.add(Calendar.DATE, 1);
+            for (int i = 0; i < 10; i++) {
+
+                calendar.add(Calendar.DATE, -1);
+                String date = new SimpleDateFormat("yyyy-MM-dd").format(calendar.getTime());
+                String redisKey = RedisKeyUtil.getProductKey(product.getProductid(), date);
+                HashMap productRedis = (HashMap) redisTemplate.opsForValue().get(redisKey);
+                if (productRedis == null) {
                     continue;
                 }
-                String peopleCount=productRedis.get("peopleCount").toString();
-                Integer dateResult=result.get(date);
-                if (dateResult==null){
-                    result.put(date,Integer.parseInt(peopleCount));
-                }else {
-                    result.put(date,Integer.parseInt(peopleCount)+dateResult);
+                String peopleCount = productRedis.get("peopleCount").toString();
+                Integer dateResult = result.get(date);
+                if (dateResult == null) {
+                    result.put(date, Integer.parseInt(peopleCount));
+                } else {
+                    result.put(date, Integer.parseInt(peopleCount) + dateResult);
                 }
+                System.out.println(date + "," + result.get(date));
 
 
             }
@@ -1009,106 +1013,105 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
 
     @Override
     public Map selectProductAndRatio(int consultanId) {
-        Map product=new HashMap();
-        List<Product> lp=productMapper.selectProductByConsultantId(consultanId);
-        int productId=0;
-        String name=null;
-        int skAmount=0;
-        int fdAmount=0;
-        for(int i=0;i<lp.size();i++){
-            Map content=new HashMap();
-            Map content1=new HashMap();
-            Map content2=new HashMap();
-            productId= lp.get(i).getProductid();
-            name=lp.get(i).getName();
-            fdAmount=lp.get(i).getFundamount();
-            skAmount=lp.get(i).getStockamount();
-            List<ProductFundDetail> lpfd=productMapper.selectFundFromDetail(productId);
-            String fdName=null;
-            String fdCode=null;
+        Map product = new HashMap();
+        List<Product> lp = productMapper.selectProductByConsultantId(consultanId);
+        int productId = 0;
+        String name = null;
+        int skAmount = 0;
+        int fdAmount = 0;
+        for (int i = 0; i < lp.size(); i++) {
+            Map content = new HashMap();
+            Map content1 = new HashMap();
+            Map content2 = new HashMap();
+            productId = lp.get(i).getProductid();
+            name = lp.get(i).getName();
+            fdAmount = lp.get(i).getFundamount();
+            skAmount = lp.get(i).getStockamount();
+            List<ProductFundDetail> lpfd = productMapper.selectFundFromDetail(productId);
+            String fdName = null;
+            String fdCode = null;
             Double fdProportion;
-            for (int j=0;j<lpfd.size();j++){
-                fdName=lpfd.get(j).getFundName();
-                fdCode=lpfd.get(j).getFundCode();
-                fdProportion=lpfd.get(j).getProportion().doubleValue()*fdAmount*0.01;
-                content1.put(fdName,fdCode+",    "+fdProportion);
+            for (int j = 0; j < lpfd.size(); j++) {
+                fdName = lpfd.get(j).getFundName();
+                fdCode = lpfd.get(j).getFundCode();
+                fdProportion = lpfd.get(j).getProportion().doubleValue() * fdAmount * 0.01;
+                content1.put(fdName, fdCode + ",    " + fdProportion);
             }
-            content.put("基金",content1);
-            List<ProductStockDetail> lpsk=productMapper.selectStockFromDetail(productId);
-            String skName=null;
-            String skCode=null;
+            content.put("基金", content1);
+            List<ProductStockDetail> lpsk = productMapper.selectStockFromDetail(productId);
+            String skName = null;
+            String skCode = null;
             Double skProportion;
-            for (int j=0;j<lpsk.size();j++){
-                skName=lpsk.get(j).getStockName();
-                skCode=lpsk.get(j).getStockCode();
-                skProportion=lpsk.get(j).getProportion().doubleValue()*fdAmount*0.01;
-                content2.put(skName,skCode+",    "+skProportion);
+            for (int j = 0; j < lpsk.size(); j++) {
+                skName = lpsk.get(j).getStockName();
+                skCode = lpsk.get(j).getStockCode();
+                skProportion = lpsk.get(j).getProportion().doubleValue() * fdAmount * 0.01;
+                content2.put(skName, skCode + ",    " + skProportion);
             }
-            content.put("股票",content2);
-            product.put(name,content);
+            content.put("股票", content2);
+            product.put(name, content);
         }
         return product;
     }
 
     @Override
-    public Map selectProductAndRatioNow(int consultanId,int productId) {
-        Map product=new HashMap();
-        List<SignAccount> lsa=userMapper.selectAccountByProductID(productId);
-        int accountNo=0;
-        double sum=0;
-        for(int i=0;i<lsa.size();i++){
-            accountNo=lsa.get(i).getSignaccountid();
-            String code=null;
-            Integer amount=0;
-            String type=null;
-            String name=null;
-            double valueNow=0;
-            double s=0;
-            List<Property> lpy=propertyMapper.selectPropertyByAccountNo(accountNo);
-                for (int j=0;j<lpy.size();j++){
-                    code=lpy.get(j).getCode();
-                    amount=lpy.get(j).getAmount();
-                    type=lpy.get(j).getType();
-                    //如果是股票，去股票备选库查询现值
-                    if(type.equals("股票")){
-                        valueNow=consultantMapper.selectStockValue(code).getValueNow().doubleValue();
-                    }
-                    else{
-                        valueNow=consultantMapper.selectFundValue(code).getValueNow().doubleValue();
-                    }
-                    s=amount*valueNow;
-                    System.out.println(s);
-                    sum+=s;
+    public Map selectProductAndRatioNow(int consultanId, int productId) {
+        Map product = new HashMap();
+        List<SignAccount> lsa = userMapper.selectAccountByProductID(productId);
+        int accountNo = 0;
+        double sum = 0;
+        for (int i = 0; i < lsa.size(); i++) {
+            accountNo = lsa.get(i).getSignaccountid();
+            String code = null;
+            Integer amount = 0;
+            String type = null;
+            String name = null;
+            double valueNow = 0;
+            double s = 0;
+            List<Property> lpy = propertyMapper.selectPropertyByAccountNo(accountNo);
+            for (int j = 0; j < lpy.size(); j++) {
+                code = lpy.get(j).getCode();
+                amount = lpy.get(j).getAmount();
+                type = lpy.get(j).getType();
+                //如果是股票，去股票备选库查询现值
+                if (type.equals("股票")) {
+                    valueNow = consultantMapper.selectStockValue(code).getValueNow().doubleValue();
+                } else {
+                    valueNow = consultantMapper.selectFundValue(code).getValueNow().doubleValue();
                 }
-                System.out.println(sum);
-                double percent=0;
-                for (int j=0;j<lpy.size();j++){
-                    Map content=new HashMap();
-                    String code1=lpy.get(j).getCode();
-                    int amount1=lpy.get(j).getAmount();
-                    String name1=lpy.get(j).getPropertyname();
-                    String type1=lpy.get(j).getType();
-                    String type2=null;
-                    //如果是股票，去股票备选库查询现值
-                    if(type1.equals("股票")){
-                        valueNow=consultantMapper.selectStockValue(code1).getValueNow().doubleValue();
-                        type2="Stock";
-                    }
-                    //不是，则取基金备选库查询
-                    else{
-                        valueNow=consultantMapper.selectFundValue(code1).getValueNow().doubleValue();
-                        type2="Fund";
-                    }
-                    s=amount1*valueNow;
-                    percent=s/sum;
-
-                    content.put("propertyType",type2);
-                    content.put("propertyName",name1);
-                    content.put("propertyCode",code1);
-                    content.put("proportion",percent);
-
-                    product.put(name1,content);
+                s = amount * valueNow;
+                System.out.println(s);
+                sum += s;
+            }
+            System.out.println(sum);
+            double percent = 0;
+            for (int j = 0; j < lpy.size(); j++) {
+                Map content = new HashMap();
+                String code1 = lpy.get(j).getCode();
+                int amount1 = lpy.get(j).getAmount();
+                String name1 = lpy.get(j).getPropertyname();
+                String type1 = lpy.get(j).getType();
+                String type2 = null;
+                //如果是股票，去股票备选库查询现值
+                if (type1.equals("股票")) {
+                    valueNow = consultantMapper.selectStockValue(code1).getValueNow().doubleValue();
+                    type2 = "Stock";
                 }
+                //不是，则取基金备选库查询
+                else {
+                    valueNow = consultantMapper.selectFundValue(code1).getValueNow().doubleValue();
+                    type2 = "Fund";
+                }
+                s = amount1 * valueNow;
+                percent = s / sum;
+
+                content.put("propertyType", type2);
+                content.put("propertyName", name1);
+                content.put("propertyCode", code1);
+                content.put("proportion", percent);
+
+                product.put(name1, content);
+            }
 
 
         }
