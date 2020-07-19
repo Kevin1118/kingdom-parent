@@ -5,6 +5,7 @@ import com.kingdom.commonutils.CommonUtils;
 import com.kingdom.commonutils.RedisKeyUtil;
 import com.kingdom.dao.ProductMapper;
 import com.kingdom.dao.UserMapper;
+import com.kingdom.dto.user.OrderDetailByUserDTO;
 import com.kingdom.dto.user.OrderDetailDTO;
 import com.kingdom.dto.user.OrderDetailValueNowAllDTO;
 import com.kingdom.dto.user.ReturnDetailDTO;
@@ -513,6 +514,12 @@ public class UserServiceImpl implements UserService {
         result.setFundValueNowAll(f);
 
         return result;
+    }
+
+    @Override
+    public List<OrderDetailByUserDTO> searchOrderDetailByUser01(Integer userId) {
+        List<OrderDetailByUserDTO> list = userMapper.selectOrderDetailByUser(userId);
+        return list;
     }
 
 

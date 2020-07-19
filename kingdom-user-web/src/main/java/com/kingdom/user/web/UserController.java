@@ -338,5 +338,18 @@ public class UserController {
         return ResultGenerator.genSuccessResult(userService.searchValueNowAll(user.getUserid()));
     }
 
+    /**
+     * @author HuangJingchao
+     * @date 2020/7/19 22:58
+     */
+    @ApiOperation("投资人交易订单明细01")
+    @ResponseBody
+    @GetMapping("/user/searchOrderDetailByUser01")
+    public Result searchOrderDetailByUser01(){
+        User user=hostHolder.getUser();
+        return ResultGenerator.genSuccessResult(userService.searchOrderDetailByUser01(user.getUserid()));
+    }
+
+
 }
 //查看协议  ，保存协议，买入，卖出

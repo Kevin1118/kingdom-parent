@@ -173,4 +173,17 @@
         code = #{fundCode,jdbcType=VARCHAR}
     </select>
 
+    <select id="selectOrderDetailByUser" parameterType="java.lang.Integer" resultType="com.kingdom.dto.user.OrderDetailByUserDTO">
+        SELECT
+        productName,type,consultant_record.sum as sum,submitTime,code,propertyName
+        FROM
+        `order`
+        LEFT JOIN
+        consultant_record
+        ON
+        `order`.orderId = consultant_record.orderId
+        WHERE
+        userId = #{userId,jdbcType=INTEGER}
+    </select>
+
 </mapper>

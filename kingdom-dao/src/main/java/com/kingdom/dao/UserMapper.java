@@ -1,5 +1,6 @@
 package com.kingdom.dao;
 
+import com.kingdom.dto.user.OrderDetailByUserDTO;
 import com.kingdom.pojo.*;
 import org.apache.ibatis.annotations.Param;
 
@@ -213,4 +214,10 @@ public interface UserMapper {
      */
     FundAlternate selectValueNowByFundCode(String fundCode);
 
+    /**
+     * 查投顾记录封装成交易明细
+     * @param userId
+     * @return List
+     */
+    List<OrderDetailByUserDTO> selectOrderDetailByUser(Integer userId);
 }

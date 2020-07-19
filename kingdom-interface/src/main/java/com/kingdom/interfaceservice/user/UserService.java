@@ -1,5 +1,6 @@
 package com.kingdom.interfaceservice.user;
 
+import com.kingdom.dto.user.OrderDetailByUserDTO;
 import com.kingdom.dto.user.OrderDetailDTO;
 import com.kingdom.dto.user.OrderDetailValueNowAllDTO;
 import com.kingdom.dto.user.ReturnDetailDTO;
@@ -189,4 +190,11 @@ public interface UserService {
      * @return DTO
      */
     OrderDetailValueNowAllDTO searchValueNowAll(Integer userId);
+
+    /**
+     * 投资人查询交易明细
+     * @param userId
+     * @return List<OrderDetailDTO>
+     */
+    List<OrderDetailByUserDTO> searchOrderDetailByUser01(Integer userId);
 }
