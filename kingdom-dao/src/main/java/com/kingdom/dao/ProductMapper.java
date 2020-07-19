@@ -121,6 +121,15 @@ public interface ProductMapper {
     List<StockAlternate> selectStockAlternate(List<String> stockCodes);
 
 
+    /**
+     * 更换股票详情
+     * @param productId 产品id
+     * @param stockCode 股票代码
+     * @param stockName 股票名字
+     * @param oldCode 旧股票代码
+     * @return 操作行数
+     */
+    int updateProductStockDetail(int productId,String oldCode,String stockCode,String stockName);
 
     /**
      * 查询股票名称及其所占比例返 根据产品id

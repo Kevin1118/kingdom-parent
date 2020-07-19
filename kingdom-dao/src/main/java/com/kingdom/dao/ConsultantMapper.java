@@ -1,6 +1,10 @@
 package com.kingdom.dao;
 
 import com.kingdom.pojo.Consultant;
+import com.kingdom.pojo.ConsultantRecord;
+import com.kingdom.pojo.SignAccount;
+
+import java.util.List;
 import com.kingdom.pojo.FundAlternate;
 import com.kingdom.pojo.StockAlternate;
 
@@ -69,6 +73,38 @@ public interface ConsultantMapper {
      */
     int updatePayPassword(int consultantId,String payPassword,String payPasswordSalt);
 
+    /**
+     * 插入操作记录
+     * @param record 记录
+     * @return 操作行数
+     */
+    int insertRecord(ConsultantRecord record);
+
+    /**
+     * 查询交易记录
+     * @param orderId 订单编号
+     * @return 交易记录
+     */
+    List<ConsultantRecord> loadRecord(String orderId);
+
+
+    /**
+     * 通过产品id查找所有签约账号
+     * @param productId
+     * @return
+     */
+    List<SignAccount> selectSignAccountByProductId(int productId);
+
+
+    /**
+     * 查询不同状态的订单
+     * @param consultantId 投顾id
+     * @param status 状态
+     * @return 数量
+     */
+    int selectCountsByStatus(int consultantId,int status);
+
+    int selectRecordCounts(int consultantId,int status);
     /**
      * 查询基金现值
      * @param code

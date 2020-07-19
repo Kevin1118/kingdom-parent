@@ -7,16 +7,18 @@ import com.kingdom.commonutils.CommonUtils;
 import com.kingdom.commonutils.Constant;
 import com.kingdom.commonutils.RedisKeyUtil;
 import com.kingdom.dao.*;
+import com.kingdom.dao.*;
+import com.kingdom.dto.user.ReturnDetailDTO;
 import com.kingdom.interfaceservice.consultant.ConsultantService;
 import com.kingdom.pojo.*;
 import com.kingdom.result.ResultCode;
 import com.kingdom.vojo.product.OrderVo;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -377,15 +379,17 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
         if (type == APPROVAL) {
             //查询买入审批列表
             buyList = orderMapper.selectOrderByConsultantIdAndStatus(consultantId, APPROVAL_BUY);
-            List<OrderVo> buyListVo=new ArrayList<>();
-            for (Order order:buyList){
-                HashMap product=getProductCache(order.getProductid());
-                String productName=product.get("productName").toString();
-                BigDecimal expected= (BigDecimal) product.get("expectedYield");
-                float expectedYield= (float) (order.getSum()*expected.floatValue()*0.01f);
+            List<OrderVo> buyListVo = new ArrayList<>();
+            for (Order order : buyList) {
+                HashMap product = getProductCache(order.getProductid());
+                String productName = product.get("productName").toString();
+                BigDecimal expected = (BigDecimal) product.get("expectedYield");
+                float expectedYield = (float) (order.getSum() * expected.floatValue() * 0.01f);
 
-                OrderVo orderVo=new OrderVo();
+                OrderVo orderVo = new OrderVo();
                 orderVo.setId(order.getId());
+                orderVo.setAccountno(order.getAccountno());
+                orderVo.setConsultantid(order.getConsultantid());
                 orderVo.setOrderid(order.getOrderid());
                 orderVo.setProductid(order.getProductid());
                 orderVo.setSum((float) order.getSum());
@@ -397,17 +401,20 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
             }
             //查询卖出审批列表
             sellList = orderMapper.selectOrderByConsultantIdAndStatus(consultantId, APPROVAL_SELL);
-            List<OrderVo> sellListVo=new ArrayList<>();
-            for (Order order:sellList){
-                HashMap product=getProductCache(order.getProductid());
-                String productName=product.get("productName").toString();
-                BigDecimal expected= (BigDecimal) product.get("expectedYield");
-                float expectedYield= (float) (order.getSum()*expected.floatValue()*0.01f);
-                OrderVo orderVo=new OrderVo();
+            List<OrderVo> sellListVo = new ArrayList<>();
+            for (Order order : sellList) {
+                HashMap product = getProductCache(order.getProductid());
+                String productName = product.get("productName").toString();
+                BigDecimal expected = (BigDecimal) product.get("expectedYield");
+                float expectedYield = (float) (order.getSum() * expected.floatValue() * 0.01f);
+                OrderVo orderVo = new OrderVo();
                 orderVo.setId(order.getId());
                 orderVo.setOrderid(order.getOrderid());
                 orderVo.setProductid(order.getProductid());
                 orderVo.setSum((float) order.getSum());
+                orderVo.setAccountno(order.getAccountno());
+                orderVo.setConsultantid(order.getConsultantid());
+                orderVo.setPercent(order.getPercent());
                 orderVo.setProductname(productName);
                 orderVo.setExpectedyield(expectedYield);
                 orderVo.setStatus(order.getStatus());
@@ -419,13 +426,13 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
 
         } else {
             buyList = orderMapper.selectOrderByConsultantIdAndStatus(consultantId, WAIT_TO_BUY);
-            List<OrderVo> buyTransactionListVo=new ArrayList<>();
-            for (Order order:buyList){
-                HashMap product=getProductCache(order.getProductid());
-                String productName=product.get("productName").toString();
-                BigDecimal expected= (BigDecimal) product.get("expectedYield");
-                float expectedYield= (float) (order.getSum()*expected.floatValue()*0.01f);
-                OrderVo orderVo=new OrderVo();
+            List<OrderVo> buyTransactionListVo = new ArrayList<>();
+            for (Order order : buyList) {
+                HashMap product = getProductCache(order.getProductid());
+                String productName = product.get("productName").toString();
+                BigDecimal expected = (BigDecimal) product.get("expectedYield");
+                float expectedYield = (float) (order.getSum() * expected.floatValue() * 0.01f);
+                OrderVo orderVo = new OrderVo();
                 orderVo.setId(order.getId());
                 orderVo.setOrderid(order.getOrderid());
                 orderVo.setProductid(order.getProductid());
@@ -437,19 +444,16 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
                 buyTransactionListVo.add(orderVo);
             }
             sellList = orderMapper.selectOrderByConsultantIdAndStatus(consultantId, WAIT_TO_SELL);
-            List<OrderVo> sellTransactionListVo=new ArrayList<>();
-            for (Order order:sellList){
-                HashMap product=getProductCache(order.getProductid());
-                String productName=product.get("productName").toString();
-                BigDecimal expected= (BigDecimal) product.get("expectedYield");
-                float expectedYield= (float) (order.getSum()*expected.floatValue()*0.01f);
-                OrderVo orderVo=new OrderVo();
+            List<OrderVo> sellTransactionListVo = new ArrayList<>();
+            for (Order order : sellList) {
+                HashMap product = getProductCache(order.getProductid());
+                String productName = product.get("productName").toString();
+                OrderVo orderVo = new OrderVo();
                 orderVo.setId(order.getId());
                 orderVo.setOrderid(order.getOrderid());
                 orderVo.setProductid(order.getProductid());
                 orderVo.setSum((float) order.getSum());
                 orderVo.setProductname(productName);
-                orderVo.setExpectedyield(expectedYield);
                 orderVo.setStatus(order.getStatus());
                 orderVo.setTransactiondate(order.getTransactiondate());
                 sellTransactionListVo.add(orderVo);
@@ -462,40 +466,39 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
     }
 
 
-    /**
-     * 更新订单状态
-     *
-     * @param id     订单id
-     * @param status 状态
-     * @return
-     */
     @Override
-    public ResultCode updateOrderStatus(int id, int status, int productId, float sum) {
-        //判断当前审批订单是买入还是卖出，并修改为对应的状态
-        int rows;
-        if (status == APPROVAL_BUY) {
-            rows = orderMapper.updateOrderStatus(id, WAIT_TO_BUY);
-            HashMap product = getProductCache(productId);
-            if (product != null) {
-                product = initProductCache(productId);
+    public ResultCode updateOrderStatus(List<Order> orders) {
+        for (Order order : orders) {
+            int id = order.getId();
+            int productId = order.getProductid();
+            int sum = (int) order.getSum();
+            int status = order.getStatus();
+            //判断当前审批订单是买入还是卖出，并修改为对应的状态
+
+            if (status == APPROVAL_BUY) {
+                orderMapper.updateOrderStatus(id, WAIT_TO_BUY);
+                HashMap product = getProductCache(productId);
+                if (product == null) {
+                    product = initProductCache(productId);
+                }
                 int peopleCount = (int) product.get("peopleCount");
                 int moneyCount = (int) product.get("moneyCount");
                 product.put("peopleCount", peopleCount + 1);
                 product.put("moneyCount", moneyCount + sum);
                 redisTemplate.opsForValue().set(RedisKeyUtil.getProductKey(productId), product);
+                insertRecord(order, "产品买入", null, (int) order.getSum());
+            } else if (status == APPROVAL_SELL) {
+                orderMapper.updateOrderStatus(id, WAIT_TO_SELL);
+                insertRecord(order, "产品卖出", null, (int) order.getSum());
             }
-        } else {
-            rows = orderMapper.updateOrderStatus(id, WAIT_TO_SELL);
+
         }
-        if (rows == 1) {
-            return ResultCode.SUCCESS;
-        } else {
-            return ResultCode.MYSQL_CURD_ERROR;
-        }
+        return ResultCode.SUCCESS;
     }
 
     /**
      * 买入基金和股票
+     *
      * @param ids 订单
      * @return 响应码
      */
@@ -522,22 +525,34 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
             if (!stockCodes.isEmpty()) {
                 List<StockAlternate> stockPrices = productMapper.selectStockAlternate(stockCodes);
                 for (int i = 0; i < stockList.size(); i++) {
-                    float sum = oriSum * product.getStockamount() * stockList.get(i).getProportion().intValue() * 0.0001f;
+                    float sum = oriSum * product.getStockamount() * stockList.get(i).getProportion().floatValue() * 0.01f;
                     float price = stockPrices.get(i).getValueNow().floatValue() * STOCK_AMOUNT_LIMIT;
                     if (sum >= price) {
+                        Property propertyMysql = propertyMapper.loadPropertyByCode(order.getAccountno(), stockList.get(i).getStockCode());
                         int amount = Math.round(sum / price);
                         order.setSum(order.getSum() - amount * price / STOCK_AMOUNT_LIMIT);
-                        Property property = new Property();
-                        property.setSignaccountid(order.getAccountno());
-                        property.setOrderid(order.getOrderid());
-                        property.setType("股票");
-                        property.setCode(stockList.get(i).getStockCode());
-                        property.setPropertyname(stockList.get(i).getStockName());
-                        property.setAmount(amount);
-                        property.setUpdatetime((int) (System.currentTimeMillis() / 1000));
-                        property.setStatus(0);
-                        propertyMapper.insertProperty(property);
-
+                        if (propertyMysql == null) {
+                            Property property = new Property();
+                            property.setSignaccountid(order.getAccountno());
+                            property.setOrderid(order.getOrderid());
+                            property.setUserid(order.getUserid());
+                            property.setType("股票");
+                            property.setCode(stockList.get(i).getStockCode());
+                            property.setPropertyname(stockList.get(i).getStockName());
+                            property.setAmount(amount);
+                            property.setUpdatetime((int) (System.currentTimeMillis() / 1000));
+                            property.setStatus(0);
+                            int rows=propertyMapper.insertProperty(property);
+                            System.out.println("null"+rows);
+                            insertRecord(order, "股票买入", property, amount * price / STOCK_AMOUNT_LIMIT);
+                        } else {
+                            propertyMysql.setAmount(propertyMysql.getAmount() + amount);
+                            propertyMysql.setUpdatetime((int) (System.currentTimeMillis() / 1000));
+                            int rows=propertyMapper.updatePropertyAmount(propertyMysql.getPropertyid(), propertyMysql.getAmount(), propertyMysql.getUpdatetime());
+                            System.out.println("notnull"+rows);
+                            propertyMysql.setAmount(amount);
+                            insertRecord(order, "股票买入", propertyMysql, amount * price / STOCK_AMOUNT_LIMIT);
+                        }
                     }
 
 
@@ -555,21 +570,32 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
                 fundCodes.add(MONEY_FUND_CODE);
                 fundPrices = productMapper.selectFundAlternate(fundCodes);
                 for (int i = 0; i < fundList.size(); i++) {
-                    float sum = oriSum * product.getFundamount() * fundList.get(i).getProportion().floatValue() * 0.0001f;
+                    float sum = oriSum * product.getFundamount() * fundList.get(i).getProportion().floatValue() * 0.01f;
                     float price = fundPrices.get(i).getValueNow().floatValue() * FUND_AMOUNT_LIMIT;
                     if (sum >= price) {
+                        Property propertyMysql = propertyMapper.loadPropertyByCode(order.getAccountno(), fundList.get(i).getFundCode());
                         int amount = Math.round(sum / price);
                         order.setSum(order.getSum() - amount * price / FUND_AMOUNT_LIMIT);
-                        Property property = new Property();
-                        property.setSignaccountid(order.getAccountno());
-                        property.setOrderid(order.getOrderid());
-                        property.setType("基金");
-                        property.setCode(fundList.get(i).getFundCode());
-                        property.setPropertyname(fundList.get(i).getFundName());
-                        property.setAmount(amount);
-                        property.setUpdatetime((int) (System.currentTimeMillis() / 1000));
-                        property.setStatus(0);
-                        propertyMapper.insertProperty(property);
+                        if (propertyMysql == null) {
+                            Property property = new Property();
+                            property.setSignaccountid(order.getAccountno());
+                            property.setOrderid(order.getOrderid());
+                            property.setUserid(order.getUserid());
+                            property.setType("基金");
+                            property.setCode(fundList.get(i).getFundCode());
+                            property.setPropertyname(fundList.get(i).getFundName());
+                            property.setAmount(amount);
+                            property.setUpdatetime((int) (System.currentTimeMillis() / 1000));
+                            property.setStatus(0);
+                            propertyMapper.insertProperty(property);
+                            insertRecord(order, "基金买入", property, amount * price / STOCK_AMOUNT_LIMIT);
+                        } else {
+                            propertyMysql.setAmount(propertyMysql.getAmount() + amount);
+                            propertyMysql.setUpdatetime((int) (System.currentTimeMillis() / 1000));
+                            propertyMapper.updatePropertyAmount(propertyMysql.getPropertyid(), propertyMysql.getAmount(), propertyMysql.getUpdatetime());
+                            propertyMysql.setAmount(amount);
+                            insertRecord(order, "基金买入", propertyMysql, amount * price / STOCK_AMOUNT_LIMIT);
+                        }
                     }
 
                 }
@@ -581,16 +607,27 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
             //剩余金额购买货币基金
             if (order.getSum() > 0) {
                 int amount = (int) Math.round(order.getSum() / fundPrices.get(fundPrices.size() - 1).getValueNow().floatValue());
-                Property property = new Property();
-                property.setSignaccountid(order.getAccountno());
-                property.setOrderid(order.getOrderid());
-                property.setType("货币市场型");
-                property.setCode(MONEY_FUND_CODE);
-                property.setPropertyname(MONEY_FUND_NAME);
-                property.setAmount(amount);
-                property.setUpdatetime((int) (System.currentTimeMillis() / 1000));
-                property.setStatus(0);
-                propertyMapper.insertProperty(property);
+                Property propertyMysql = propertyMapper.loadPropertyByCode(order.getAccountno(), MONEY_FUND_CODE);
+                if (propertyMysql == null) {
+                    Property property = new Property();
+                    property.setSignaccountid(order.getAccountno());
+                    property.setOrderid(order.getOrderid());
+                    property.setUserid(order.getUserid());
+                    property.setType("货币市场型");
+                    property.setCode(MONEY_FUND_CODE);
+                    property.setPropertyname(MONEY_FUND_NAME);
+                    property.setAmount(amount);
+                    property.setUpdatetime((int) (System.currentTimeMillis() / 1000));
+                    property.setStatus(0);
+                    propertyMapper.insertProperty(property);
+                    insertRecord(order, "货币基金买入", property, amount);
+                } else {
+                    propertyMysql.setAmount(propertyMysql.getAmount() + amount);
+                    propertyMysql.setUpdatetime((int) (System.currentTimeMillis() / 1000));
+                    propertyMapper.updatePropertyAmount(propertyMysql.getPropertyid(), propertyMysql.getAmount(), propertyMysql.getUpdatetime());
+                    propertyMysql.setAmount(amount);
+                    insertRecord(order, "货币基金买入", propertyMysql, amount);
+                }
             }
 
 
@@ -602,160 +639,479 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
 
 
     /**
+     * 卖出基金股票
+     *
+     * @param ids 订单号
+     * @return 状态码
+     */
+    @Override
+    public ResultCode sellStockAndFund(List<Integer> ids) {
+
+        //查出所有订单详情。
+        List<Order> orders = orderMapper.selectByIds(ids);
+        for (Order order : orders) {
+            //逐一处理每个订单，查找出订单对应的持仓信息
+            List<ReturnDetailDTO> returnDetailDTOS = searchUserReturnDetail(order.getUserid());
+            for (ReturnDetailDTO returnDetailDTO : returnDetailDTOS) {
+                //处理每一个持仓记录
+                //从redis获取产品信息
+                HashMap product = getProductCache(order.getProductid());
+                if (product == null) {
+                    product = initProductCache(order.getProductid());
+                }
+                String productName = product.get("productName").toString();
+                //如果持仓信息产品名是卖出的产品，则继续处理
+                System.out.println(productName + " and " + returnDetailDTO.getProductName());
+                if (productName.equals(returnDetailDTO.getProductName())) {
+                    //卖出比例
+                    String percent = order.getPercent();
+                    //卖出的份额，取整
+                    int sellAmount = returnDetailDTO.getAmount() * Integer.parseInt(percent) / 100;
+                    //新建资产记录
+                    Property property = propertyMapper.loadPropertyByCode(order.getAccountno(), returnDetailDTO.getCode());
+                    property.setUserid(order.getUserid());
+                    property.setOrderid(order.getOrderid());
+                    property.setSignaccountid(order.getAccountno());
+                    property.setType(returnDetailDTO.getType());
+                    property.setCode(returnDetailDTO.getCode());
+                    property.setPropertyname(returnDetailDTO.getPropertyName());
+                    property.setAmount(property.getAmount() - sellAmount);
+                    property.setUpdatetime((int) (System.currentTimeMillis() / 1000));
+                    propertyMapper.updatePropertyAmount(property.getPropertyid(), property.getAmount(), property.getUpdatetime());
+                    property.setAmount(sellAmount);
+
+                    //更新订单状态
+                    orderMapper.updateOrderStatus(order.getId(), FINISH_SELL);
+                    double sum = returnDetailDTO.getAmountNow() / returnDetailDTO.getAmount() * sellAmount;
+                    insertRecord(order, property.getType() + "卖出", property, (float) sum);
+                    //更新用户资产
+                    topUpUser(order.getUserid(), sum);
+
+                }
+
+            }
+        }
+
+
+        return ResultCode.SUCCESS;
+    }
+
+    /**
+     * 临时方案，解决无法注入userService
+     *
+     * @param userid
+     * @param topUpMoney
+     * @return
+     */
+    public int topUpUser(Integer userid, double topUpMoney) {
+        IndependentAccount independentAccount = userMapper.selectIndependetAccountById(userid);
+        double oldIndependentBalance = independentAccount.getIndependentbalance();
+        double newIndependentBalance = topUpMoney + oldIndependentBalance;
+        return userMapper.updateIndependentBalance(independentAccount.getUserid(), newIndependentBalance);
+    }
+
+    public List<ReturnDetailDTO> searchUserReturnDetail(Integer userId) {
+        List<ReturnDetailDTO> list = new ArrayList<>(16);
+
+        List<String> orderIdList = new ArrayList<>(16);
+
+        List<Property> propertyList = userMapper.selectPropertyByUserId(userId);
+        //map用来存储股票或基金代码以及对应的份额
+        HashMap<String, Integer> map = new HashMap<String, Integer>(16);
+        //Set用来对订单号去重
+        HashSet<String> set = new HashSet<>(16);
+        //
+
+        for (Property p : propertyList) {
+            map.put(p.getCode(), p.getAmount());
+            set.add(p.getOrderid());
+        }
+
+        for (String s : set) {
+            String orderId = s;
+            Order order = userMapper.selectOrderByOrderId(orderId);
+            double sum = order.getSum();
+            Integer productId = order.getProductid();
+
+            Product product = productMapper.selectProductById(productId);
+
+            Integer stockAmount = product.getStockamount();
+            Integer fundAmount = product.getFundamount();
+
+            //查询出组合产品中 股票所占的份额
+            List<ProductStockDetail> productStockDetailList = productMapper.selectStockProportionFromDetail(productId);
+            for (ProductStockDetail psd : productStockDetailList) {
+                ReturnDetailDTO dto = new ReturnDetailDTO();
+                dto.setProductName(product.getName());
+                dto.setType("股票");
+                dto.setCode(psd.getStockCode());
+                dto.setPropertyName(psd.getStockName());
+                //持有份额
+                dto.setAmount(map.get(dto.getCode()));
+
+                //单一产品买入金额 = 下单金额 * 股票比例 * 单个股票的比例
+                double buyInAmount = sum * stockAmount * 0.01 * psd.getProportion().doubleValue();
+                //计算单一产品当前持仓
+                StockAlternate stockValueNow = userMapper.selectValueNowByStockCode(psd.getStockCode());
+                //持有份额 * 当前市值 = 当前持仓金额
+                double d = dto.getAmount() * stockValueNow.getValueNow().doubleValue();
+
+
+                //单一产品当前持仓金额
+                dto.setAmountNow(d);
+
+                //计算收益（可能为负）
+                dto.setAmountOfReturnOne(d - buyInAmount);
+
+                //计算收益率
+                dto.setRateOfReturn(dto.getAmountOfReturnOne() / buyInAmount);
+
+                list.add(dto);
+            }
+
+            //查询出组合产品中 基金所占的份额
+            List<ProductFundDetail> ProductFundDetailList = productMapper.selectFundProportionFromDetail(productId);
+            for (ProductFundDetail pfd : ProductFundDetailList) {
+                ReturnDetailDTO dto = new ReturnDetailDTO();
+                dto.setProductName(product.getName());
+                dto.setType("基金");
+                dto.setCode(pfd.getFundCode());
+                dto.setPropertyName(pfd.getFundName());
+                //持有份额
+                dto.setAmount(map.get(pfd.getFundCode()));
+
+                //单一产品买入金额 = 下单金额 * 股票比例 * 单个股票的比例
+                double buyInAmount = sum * fundAmount * 0.01 * pfd.getProportion().doubleValue();
+
+                //计算单一产品当前持仓
+                FundAlternate fundValueNow = userMapper.selectValueNowByFundCode(pfd.getFundCode());
+
+                //持有份额 * 当前市值 = 当前持仓金额
+                double d = dto.getAmount() * fundValueNow.getValueNow().doubleValue();
+                //单一产品当前持仓金额
+                dto.setAmountNow(d);
+
+                //计算收益（可能为负）
+                dto.setAmountOfReturnOne(d - buyInAmount);
+
+                //计算收益率
+                dto.setRateOfReturn(dto.getAmountOfReturnOne() / buyInAmount);
+
+                list.add(dto);
+            }
+
+        }
+
+
+        return list;
+    }
+
+    /**
      * 查询交易记录
-     * @param pageNum 页码
-     * @param pageSize 大小
-     * @param orderId 订单号
+     *
+     * @param pageNum      页码
+     * @param pageSize     大小
+     * @param orderId      订单号
      * @param consultantId 投顾人id
      * @return 交易记录列表
      */
     @Override
-    public Map selectProperty(int pageNum, int pageSize, String orderId, int consultantId) {
-        Map<String, List<Property>> map = new HashMap<>(16);
+    public Map selectRecord(int pageNum, int pageSize, String orderId, int consultantId, int status) {
+        Map<String, List<ConsultantRecord>> map = new HashMap<>(16);
         if ("0".equals(orderId)) {
-            List<Order> orders = orderMapper.selectOrderByConsultantIdAndStatus(consultantId, FINISH);
+            List<Order> orders = orderMapper.selectOrderByConsultantIdAndStatus(consultantId, status);
 
             if (orders.size() > 0) {
 
                 for (Order order : orders) {
-                    List<Property> properties = propertyMapper.loadProperty(order.getOrderid());
-                    map.put(order.getOrderid(), properties);
+                    List<ConsultantRecord> records = consultantMapper.loadRecord(order.getOrderid());
+                    map.put(order.getOrderid(), records);
                 }
             }
 
         } else {
-            List<Property> properties = propertyMapper.loadProperty(orderId);
+            List<ConsultantRecord> records = consultantMapper.loadRecord(orderId);
         }
         return map;
     }
 
 
+    /**
+     * 查询风险调仓列表
+     *
+     * @param consultantId 投资顾问id
+     * @return 风险调仓列表
+     */
     @Override
     public Map selectRiskList(int consultantId) {
-        Map<String,Object> result=new HashMap<>(4);
-        List<StockAlternate> resultList=new ArrayList<>();
+        Map<String, Object> result = new HashMap<>(4);
+        List<StockAlternate> resultList = new ArrayList<>();
         //查询投顾人所属产品列表
         List<Product> selectProductList = productMapper.selectProductByConsultantId(consultantId);
-        for (Product product:selectProductList){
+        for (Product product : selectProductList) {
+            resultList = new ArrayList<>();
             List<ProductStockDetail> stockList = productMapper.selectStockProportionFromDetail(product.getProductid());
-            List<String> codes=new ArrayList<>();
-            for (ProductStockDetail detail:stockList){
+            List<String> codes = new ArrayList<>();
+            for (ProductStockDetail detail : stockList) {
                 codes.add(detail.getStockCode());
             }
-            List<StockAlternate> alternates=productMapper.selectStockAlternate(codes);
-            for (StockAlternate alternate:alternates){
-                if (alternate.getUpAndDown().intValue()<ADJUST_THRESHOLD){
+            List<StockAlternate> alternates = productMapper.selectStockAlternate(codes);
+            for (StockAlternate alternate : alternates) {
+                if (alternate.getUpAndDown().intValue() < ADJUST_THRESHOLD) {
                     resultList.add(alternate);
                 }
             }
+            result.put(product.getName(), resultList);
+            result.put(product.getProductid().toString(), product.getName());
         }
-        result.put("adjustList",resultList);
-        result.put("adjustThreshold",ADJUST_THRESHOLD);
+        result.put("adjustThreshold", ADJUST_THRESHOLD);
+        return result;
+    }
+
+    private void insertRecord(Order order, String type, Property property, float sum) {
+        ConsultantRecord consultantRecord = new ConsultantRecord();
+
+        consultantRecord.setOrderid(order.getOrderid());
+        consultantRecord.setSignaccountid(order.getAccountno());
+        String redisKey = RedisKeyUtil.getProductKey(order.getProductid());
+        HashMap product = (HashMap) redisTemplate.opsForValue().get(redisKey);
+        if (product == null) {
+            product = initProductCache(order.getProductid());
+        }
+        consultantRecord.setProductname(product.get("productName").toString());
+        consultantRecord.setType(type);
+        consultantRecord.setSum(sum);
+        consultantRecord.setSubmittime(order.getTransactiondate());
+        consultantRecord.setUpdatedtime((int) (System.currentTimeMillis() / 1000));
+        if (property != null) {
+            consultantRecord.setCode(property.getCode());
+            consultantRecord.setPropertyname(property.getPropertyname());
+            consultantRecord.setAmount(property.getAmount());
+        }
+        consultantMapper.insertRecord(consultantRecord);
+    }
+
+    @Override
+    public ResultCode changeRisk(int productId, String oldCode, String newCode) {
+        //卖出所有人的该股票，金额购买新股票，剩余钱购买货币基金
+        List<String> codes = new ArrayList<>();
+        codes.add(oldCode);
+        codes.add(newCode);
+        List<StockAlternate> stockAlternates = productMapper.selectStockAlternate(codes);
+        StockAlternate oldStock;
+        StockAlternate newStock;
+        if (stockAlternates.get(0).getCode().equals(oldCode)) {
+            oldStock = userMapper.selectValueNowByStockCode(stockAlternates.get(0).getCode());
+            newStock = userMapper.selectValueNowByStockCode(stockAlternates.get(1).getCode());
+        } else {
+            oldStock = userMapper.selectValueNowByStockCode(stockAlternates.get(1).getCode());
+            newStock = userMapper.selectValueNowByStockCode(stockAlternates.get(0).getCode());
+        }
+
+
+        List<SignAccount> signAccounts = consultantMapper.selectSignAccountByProductId(productId);
+        for (SignAccount account : signAccounts) {
+            Property property = propertyMapper.loadPropertyByCode(account.getSignaccountid(), oldCode);
+            Order order = orderMapper.selectByOrderId(property.getOrderid());
+            //卖出金额
+            float sum = property.getAmount() * oldStock.getValueNow().floatValue() * STOCK_AMOUNT_LIMIT;
+            topUpUser(account.getUserid(), sum);
+            propertyMapper.updatePropertyAmount(property.getPropertyid(), 0, (int) (System.currentTimeMillis() / 1000));
+            int amount = Math.round(sum / newStock.getValueNow().floatValue());
+            //剩余金额
+            sum = sum - amount * newStock.getValueNow().floatValue();
+            Property propertyBuy = new Property();
+            propertyBuy.setSignaccountid(account.getSignaccountid());
+            propertyBuy.setOrderid(property.getOrderid());
+            propertyBuy.setUserid(property.getUserid());
+            propertyBuy.setType("股票");
+            propertyBuy.setCode(newCode);
+            propertyBuy.setPropertyname(newStock.getName());
+            propertyBuy.setAmount(amount);
+            propertyBuy.setUpdatetime((int) (System.currentTimeMillis() / 1000));
+            propertyBuy.setStatus(1);
+            propertyMapper.insertProperty(propertyBuy);
+            insertRecord(order, "股票买入", propertyBuy, amount * newStock.getValueNow().floatValue() / STOCK_AMOUNT_LIMIT);
+
+            //剩余金额购买货币基金
+            if (sum > 0) {
+                FundAlternate fundAlternate = userMapper.selectValueNowByFundCode(MONEY_FUND_CODE);
+                amount = (int) Math.round(sum / fundAlternate.getValueNow().floatValue());
+                Property propertyMysql = propertyMapper.loadPropertyByCode(order.getAccountno(), MONEY_FUND_CODE);
+                if (propertyMysql == null) {
+                    property = new Property();
+                    property.setSignaccountid(order.getAccountno());
+                    property.setOrderid(order.getOrderid());
+                    property.setUserid(order.getUserid());
+                    property.setType("货币市场型");
+                    property.setCode(MONEY_FUND_CODE);
+                    property.setPropertyname(MONEY_FUND_NAME);
+                    property.setAmount(amount);
+                    property.setUpdatetime((int) (System.currentTimeMillis() / 1000));
+                    property.setStatus(0);
+                    propertyMapper.insertProperty(property);
+                    insertRecord(order, "货币基金买入", property, amount);
+                } else {
+                    propertyMysql.setAmount(propertyMysql.getAmount() + amount);
+                    propertyMysql.setUpdatetime((int) (System.currentTimeMillis() / 1000));
+                    propertyMapper.updatePropertyAmount(propertyMysql.getPropertyid(), propertyMysql.getAmount(), propertyMysql.getUpdatetime());
+                    propertyMysql.setAmount(amount);
+                    insertRecord(order, "货币基金买入", propertyMysql, amount);
+                }
+            }
+
+        }
+        //修改产品明细
+        productMapper.updateProductStockDetail(productId, oldCode, newCode, newStock.getName());
+
+        return ResultCode.SUCCESS;
+    }
+
+
+    @Override
+    public Map selectCounts(int consultantId) {
+        //待审批，待买入，待卖出
+        HashMap<String, Integer> result = new HashMap<>(16);
+        int approvalBuy = consultantMapper.selectCountsByStatus(consultantId, APPROVAL_BUY);
+        int approvalSell = consultantMapper.selectCountsByStatus(consultantId, APPROVAL_SELL);
+        result.put("待审批", approvalBuy + approvalSell);
+        int buy = consultantMapper.selectCountsByStatus(consultantId, WAIT_TO_BUY);
+        result.put("待买入", buy);
+        int sell = consultantMapper.selectCountsByStatus(consultantId, WAIT_TO_SELL);
+        result.put("待卖出", sell);
+        //查询历史记录
+        Calendar calendar = Calendar.getInstance();
+        List<Product> products = productMapper.selectProductByConsultantId(consultantId);
+        for (Product product : products) {
+            calendar.setTime(new Date());
+            calendar.add(Calendar.DATE, 1);
+            for (int i = 0; i < 10; i++) {
+
+                calendar.add(Calendar.DATE, -1);
+                String date = new SimpleDateFormat("yyyy-MM-dd").format(calendar.getTime());
+                String redisKey = RedisKeyUtil.getProductKey(product.getProductid(), date);
+                HashMap productRedis = (HashMap) redisTemplate.opsForValue().get(redisKey);
+                if (productRedis == null) {
+                    continue;
+                }
+                String peopleCount = productRedis.get("peopleCount").toString();
+                Integer dateResult = result.get(date);
+                if (dateResult == null) {
+                    result.put(date, Integer.parseInt(peopleCount));
+                } else {
+                    result.put(date, Integer.parseInt(peopleCount) + dateResult);
+                }
+                System.out.println(date + "," + result.get(date));
+
+
+            }
+        }
+
+
         return result;
     }
 
     @Override
     public Map selectProductAndRatio(int consultanId) {
-        Map product=new HashMap();
-        List<Product> lp=productMapper.selectProductByConsultantId(consultanId);
-        int productId=0;
-        String name=null;
-        int skAmount=0;
-        int fdAmount=0;
-        for(int i=0;i<lp.size();i++){
-            Map content=new HashMap();
-            Map content1=new HashMap();
-            Map content2=new HashMap();
-            productId= lp.get(i).getProductid();
-            name=lp.get(i).getName();
-            fdAmount=lp.get(i).getFundamount();
-            skAmount=lp.get(i).getStockamount();
-            List<ProductFundDetail> lpfd=productMapper.selectFundFromDetail(productId);
-            String fdName=null;
-            String fdCode=null;
+        Map product = new HashMap();
+        List<Product> lp = productMapper.selectProductByConsultantId(consultanId);
+        int productId = 0;
+        String name = null;
+        int skAmount = 0;
+        int fdAmount = 0;
+        for (int i = 0; i < lp.size(); i++) {
+            Map content = new HashMap();
+            Map content1 = new HashMap();
+            Map content2 = new HashMap();
+            productId = lp.get(i).getProductid();
+            name = lp.get(i).getName();
+            fdAmount = lp.get(i).getFundamount();
+            skAmount = lp.get(i).getStockamount();
+            List<ProductFundDetail> lpfd = productMapper.selectFundFromDetail(productId);
+            String fdName = null;
+            String fdCode = null;
             Double fdProportion;
-            for (int j=0;j<lpfd.size();j++){
-                fdName=lpfd.get(j).getFundName();
-                fdCode=lpfd.get(j).getFundCode();
-                fdProportion=lpfd.get(j).getProportion().doubleValue()*fdAmount*0.01;
-                content1.put(fdName,fdCode+",    "+fdProportion);
+            for (int j = 0; j < lpfd.size(); j++) {
+                fdName = lpfd.get(j).getFundName();
+                fdCode = lpfd.get(j).getFundCode();
+                fdProportion = lpfd.get(j).getProportion().doubleValue() * fdAmount * 0.01;
+                content1.put(fdName, fdCode + ",    " + fdProportion);
             }
-            content.put("基金",content1);
-            List<ProductStockDetail> lpsk=productMapper.selectStockFromDetail(productId);
-            String skName=null;
-            String skCode=null;
+            content.put("基金", content1);
+            List<ProductStockDetail> lpsk = productMapper.selectStockFromDetail(productId);
+            String skName = null;
+            String skCode = null;
             Double skProportion;
-            for (int j=0;j<lpsk.size();j++){
-                skName=lpsk.get(j).getStockName();
-                skCode=lpsk.get(j).getStockCode();
-                skProportion=lpsk.get(j).getProportion().doubleValue()*fdAmount*0.01;
-                content2.put(skName,skCode+",    "+skProportion);
+            for (int j = 0; j < lpsk.size(); j++) {
+                skName = lpsk.get(j).getStockName();
+                skCode = lpsk.get(j).getStockCode();
+                skProportion = lpsk.get(j).getProportion().doubleValue() * fdAmount * 0.01;
+                content2.put(skName, skCode + ",    " + skProportion);
             }
-            content.put("股票",content2);
-            product.put(name,content);
+            content.put("股票", content2);
+            product.put(name, content);
         }
         return product;
     }
 
     @Override
-    public Map selectProductAndRatioNow(int consultanId,int productId) {
-        Map product=new HashMap();
-        List<SignAccount> lsa=userMapper.selectAccountByProductID(productId);
-        int accountNo=0;
-        double sum=0;
-        for(int i=0;i<lsa.size();i++){
-            accountNo=lsa.get(i).getSignaccountid();
-            String code=null;
-            Integer amount=0;
-            String type=null;
-            String name=null;
-            double valueNow=0;
-            double s=0;
-            List<Property> lpy=propertyMapper.selectPropertyByAccountNo(accountNo);
-                for (int j=0;j<lpy.size();j++){
-                    code=lpy.get(j).getCode();
-                    amount=lpy.get(j).getAmount();
-                    type=lpy.get(j).getType();
-                    //如果是股票，去股票备选库查询现值
-                    if(type.equals("股票")){
-                        valueNow=consultantMapper.selectStockValue(code).getValueNow().doubleValue();
-                    }
-                    else{
-                        valueNow=consultantMapper.selectFundValue(code).getValueNow().doubleValue();
-                    }
-                    s=amount*valueNow;
-                    System.out.println(s);
-                    sum+=s;
+    public Map selectProductAndRatioNow(int consultanId, int productId) {
+        Map product = new HashMap();
+        List<SignAccount> lsa = userMapper.selectAccountByProductID(productId);
+        int accountNo = 0;
+        double sum = 0;
+        for (int i = 0; i < lsa.size(); i++) {
+            accountNo = lsa.get(i).getSignaccountid();
+            String code = null;
+            Integer amount = 0;
+            String type = null;
+            String name = null;
+            double valueNow = 0;
+            double s = 0;
+            List<Property> lpy = propertyMapper.selectPropertyByAccountNo(accountNo);
+            for (int j = 0; j < lpy.size(); j++) {
+                code = lpy.get(j).getCode();
+                amount = lpy.get(j).getAmount();
+                type = lpy.get(j).getType();
+                //如果是股票，去股票备选库查询现值
+                if (type.equals("股票")) {
+                    valueNow = consultantMapper.selectStockValue(code).getValueNow().doubleValue();
+                } else {
+                    valueNow = consultantMapper.selectFundValue(code).getValueNow().doubleValue();
                 }
-                System.out.println(sum);
-                double percent=0;
-                for (int j=0;j<lpy.size();j++){
-                    Map content=new HashMap();
-                    String code1=lpy.get(j).getCode();
-                    int amount1=lpy.get(j).getAmount();
-                    String name1=lpy.get(j).getPropertyname();
-                    String type1=lpy.get(j).getType();
-                    String type2=null;
-                    //如果是股票，去股票备选库查询现值
-                    if(type1.equals("股票")){
-                        valueNow=consultantMapper.selectStockValue(code1).getValueNow().doubleValue();
-                        type2="Stock";
-                    }
-                    //不是，则取基金备选库查询
-                    else{
-                        valueNow=consultantMapper.selectFundValue(code1).getValueNow().doubleValue();
-                        type2="Fund";
-                    }
-                    s=amount1*valueNow;
-                    percent=s/sum;
-
-                    content.put("propertyType",type2);
-                    content.put("propertyName",name1);
-                    content.put("propertyCode",code1);
-                    content.put("proportion",percent);
-
-                    product.put(name1,content);
+                s = amount * valueNow;
+                System.out.println(s);
+                sum += s;
+            }
+            System.out.println(sum);
+            double percent = 0;
+            for (int j = 0; j < lpy.size(); j++) {
+                Map content = new HashMap();
+                String code1 = lpy.get(j).getCode();
+                int amount1 = lpy.get(j).getAmount();
+                String name1 = lpy.get(j).getPropertyname();
+                String type1 = lpy.get(j).getType();
+                String type2 = null;
+                //如果是股票，去股票备选库查询现值
+                if (type1.equals("股票")) {
+                    valueNow = consultantMapper.selectStockValue(code1).getValueNow().doubleValue();
+                    type2 = "Stock";
                 }
+                //不是，则取基金备选库查询
+                else {
+                    valueNow = consultantMapper.selectFundValue(code1).getValueNow().doubleValue();
+                    type2 = "Fund";
+                }
+                s = amount1 * valueNow;
+                percent = s / sum;
+
+                content.put("propertyType", type2);
+                content.put("propertyName", name1);
+                content.put("propertyCode", code1);
+                content.put("proportion", percent);
+
+                product.put(name1, content);
+            }
 
 
         }

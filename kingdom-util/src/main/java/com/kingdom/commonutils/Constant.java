@@ -58,9 +58,15 @@ public interface Constant {
     int WAIT_TO_SELL=4;
 
     /**
-     * 订单已完成
+     * 订单买入已完成
      */
     int FINISH=5;
+
+    /**
+     * 订单卖出已完成
+     */
+    int FINISH_SELL=6;
+
 
     /**
      * 订单已卖出

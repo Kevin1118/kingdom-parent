@@ -19,6 +19,7 @@ public class OrderVo implements Serializable {
     private int productid;
     private int consultantid;
     private int status;
+    private String percent;
     private String productname;
     private float expectedyield;
 }

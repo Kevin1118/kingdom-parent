@@ -157,7 +157,7 @@
 
     <select id="selectValueNowByStockCode" parameterType="java.lang.String" resultType="com.kingdom.pojo.StockAlternate">
         select
-        valueNow
+        valueNow,name
         from
         stock_alternate
         where

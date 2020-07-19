@@ -11,6 +11,14 @@
         select * from property where orderId=#{orderId}
     </select>
 
+    <select id="loadPropertyByCode" resultType="com.kingdom.pojo.Property">
+        select * from property where signAccountId=#{signAccountId} and code=#{code}
+    </select>
+
+    <update id="updatePropertyAmount" >
+        update property set amount=#{amount} ,updateTime=#{updateTime} where propertyId=#{propertyId}
+    </update>
+
     <select id="selectPropertyByAccountNo" resultType="com.kingdom.pojo.Property">
         select *
         from property

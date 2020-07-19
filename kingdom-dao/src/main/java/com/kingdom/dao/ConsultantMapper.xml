@@ -43,6 +43,22 @@
         update consultant set payPassword=#{payPassword},payPasswordSalt=#{payPasswordSalt} where consultantId=#{consultantId}
     </update>
 
+    <insert id="insertRecord" parameterType="com.kingdom.pojo.ConsultantRecord">
+        insert into consultant_record (orderId,signAccountId,productName,type,code,propertyName,amount,sum,submitTime,updatedTime)
+        values (#{orderid},#{signaccountid},#{productname},#{type},#{code},#{propertyname},#{amount},#{sum},#{submittime},#{updatedtime})
+    </insert>
+
+    <select id="loadRecord" resultType="com.kingdom.pojo.ConsultantRecord">
+        select * from consultant_record where orderId=#{orderId}
+    </select>
+
+    <select id="selectSignAccountByProductId" resultType="com.kingdom.pojo.SignAccount">
+        select * from sign_account where productId=#{productId}
+    </select>
+
+    <select id="selectCountsByStatus" resultType="java.lang.Integer">
+        select count(*) from `order` where consultantId=#{consultantId} and status=#{status}
+    </select>
     <select id="selectFundValue" resultType="com.kingdom.pojo.FundAlternate">
         select f.valueNow
         from `fund_alternate` f
