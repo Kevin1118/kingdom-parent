@@ -67,6 +67,12 @@ public interface Constant {
      */
     int FINISH_SELL=6;
 
+
+    /**
+     * 订单已卖出
+     */
+    int SELL_FINISH=6;
+
     /**
      * 审批
      */

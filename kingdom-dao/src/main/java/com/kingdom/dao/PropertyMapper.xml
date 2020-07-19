@@ -18,4 +18,10 @@
     <update id="updatePropertyAmount" >
         update property set amount=#{amount} ,updateTime=#{updateTime} where propertyId=#{propertyId}
     </update>
+
+    <select id="selectPropertyByAccountNo" resultType="com.kingdom.pojo.Property">
+        select *
+        from property
+        where signAccountId=#{accountno}
+    </select>
 </mapper>

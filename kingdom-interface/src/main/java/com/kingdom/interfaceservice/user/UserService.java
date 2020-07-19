@@ -1,7 +1,11 @@
 package com.kingdom.interfaceservice.user;
 
+import com.kingdom.dto.user.OrderDetailDTO;
+import com.kingdom.dto.user.OrderDetailValueNowAllDTO;
 import com.kingdom.dto.user.ReturnDetailDTO;
 import com.kingdom.pojo.*;
+import com.kingdom.result.ResultCode;
+import com.kingdom.vojo.user.CardNumber;
 
 import java.util.List;
 import java.util.Map;
@@ -43,7 +47,7 @@ public interface UserService {
      * @param userId
      * @return List<Card> 包含所有产品信息的 list
      */
-    List<Card> loadCardUser(int userId);
+     List<Card> loadCardUser(int userId);
 
     /**
      * 投资人登录
@@ -73,7 +77,15 @@ public interface UserService {
      * @param payPassword
      * @return
      */
-    int setPayPasswordUser(int userId,String payPassword);
+    ResultCode setPayPasswordUser(int userId,String payPassword);
+
+    /**
+     * 校验支付密码
+     * @param user
+     * @param payPassword
+     * @return
+     */
+    ResultCode checkPayPasswordUser(User user,String payPassword);
 
     /**
      * 投资人充值，充值到自主账户
@@ -129,7 +141,7 @@ public interface UserService {
      * @param sum
      * @return
      */
-    int investUser(Order order,int userId,String name,double sum);
+    ResultCode investUser(Order order,int userId,String name,double sum);
 
     /**
      * 投资人卖出
@@ -142,6 +154,14 @@ public interface UserService {
     int sellUser(Order order,int userId,String name,String percent);
 
     /**
+     * 投资人转出金额
+     * @param userId
+     * @param withdrawMoney  需要转出的金额
+     * @return 操作行数
+     */
+
+    ResultCode withdrawUser(int userId, double withdrawMoney);
+    /**
      * 投资人查询收益详情
      * @param userId
      * @return List<ReturnDetailDTO> 收益详情列表
@@ -150,4 +170,23 @@ public interface UserService {
      **/
     List<ReturnDetailDTO> searchUserReturnDetail(Integer userId);
 
+    /**
+     * 退出登录
+     * @return
+     */
+    void exit(int userId);
+
+    /**
+     * 投资人查询交易明细
+     * @param userId
+     * @return List<OrderDetailDTO>
+     */
+    List<OrderDetailDTO> searchUserOrderDetail(Integer userId);
+
+    /**
+     * 投资人资产概览，总持仓情况
+     * @param userId
+     * @return DTO
+     */
+    OrderDetailValueNowAllDTO searchValueNowAll(Integer userId);
 }

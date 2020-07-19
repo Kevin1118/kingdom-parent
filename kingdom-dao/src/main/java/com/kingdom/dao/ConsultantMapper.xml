@@ -59,4 +59,16 @@
     <select id="selectCountsByStatus" resultType="java.lang.Integer">
         select count(*) from `order` where consultantId=#{consultantId} and status=#{status}
     </select>
+    <select id="selectFundValue" resultType="com.kingdom.pojo.FundAlternate">
+        select f.valueNow
+        from `fund_alternate` f
+        where f.code=#{code}
+    </select>
+
+    <select id="selectStockValue" resultType="com.kingdom.pojo.StockAlternate">
+        select s.valueNow
+        from `stock_alternate` s
+        where s.code=#{code}
+    </select>
+
 </mapper>

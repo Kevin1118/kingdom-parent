@@ -5,9 +5,13 @@ import com.kingdom.commonutils.CommonUtils;
 import com.kingdom.commonutils.RedisKeyUtil;
 import com.kingdom.dao.ProductMapper;
 import com.kingdom.dao.UserMapper;
+import com.kingdom.dto.user.OrderDetailDTO;
+import com.kingdom.dto.user.OrderDetailValueNowAllDTO;
 import com.kingdom.dto.user.ReturnDetailDTO;
 import com.kingdom.interfaceservice.user.UserService;
 import com.kingdom.pojo.*;
+import com.kingdom.result.ResultCode;
+import com.kingdom.vojo.user.CardNumber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 
@@ -46,8 +50,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int registerUser(User user, IndependentAccount independentAccount) {
-        User u=userMapper.selectUserByPhoneNumber(user.getPhonenumber());
-        if(u!=null){
+        User u = userMapper.selectUserByPhoneNumber(user.getPhonenumber());
+        if (u != null) {
             return 0;
         }
         String salt = CommonUtils.generateUUID().substring(0, 5);
@@ -67,6 +71,7 @@ public class UserServiceImpl implements UserService {
         userMapper.addIndependentAccount(independentAccount);
         return userMapper.addUser(user);
     }
+
     @Override
     public Map<String, Object> loginUser(String phoneNumber, String password) {
         User user = userMapper.selectUserByPhoneNumber(phoneNumber);
@@ -79,7 +84,7 @@ public class UserServiceImpl implements UserService {
         }
 
         //检查账号状态
-        if (user.getStatus() =="2") {
+        if (user.getStatus() == "2") {
             map.put("loginerrormessage", "账号被停用");
             return map;
         }
@@ -106,14 +111,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int updateAvatarUser(int userId, String avatarUrl) {
-        return userMapper.updateAvatar(userId,avatarUrl);
+        return userMapper.updateAvatar(userId, avatarUrl);
     }
 
     @Override
-    public int bindCardUser(Card card,int userId){
+    public int bindCardUser(Card card, int userId) {
         card.setUserid(userId);
         //设置当前时间为绑卡时间
-        card.setCreatedtime((int)(System.currentTimeMillis()/1000));
+        card.setCreatedtime((int) (System.currentTimeMillis() / 1000));
         //设置状态1，代表激活成功
         card.setStatus("1");
         return userMapper.addCard(card);
@@ -122,12 +127,13 @@ public class UserServiceImpl implements UserService {
     /**
      * 查询银行卡接口
      * 使用userId，获取该Id绑定的卡号
-     * @param userId
+     *
+     * @param
      * @return List<Card> 包含所有产品信息的 list
      */
     @Override
     public List<Card> loadCardUser(int userId) {
-        List<Card> list=userMapper.selectCardNumber(userId);
+        List<Card> list = userMapper.selectCardNumber(userId);
         return list;
     }
 
@@ -140,47 +146,62 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int setPayPasswordUser(int userid, String payPassword) {
-        String salt=CommonUtils.generateUUID().substring(0, 5);
-        payPassword=CommonUtils.md5(payPassword+salt);
-        return userMapper.updatePayPassword(userid,payPassword,salt);
+    public ResultCode setPayPasswordUser(int userId, String payPassword) {
+        String salt = CommonUtils.generateUUID().substring(0, 5);
+        payPassword = CommonUtils.md5(payPassword + salt);
+        int rows = userMapper.updatePayPassword(userId, payPassword, salt);
+        if (rows == 1) {
+            clearCache(userId);
+            return ResultCode.SUCCESS;
+        } else {
+            return ResultCode.MYSQL_CURD_ERROR;
+        }
+    }
+
+    @Override
+    public ResultCode checkPayPasswordUser(User user, String payPassword) {
+        if (CommonUtils.md5(payPassword + user.getPaypasswordsalt()).equals(user.getPaypassword())) {
+            return ResultCode.SUCCESS;
+        } else {
+            return ResultCode.WRONG_PAYPASSWORD;
+        }
     }
 
     @Override
     public int topUpUser(Integer userid, double topUpMoney) {
-        IndependentAccount independentAccount=userMapper.selectIndependetAccountById(userid);
-        double oldIndependentBalance=independentAccount.getIndependentbalance();
-        double newIndependentBalance=topUpMoney+oldIndependentBalance;
-        return userMapper.updateIndependentBalance(independentAccount.getUserid(),newIndependentBalance);
+        IndependentAccount independentAccount = userMapper.selectIndependetAccountById(userid);
+        double oldIndependentBalance = independentAccount.getIndependentbalance();
+        double newIndependentBalance = topUpMoney + oldIndependentBalance;
+        return userMapper.updateIndependentBalance(independentAccount.getUserid(), newIndependentBalance);
     }
 
     @Override
     public int passwordManageUser(User user, String oldPassword, String newPassword) {
-        if (CommonUtils.md5(oldPassword+user.getSalt()).equals(user.getPassword())){
-            String salt=CommonUtils.generateUUID().substring(0,5);
-            return userMapper.updatePassword(user.getUserid(),CommonUtils.md5(newPassword+salt),salt);
-        }else{
+        if (CommonUtils.md5(oldPassword + user.getSalt()).equals(user.getPassword())) {
+            String salt = CommonUtils.generateUUID().substring(0, 5);
+            return userMapper.updatePassword(user.getUserid(), CommonUtils.md5(newPassword + salt), salt);
+        } else {
             return -1;
         }
     }
 
     @Override
     public int certificationUser(User user, String name, String idNumber) {
-        String approvalStatus="1";
-        int approvalTime=(int)(System.currentTimeMillis()/1000);
+        String approvalStatus = "1";
+        int approvalTime = (int) (System.currentTimeMillis() / 1000);
         user.setApprovalstatus(approvalStatus);
         user.setApprovaltime(approvalTime);
-        return userMapper.updateName(user.getUserid(),name,idNumber,approvalStatus,approvalTime);
+        return userMapper.updateName(user.getUserid(), name, idNumber, approvalStatus, approvalTime);
     }
 
     @Override
     public int changePhoneNumberUser(int userid, String phoneNumber) {
-        return userMapper.updatePhoneNumber(userid,phoneNumber);
+        return userMapper.updatePhoneNumber(userid, phoneNumber);
     }
 
     @Override
     public int changeUserName(int userId, String userName) {
-        return userMapper.updateUserName(userId,userName);
+        return userMapper.updateUserName(userId, userName);
     }
 
     @Override
@@ -189,16 +210,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int investUser(Order order,int userId,String name,double sum) {
-        Product product=userMapper.selectProductByName(name);
-        int productId=product.getProductid();
-        int consultantId=product.getConsultantid();
-        int transactionDate=(int)(System.currentTimeMillis()/1000);
-        SignAccount sa=userMapper.selectAccountNoByUserIdAndProductId(userId,productId);
-        String orderId=transactionDate+""+userId;
-        int accountNo=sa.getSignaccountid();
+    public ResultCode investUser(Order order, int userId, String name, double sum) {
+        Product product = userMapper.selectProductByName(name);
+        int productId = product.getProductid();
+        int consultantId = product.getConsultantid();
+        int transactionDate = (int) (System.currentTimeMillis() / 1000);
+        SignAccount sa = userMapper.selectAccountNoByUserIdAndProductId(userId, productId);
+        String orderId = transactionDate + "" + userId;
+        int accountNo;
         //账户不存在择创建投顾账户
-        if (sa==null){
+        if (sa == null) {
+            sa = new SignAccount();
             sa.setUserid(userId);
             sa.setProductid(productId);
             sa.setBalance(sum);
@@ -206,46 +228,55 @@ public class UserServiceImpl implements UserService {
             //1代表可用
             sa.setStatus("1");
             userMapper.addSignAccount(sa);
-            //账户存在则更新账户余额
-        }else{
-            double balance=sa.getBalance()+sum;
-            userMapper.updateSignAccountBalance(accountNo,balance);
+            sa = userMapper.selectAccountNoByUserIdAndProductId(userId, productId);
+            accountNo = sa.getSignaccountid();
+        }//账户存在则更新账户余额
+        else {
+            accountNo = sa.getSignaccountid();
+            double balance = sa.getBalance() + sum;
+            userMapper.updateSignAccountBalance(accountNo, balance);
         }
         //更新独立账户资金
-        IndependentAccount independentAccount=userMapper.selectIndependetAccountById(userId);
-        double independentBalance=independentAccount.getIndependentbalance()-sum;
-        userMapper.updateIndependentBalance(userId,independentBalance);
+        IndependentAccount independentAccount = userMapper.selectIndependetAccountById(userId);
+        if (independentAccount.getIndependentbalance() < sum) {
+            return ResultCode.OYT_OF_MONEY;
+        } else {
+            double independentBalance = independentAccount.getIndependentbalance() - sum;
+            userMapper.updateIndependentBalance(userId, independentBalance);
 
-        order.setOrderid(orderId);
-        order.setUserid(userId);
-        order.setAccountno(accountNo);
-        order.setSum(sum);
-        order.setTransactiondate(transactionDate);
-        order.setProductid(productId);
-        order.setConsultantid(consultantId);
-        //1表示买入申请
-        order.setStatus(1);
+            order.setOrderid(orderId);
+            order.setUserid(userId);
+            order.setAccountno(accountNo);
+            order.setSum(sum);
+            order.setTransactiondate(transactionDate);
+            order.setProductid(productId);
+            order.setConsultantid(consultantId);
+            //1表示买入申请
+            order.setStatus(1);
+            userMapper.addOrder(order);
+            return ResultCode.SUCCESS;
+        }
 
-        return userMapper.addOrder(order);
+
     }
 
     @Override
-    public int sellUser(Order order, int userId, String name,String percent) {
-        Product product=userMapper.selectProductByName(name);
-        int productId=product.getProductid();
-        int consultanId=product.getConsultantid();
-        SignAccount signAccount=userMapper.selectAccountNoByUserIdAndProductId(userId,productId);
-        int accountNo=signAccount.getSignaccountid();
-        int transactionDate=(int)(System.currentTimeMillis()/1000);
-        String orderId=transactionDate+""+userId;
+    public int sellUser(Order order, int userId, String name, String percent) {
+        Product product = userMapper.selectProductByName(name);
+        int productId = product.getProductid();
+        int consultanId = product.getConsultantid();
+        SignAccount signAccount = userMapper.selectAccountNoByUserIdAndProductId(userId, productId);
+        int accountNo = signAccount.getSignaccountid();
+        int transactionDate = (int) (System.currentTimeMillis() / 1000);
+        String orderId = transactionDate + "" + userId;
         //更新投顾账户余额
-        double balance=signAccount.getBalance();
-        userMapper.updateSignAccountBalance(accountNo,balance);
+        double balance = signAccount.getBalance();
+        userMapper.updateSignAccountBalance(accountNo, balance);
 
         //更新独立账户余额 ,这里假定用户发起卖出申请，平台直接使用自身资金池转账给账户，不需要在投顾卖出后转账
-        IndependentAccount independentAccount=userMapper.selectIndependetAccountById(userId);
-        double independentBalance=independentAccount.getIndependentbalance();
-        userMapper.updateIndependentBalance(userId,independentBalance);
+        IndependentAccount independentAccount = userMapper.selectIndependetAccountById(userId);
+        double independentBalance = independentAccount.getIndependentbalance();
+        userMapper.updateIndependentBalance(userId, independentBalance);
 
         order.setOrderid(orderId);
         order.setUserid(userId);
@@ -261,6 +292,39 @@ public class UserServiceImpl implements UserService {
         return userMapper.addOrder(order);
     }
 
+    /**
+     * 投资人转出金额
+     *
+     * @param userId
+     * @param withdrawMoney 需要转出的金额
+     * @return 操作行数
+     */
+    @Override
+    public ResultCode withdrawUser(int userId, double withdrawMoney) {
+        IndependentAccount independentAccount = userMapper.selectIndependetAccountById(userId);
+        double independentBalance = independentAccount.getIndependentbalance();
+        //判断余额是否充足
+        int rows;
+        if (independentBalance < withdrawMoney) {
+            return ResultCode.OYT_OF_MONEY;
+        } else {
+            double newBalance = independentBalance - withdrawMoney;
+            rows = userMapper.updateIndependentBalance(userId, newBalance);
+        }
+        if (rows == 1) {
+            clearCache(userId);
+            return ResultCode.SUCCESS;
+        } else {
+            return ResultCode.MYSQL_CURD_ERROR;
+        }
+
+
+    }
+
+    @Override
+    public void exit(int userId) {
+        clearCache(userId);
+    }
 
     /**
      * 投资人查询收益详情
@@ -268,10 +332,11 @@ public class UserServiceImpl implements UserService {
      * 拿orderId 到order表查询买入的总金额sum，和产品productId，
      * 再分别到单一产品的 detail 表查询比例，计算各个单一产品的初始持仓金额
      * 最后分别到 alternate 表查询单一产品的当前市值 valueNow，计算收益返回给前端
-     * @author HuangJingchao
-     * @date 2020/7/17 19:48
+     *
      * @param userId
      * @return List<ReturnDetailDTO>
+     * @author HuangJingchao
+     * @date 2020/7/17 19:48
      */
     @Override
     public List<ReturnDetailDTO> searchUserReturnDetail(Integer userId) {
@@ -286,12 +351,12 @@ public class UserServiceImpl implements UserService {
         HashSet<String> set = new HashSet<>(16);
         //
 
-        for(Property p:propertyList){
-            map.put(p.getCode(),p.getAmount());
+        for (Property p : propertyList) {
+            map.put(p.getCode(), p.getAmount());
             set.add(p.getOrderid());
         }
 
-        for (String s:set){
+        for (String s : set) {
             String orderId = s;
             Order order = userMapper.selectOrderByOrderId(orderId);
             double sum = order.getSum();
@@ -304,7 +369,7 @@ public class UserServiceImpl implements UserService {
 
             //查询出组合产品中 股票所占的份额
             List<ProductStockDetail> productStockDetailList = productMapper.selectStockProportionFromDetail(productId);
-            for(ProductStockDetail psd:productStockDetailList){
+            for (ProductStockDetail psd : productStockDetailList) {
                 ReturnDetailDTO dto = new ReturnDetailDTO();
                 dto.setProductName(product.getName());
                 dto.setType("股票");
@@ -314,7 +379,7 @@ public class UserServiceImpl implements UserService {
                 dto.setAmount(map.get(dto.getCode()));
 
                 //单一产品买入金额 = 下单金额 * 股票比例 * 单个股票的比例
-                double buyInAmount = sum * stockAmount*0.01 * psd.getProportion().doubleValue();
+                double buyInAmount = sum * stockAmount * 0.01 * psd.getProportion().doubleValue();
                 //计算单一产品当前持仓
                 StockAlternate stockValueNow = userMapper.selectValueNowByStockCode(psd.getStockCode());
                 //持有份额 * 当前市值 = 当前持仓金额
@@ -328,14 +393,14 @@ public class UserServiceImpl implements UserService {
                 dto.setAmountOfReturnOne(d - buyInAmount);
 
                 //计算收益率
-                dto.setRateOfReturn(dto.getAmountOfReturnOne()/buyInAmount);
+                dto.setRateOfReturn(dto.getAmountOfReturnOne() / buyInAmount);
 
                 list.add(dto);
             }
 
             //查询出组合产品中 基金所占的份额
             List<ProductFundDetail> ProductFundDetailList = productMapper.selectFundProportionFromDetail(productId);
-            for(ProductFundDetail pfd:ProductFundDetailList){
+            for (ProductFundDetail pfd : ProductFundDetailList) {
                 ReturnDetailDTO dto = new ReturnDetailDTO();
                 dto.setProductName(product.getName());
                 dto.setType("基金");
@@ -345,7 +410,7 @@ public class UserServiceImpl implements UserService {
                 dto.setAmount(map.get(pfd.getFundCode()));
 
                 //单一产品买入金额 = 下单金额 * 股票比例 * 单个股票的比例
-                double buyInAmount = sum * fundAmount*0.01 * pfd.getProportion().doubleValue();
+                double buyInAmount = sum * fundAmount * 0.01 * pfd.getProportion().doubleValue();
 
                 //计算单一产品当前持仓
                 FundAlternate fundValueNow = userMapper.selectValueNowByFundCode(pfd.getFundCode());
@@ -359,18 +424,95 @@ public class UserServiceImpl implements UserService {
                 dto.setAmountOfReturnOne(d - buyInAmount);
 
                 //计算收益率
-                dto.setRateOfReturn(dto.getAmountOfReturnOne()/buyInAmount);
+                dto.setRateOfReturn(dto.getAmountOfReturnOne() / buyInAmount);
 
                 list.add(dto);
             }
+        }
+        return list;
+    }
 
+    @Override
+    public List<OrderDetailDTO> searchUserOrderDetail(Integer userId) {
+        List<OrderDetailDTO> list = new ArrayList<>(16);
+        List<Property> propertyList = userMapper.selectPropertyByUserId(userId);
+        //map用来存储股票或基金代码以及对应的份额
+        HashMap<String, Integer> map = new HashMap<String, Integer>(16);
+        //Set用来对订单号去重
+        HashSet<String> set = new HashSet<>(16);
+
+        for (Property p : propertyList) {
+            map.put(p.getCode(), p.getAmount());
+            set.add(p.getOrderid());
         }
 
+        for (String s : set) {
+            String orderId = s;
+            Order order = userMapper.selectOrderByOrderId(orderId);
+            double sum = order.getSum();
+            Integer productId = order.getProductid();
 
+            Product product = productMapper.selectProductById(productId);
 
+            Integer stockAmount = product.getStockamount();
+            Integer fundAmount = product.getFundamount();
 
+            //查询出组合产品中 股票所占的份额
+            List<ProductStockDetail> productStockDetailList = productMapper.selectStockProportionFromDetail(productId);
+            for (ProductStockDetail psd : productStockDetailList) {
+                OrderDetailDTO dto = new OrderDetailDTO();
+                dto.setProductName(product.getName());
+                dto.setType("股票");
+                dto.setCode(psd.getStockCode());
+                dto.setPropertyName(psd.getStockName());
+                //单一产品买入金额 = 下单金额 * 股票比例 * 单个股票的比例
+                double buyInAmount = sum * stockAmount * 0.01 * psd.getProportion().doubleValue();
+                dto.setAmount(buyInAmount);
+                dto.setDate(order.getTransactiondate());
+                dto.setStatus(order.getStatus());
 
+                list.add(dto);
+            }
+            //查询出组合产品中 基金所占的份额
+            List<ProductFundDetail> ProductFundDetailList = productMapper.selectFundProportionFromDetail(productId);
+            for (ProductFundDetail pfd : ProductFundDetailList) {
+                OrderDetailDTO dto = new OrderDetailDTO();
+                dto.setProductName(product.getName());
+                dto.setType("基金");
+                dto.setCode(pfd.getFundCode());
+                dto.setPropertyName(pfd.getFundName());
+
+                //单一产品买入金额 = 下单金额 * 股票比例 * 单个股票的比例
+                double buyInAmount = sum * fundAmount * 0.01 * pfd.getProportion().doubleValue();
+                dto.setAmount(buyInAmount);
+                dto.setDate(order.getTransactiondate());
+                dto.setStatus(order.getStatus());
+
+                list.add(dto);
+            }
+        }
         return list;
+    }
+
+    @Override
+    public OrderDetailValueNowAllDTO searchValueNowAll(Integer userId) {
+        OrderDetailValueNowAllDTO result = new OrderDetailValueNowAllDTO();
+        List<ReturnDetailDTO> returnDetailDTOList = searchUserReturnDetail(userId);
+        double s = 0;
+        double f = 0;
+
+        for (ReturnDetailDTO dto : returnDetailDTOList) {
+            if (dto.getType().equals("股票")) {
+                s += dto.getAmountNow();
+            } else if (dto.getType().equals("基金")) {
+                f += dto.getAmountNow();
+            }
+        }
+
+        result.setStockValueNowAll(s);
+        result.setFundValueNowAll(f);
+
+        return result;
     }
 
 
@@ -402,5 +544,4 @@ public class UserServiceImpl implements UserService {
         String redisKey = RedisKeyUtil.getUserKey(userId);
         redisTemplate.delete(redisKey);
     }
-
 }

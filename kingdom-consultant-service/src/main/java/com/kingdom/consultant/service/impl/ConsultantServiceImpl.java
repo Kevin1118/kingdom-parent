@@ -7,6 +7,7 @@ import com.kingdom.commonutils.CommonUtils;
 import com.kingdom.commonutils.Constant;
 import com.kingdom.commonutils.RedisKeyUtil;
 import com.kingdom.dao.*;
+import com.kingdom.dao.*;
 import com.kingdom.dto.user.ReturnDetailDTO;
 import com.kingdom.interfaceservice.consultant.ConsultantService;
 import com.kingdom.pojo.*;
@@ -149,7 +150,7 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
     public ResultCode updateAvatar(int consultantId, String avatarUrl) {
         int rows = consultantMapper.updateAvatar(consultantId, avatarUrl);
         if (rows == 1) {
-            //如果操作行数为1，则清楚redis缓存，返回成功状态码
+            //如果操作行数为1，则清除redis缓存，返回成功状态码
             clearCache(consultantId);
             return ResultCode.SUCCESS;
         } else {
@@ -1005,4 +1006,114 @@ public class ConsultantServiceImpl implements ConsultantService, Constant {
 
         return result;
     }
+
+    @Override
+    public Map selectProductAndRatio(int consultanId) {
+        Map product=new HashMap();
+        List<Product> lp=productMapper.selectProductByConsultantId(consultanId);
+        int productId=0;
+        String name=null;
+        int skAmount=0;
+        int fdAmount=0;
+        for(int i=0;i<lp.size();i++){
+            Map content=new HashMap();
+            Map content1=new HashMap();
+            Map content2=new HashMap();
+            productId= lp.get(i).getProductid();
+            name=lp.get(i).getName();
+            fdAmount=lp.get(i).getFundamount();
+            skAmount=lp.get(i).getStockamount();
+            List<ProductFundDetail> lpfd=productMapper.selectFundFromDetail(productId);
+            String fdName=null;
+            String fdCode=null;
+            Double fdProportion;
+            for (int j=0;j<lpfd.size();j++){
+                fdName=lpfd.get(j).getFundName();
+                fdCode=lpfd.get(j).getFundCode();
+                fdProportion=lpfd.get(j).getProportion().doubleValue()*fdAmount*0.01;
+                content1.put(fdName,fdCode+",    "+fdProportion);
+            }
+            content.put("基金",content1);
+            List<ProductStockDetail> lpsk=productMapper.selectStockFromDetail(productId);
+            String skName=null;
+            String skCode=null;
+            Double skProportion;
+            for (int j=0;j<lpsk.size();j++){
+                skName=lpsk.get(j).getStockName();
+                skCode=lpsk.get(j).getStockCode();
+                skProportion=lpsk.get(j).getProportion().doubleValue()*fdAmount*0.01;
+                content2.put(skName,skCode+",    "+skProportion);
+            }
+            content.put("股票",content2);
+            product.put(name,content);
+        }
+        return product;
+    }
+
+    @Override
+    public Map selectProductAndRatioNow(int consultanId,int productId) {
+        Map product=new HashMap();
+        List<SignAccount> lsa=userMapper.selectAccountByProductID(productId);
+        int accountNo=0;
+        double sum=0;
+        for(int i=0;i<lsa.size();i++){
+            accountNo=lsa.get(i).getSignaccountid();
+            String code=null;
+            Integer amount=0;
+            String type=null;
+            String name=null;
+            double valueNow=0;
+            double s=0;
+            List<Property> lpy=propertyMapper.selectPropertyByAccountNo(accountNo);
+                for (int j=0;j<lpy.size();j++){
+                    code=lpy.get(j).getCode();
+                    amount=lpy.get(j).getAmount();
+                    type=lpy.get(j).getType();
+                    //如果是股票，去股票备选库查询现值
+                    if(type.equals("股票")){
+                        valueNow=consultantMapper.selectStockValue(code).getValueNow().doubleValue();
+                    }
+                    else{
+                        valueNow=consultantMapper.selectFundValue(code).getValueNow().doubleValue();
+                    }
+                    s=amount*valueNow;
+                    System.out.println(s);
+                    sum+=s;
+                }
+                System.out.println(sum);
+                double percent=0;
+                for (int j=0;j<lpy.size();j++){
+                    Map content=new HashMap();
+                    String code1=lpy.get(j).getCode();
+                    int amount1=lpy.get(j).getAmount();
+                    String name1=lpy.get(j).getPropertyname();
+                    String type1=lpy.get(j).getType();
+                    String type2=null;
+                    //如果是股票，去股票备选库查询现值
+                    if(type1.equals("股票")){
+                        valueNow=consultantMapper.selectStockValue(code1).getValueNow().doubleValue();
+                        type2="Stock";
+                    }
+                    //不是，则取基金备选库查询
+                    else{
+                        valueNow=consultantMapper.selectFundValue(code1).getValueNow().doubleValue();
+                        type2="Fund";
+                    }
+                    s=amount1*valueNow;
+                    percent=s/sum;
+
+                    content.put("propertyType",type2);
+                    content.put("propertyName",name1);
+                    content.put("propertyCode",code1);
+                    content.put("proportion",percent);
+
+                    product.put(name1,content);
+                }
+
+
+        }
+        return product;
+    }
+
+
 }

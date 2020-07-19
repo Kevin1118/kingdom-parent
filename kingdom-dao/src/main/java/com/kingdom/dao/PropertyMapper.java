@@ -41,4 +41,10 @@ public interface PropertyMapper {
      */
     int updatePropertyAmount(int propertyId,int amount,int updateTime);
 
+    /**
+     *
+     * @return
+     */
+    List<Property> selectPropertyByAccountNo(Integer accountno);
+
 }

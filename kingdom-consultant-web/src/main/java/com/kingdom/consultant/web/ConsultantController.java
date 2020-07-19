@@ -2,6 +2,7 @@ package com.kingdom.consultant.web;
 
 import com.kingdom.commonutils.RedisKeyUtil;
 import com.kingdom.dto.consultant.RiskDTO;
+import io.swagger.annotations.Api;
 import org.apache.commons.lang3.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.kingdom.commonutils.CommonUtils;
@@ -404,6 +405,33 @@ public class ConsultantController implements Constant {
         Map result=consultantService.selectRiskList(consultant.getConsultantid());
         return ResultGenerator.genSuccessResult(result);
     }
+
+    @ApiOperation("查看产品原始组合占比")
+    @ResponseBody
+    @GetMapping("/productAndRatio")
+    public Result productAndRatio(){
+        Consultant consultant=hostHolder.getConsultant();
+        //判断对象是否为空，若空返回未登录
+        if (consultant==null){
+            return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
+        }
+        Map result=consultantService.selectProductAndRatio(consultant.getConsultantid());
+        return ResultGenerator.genSuccessResult(result);
+    }
+
+    @ApiOperation("查看现有资产组合占比")
+    @ResponseBody
+    @GetMapping("/productAndRatioNow")
+    public Result productAndRatioNow(@RequestParam int productId){
+        Consultant consultant=hostHolder.getConsultant();
+        //判断对象是否为空，若空返回未登录
+        if (consultant==null) {
+            return ResultGenerator.genFailResult(ResultCode.NOT_LOGGED_IN);
+        }
+        Map result=consultantService.selectProductAndRatioNow(consultant.getConsultantid(),productId);
+        return ResultGenerator.genSuccessResult(result);
+    }
+
 
 
     @ApiOperation("风险调仓操作")

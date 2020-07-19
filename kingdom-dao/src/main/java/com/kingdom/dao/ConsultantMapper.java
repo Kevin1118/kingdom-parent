@@ -5,6 +5,8 @@ import com.kingdom.pojo.ConsultantRecord;
 import com.kingdom.pojo.SignAccount;
 
 import java.util.List;
+import com.kingdom.pojo.FundAlternate;
+import com.kingdom.pojo.StockAlternate;
 
 /**
  *
@@ -103,4 +105,19 @@ public interface ConsultantMapper {
     int selectCountsByStatus(int consultantId,int status);
 
     int selectRecordCounts(int consultantId,int status);
+    /**
+     * 查询基金现值
+     * @param code
+     * @return
+     */
+    FundAlternate selectFundValue(String code);
+
+    /**
+     * 查询股票现值
+     * @param code
+     * @return
+     */
+    StockAlternate selectStockValue(String code);
+
+
 }

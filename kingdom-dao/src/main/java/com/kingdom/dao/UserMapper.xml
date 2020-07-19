@@ -131,6 +131,12 @@
         where signAccountId=#{signaccountid}
     </update>
 
+    <select id="selectAccountByProductID" parameterType="java.lang.Integer" resultType="com.kingdom.pojo.SignAccount">
+        select s.signAccountId
+        from `sign_account` s
+        where s.productId=#{productid}
+    </select>
+
 
     <select id="selectPropertyByUserId" parameterType="java.lang.Integer" resultType="com.kingdom.pojo.Property">
         select
@@ -143,7 +149,7 @@
 
     <select id="selectOrderByOrderId" parameterType="java.lang.String" resultType="com.kingdom.pojo.Order">
         select
-        o.sum,o.productId
+        o.sum,o.productId,transactionDate,status
         from
         `order` o
         where o.orderId = #{orderId,jdbcType=VARCHAR}

@@ -1,5 +1,7 @@
 package com.kingdom.result;
 
+import org.omg.PortableInterceptor.USER_EXCEPTION;
+
 /**
  * 响应结果生成工具
  * @author hjc
@@ -38,4 +40,5 @@ public class ResultGenerator {
                 .setCode(code)
                 .setMessage(DEFAULT_FAIL_MESSAGE);
     }
+
 }
