@@ -7,4 +7,5 @@ import java.io.Serializable;
 @Data
 public class TopUpDTO implements Serializable {
     private double topUpMoney;
+    private double withdrawMoney;
 }

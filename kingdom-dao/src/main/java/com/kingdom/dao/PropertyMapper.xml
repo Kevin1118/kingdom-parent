@@ -10,4 +10,10 @@
     <select id="loadProperty" resultType="com.kingdom.pojo.Property">
         select * from property where orderId=#{orderId}
     </select>
+
+    <select id="selectPropertyByAccountNo" resultType="com.kingdom.pojo.Property">
+        select *
+        from property
+        where signAccountId=#{accountno}
+    </select>
 </mapper>

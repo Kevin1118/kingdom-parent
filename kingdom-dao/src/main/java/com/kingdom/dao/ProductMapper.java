@@ -122,4 +122,18 @@ public interface ProductMapper {
 
 
 
+    /**
+     * 查询股票名称及其所占比例返 根据产品id
+     * @param productId 产品id
+     * @return List 股票产品详情
+     */
+    List<ProductStockDetail> selectStockFromDetail(Integer productId);
+
+    /**
+     * 查询基金名称及其所占比例返 根据产品id
+     * @param productId 产品id
+     * @return List 基金产品详情
+     */
+    List<ProductFundDetail> selectFundFromDetail(Integer productId);
+
 }

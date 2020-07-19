@@ -24,4 +24,10 @@ public interface PropertyMapper {
      */
     List<Property> loadProperty(String orderId);
 
+    /**
+     *
+     * @return
+     */
+    List<Property> selectPropertyByAccountNo(Integer accountno);
+
 }

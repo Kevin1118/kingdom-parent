@@ -140,8 +140,21 @@ public interface ConsultantService {
     Map selectRiskList(int consultantId);
 
     /**
-     *
+     * 返回原计划产品及产品内股票-基金比例
+     * @param consultantId
+     * @return 投顾人对应的产品
      */
+    Map selectProductAndRatio(int consultantId);
+
+    /**
+     * 返回真实产品成分占比
+     * @param consultantId
+     * @param productId
+     * @return
+     */
+    Map selectProductAndRatioNow(int consultantId,int productId);
+
+
 
 
 }

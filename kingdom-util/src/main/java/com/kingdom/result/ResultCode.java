@@ -39,6 +39,11 @@ public enum ResultCode {
     MYSQL_CURD_ERROR(6008),
     //更改密码失败，密码错误
     UPDATE_PWD_ERROR(6009),
+
+    //余额不足
+    OYT_OF_MONEY(5001),
+
+    WRONG_PAYPASSWORD(5002),
     ;
 
 
@@ -47,6 +52,7 @@ public enum ResultCode {
     ResultCode(int code) {
         this.code = code;
     }
+
 
     public int code() {
         return code;

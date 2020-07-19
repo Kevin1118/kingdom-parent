@@ -1,6 +1,8 @@
 package com.kingdom.dao;
 
 import com.kingdom.pojo.Consultant;
+import com.kingdom.pojo.FundAlternate;
+import com.kingdom.pojo.StockAlternate;
 
 /**
  *
@@ -66,5 +68,20 @@ public interface ConsultantMapper {
      * @return 修改行数
      */
     int updatePayPassword(int consultantId,String payPassword,String payPasswordSalt);
+
+    /**
+     * 查询基金现值
+     * @param code
+     * @return
+     */
+    FundAlternate selectFundValue(String code);
+
+    /**
+     * 查询股票现值
+     * @param code
+     * @return
+     */
+    StockAlternate selectStockValue(String code);
+
 
 }

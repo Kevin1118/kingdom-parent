@@ -24,49 +24,46 @@
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/user" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/Kevin_branch" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/kingdom-dto/src/main/java/com/kingdom/dto/user/OrderDetailDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kingdom-dto/src/main/java/com/kingdom/dto/user/OrderDetailValueNowAllDTO.java" afterDir="false" />
+    <list default="true" id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="新增收益明细及持仓详情">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_6_30_12_37__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_6_30_12_37__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2020_7_13_19_36__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2020_7_13_19_36__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-consultant-service/src/main/java/com/kingdom/consultant/service/impl/ConsultantServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-consultant-service/src/main/java/com/kingdom/consultant/service/impl/ConsultantServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-consultant-web/src/main/java/com/kingdom/consultant/web/ConsultantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-consultant-web/src/main/java/com/kingdom/consultant/web/ConsultantController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ConsultantMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ConsultantMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ConsultantMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ConsultantMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ProductMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ProductMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/ProductMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/PropertyMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/PropertyMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/PropertyMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/PropertyMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/UserMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dao/src/main/java/com/kingdom/dao/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-dto/src/main/java/com/kingdom/dto/user/TopUpDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-dto/src/main/java/com/kingdom/dto/user/TopUpDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kingdom-interface/src/main/java/com/kingdom/interfaceservice/consultant/ConsultantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-interface/src/main/java/com/kingdom/interfaceservice/consultant/ConsultantService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kingdom-interface/src/main/java/com/kingdom/interfaceservice/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-interface/src/main/java/com/kingdom/interfaceservice/user/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kingdom-user-service/src/main/java/com/kingdom/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-user-service/src/main/java/com/kingdom/user/service/impl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kingdom-user-web/src/main/java/com/kingdom/user/web/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-user-web/src/main/java/com/kingdom/user/web/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/commonutils/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/commonutils/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/result/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/result/Result.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/result/ResultCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/result/ResultCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/result/ResultGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-util/src/main/java/com/kingdom/result/ResultGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kingdom-vojo/src/main/java/com/kingdom/vojo/user/UserVoShowDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/kingdom-vojo/src/main/java/com/kingdom/vojo/user/CardNumber.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <option name="HIDDEN_KINDS">
-      <set />
-    </option>
-    <expand />
-    <select />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Tag Library Descriptor" />
-        <option value="FxmlFile" />
-        <option value="spring-beans.schema" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -79,11 +76,33 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/Kevin1118/kingdom-parent" />
+      </set>
+    </option>
+  </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
     <exe-path />
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\Users\77564\.m2\repository" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../../../Program Files/apache-maven-3.6.1" />
+        <option name="outputLevel" value="DEBUG" />
+        <option name="userSettingsFile" value="C:\Program Files\apache-maven-3.6.1\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
   </component>
   <component name="ProjectId" id="1dNwP3O90Pczcs4n3PxG5IvFvrL" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -94,6 +113,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -103,38 +123,26 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../kingdom-data" />
-    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.27941176" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-  </component>
-  <component name="ReactorSettings">
-    <option name="notificationShown" value="true" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\kevin\workspace\kingdom-parent\kingdom-interface\src\main\java\com\kingdom\interfaceservice" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.kingdom.pojo" />
-      <recent name="com.kingdom.product.service" />
-      <recent name="com.kingdom.product" />
       <recent name="com.kingdom.user" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.kingdom.user.service.impl" />
-      <recent name="com.kingdom.consultant.service.impl" />
+      <recent name="com.kingdom.result" />
       <recent name="com.kingdom.consultant" />
       <recent name="com.kingdom.user.web" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Administrator\Desktop\kingdom-parent\kingdom-dao\src\main\java\com\kingdom\dao" />
-      <recent name="C:\Users\Administrator\Desktop\kingdom-parent\kingdom-pojo\src\main\java\com\kingdom\pojo" />
+      <recent name="E:\workspace\kingdom-repo\kingdom-consultant-web\src\main\resources" />
+      <recent name="E:\workspace\kingdom-repo\kingdom-consultant-service\src\main\resources" />
+      <recent name="E:\workspace\kingdom-repo" />
       <recent name="C:\Users\kevin\workspace\kingdom-parent\kingdom-dao\src\main\java\com\kingdom\dao" />
       <recent name="C:\Users\kevin\workspace\kingdom-parent\kingdom-util\src\main\java\com\kingdom\result" />
-      <recent name="C:\Users\kevin\workspace\kingdom-parent\kingdom-interface\src\main\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -143,18 +151,8 @@
         <option value="SpringBootApplicationConfigurationType" />
       </set>
     </option>
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.KingdomUserServiceApplication">
+  <component name="RunManager" selected="Spring Boot.KingdomConsultantWebApplication">
     <configuration name="KingdomConsultantWebApplicationTests.testStrings" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="kingdom-consultant-web" />
       <extension name="coverage">
@@ -235,6 +233,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="KingdomUserWebApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="kingdom-user-web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.kingdom.user.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.user.KingdomUserWebApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="KingdomUserWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="kingdom-user-web" />
       <extension name="coverage">
@@ -248,114 +259,119 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="KingdomUtilApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="kingdom-util" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.KingdomUtilApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="KingdomVojoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="kingdom-vojo" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingdom.vojo.KingdomVojoApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="JUnit.KingdomConsultantWebApplicationTests.testStrings" />
       <item itemvalue="JUnit.KingdomUtilApplicationTests.contextLoads" />
-      <item itemvalue="Spring Boot.KingdomPojoApplication" />
-      <item itemvalue="Spring Boot.KingdomProductServiceApplication" />
-      <item itemvalue="Spring Boot.KingdomProductWebApplication" />
-      <item itemvalue="Spring Boot.KingdomConsultantWebApplication" />
       <item itemvalue="Spring Boot.KingdomConsultantServiceApplication" />
+      <item itemvalue="Spring Boot.KingdomConsultantWebApplication" />
+      <item itemvalue="Spring Boot.KingdomUtilApplication" />
+      <item itemvalue="Spring Boot.KingdomVojoApplication" />
+      <item itemvalue="Spring Boot.KingdomProductWebApplication" />
+      <item itemvalue="Spring Boot.KingdomProductServiceApplication" />
+      <item itemvalue="Spring Boot.KingdomPojoApplication" />
       <item itemvalue="Spring Boot.KingdomUserServiceApplication" />
       <item itemvalue="Spring Boot.KingdomUserWebApplication" />
+      <item itemvalue="Spring Boot.KingdomUserWebApplication (1)" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.KingdomUserWebApplication" />
         <item itemvalue="Spring Boot.KingdomUserServiceApplication" />
+        <item itemvalue="JUnit.KingdomUtilApplicationTests.contextLoads" />
+        <item itemvalue="JUnit.KingdomConsultantWebApplicationTests.testStrings" />
+        <item itemvalue="Spring Boot.KingdomUserWebApplication (1)" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="allServicesViewState">
-      <serviceView>
-        <option name="contentProportion" value="0.23709239" />
-        <treeState>
-          <expand>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@397eb59b" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@397eb59b" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@f36e6590" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-            </path>
-          </expand>
-          <select />
-        </treeState>
-      </serviceView>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
-    <task id="LOCAL-00001" summary="部署了redis">
-      <created>1593685579805</created>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="" />
+      <created>1592278831113</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1592278831113</updated>
+      <workItem from="1592278835532" duration="3259000" />
+      <workItem from="1592295836916" duration="14107000" />
+      <workItem from="1592361893531" duration="13301000" />
+      <workItem from="1592449165065" duration="4309000" />
+      <workItem from="1592642953945" duration="7691000" />
+      <workItem from="1592652156053" duration="5817000" />
+      <workItem from="1592707239606" duration="12010000" />
+      <workItem from="1592726456394" duration="350000" />
+      <workItem from="1592726890371" duration="10903000" />
+      <workItem from="1592792922147" duration="340000" />
+      <workItem from="1592832977403" duration="2571000" />
+      <workItem from="1593233621381" duration="212000" />
+      <workItem from="1593267767628" duration="4886000" />
+      <workItem from="1593311482505" duration="3568000" />
+      <workItem from="1593317722261" duration="4683000" />
+      <workItem from="1595077527154" duration="5050000" />
+      <workItem from="1595118632152" duration="24454000" />
+    </task>
+    <task id="LOCAL-00001" summary="新增投顾人模块，包含注册方法">
+      <created>1592633837802</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1593685579805</updated>
+      <updated>1592633837803</updated>
     </task>
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="6b5da52b-d946-4635-b8a9-a45d518c8e0f" name="Default Changelist" comment="部署了redis" />
-      <created>1593743029702</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1593743029702</updated>
-      <workItem from="1593743032624" duration="4947000" />
-      <workItem from="1594895058917" duration="17059000" />
-      <workItem from="1594978094228" duration="16320000" />
-      <workItem from="1595044888899" duration="7895000" />
-    </task>
-    <task id="LOCAL-00002" summary="redis部署">
-      <created>1594871122722</created>
+    <task id="LOCAL-00002" summary="新增投顾人登录模块">
+      <created>1592644683485</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1594871122722</updated>
+      <updated>1592644683485</updated>
     </task>
-    <task id="LOCAL-00003" summary="redis部署">
-      <created>1594871292320</created>
+    <task id="LOCAL-00003" summary="尝试合并">
+      <created>1592646657345</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1594871292320</updated>
+      <updated>1592646657345</updated>
     </task>
-    <task id="LOCAL-00004" summary="redis部署">
-      <created>1594872946450</created>
+    <task id="LOCAL-00004" summary="无用">
+      <created>1592876123984</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1594872946450</updated>
+      <updated>1592876123984</updated>
     </task>
-    <task id="LOCAL-00005" summary="卖出接口修改，新增银行卡信息加载。。。">
-      <created>1594915837034</created>
+    <task id="LOCAL-00005" summary="Controller层配置解决了跨域问题">
+      <created>1592835086179</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1594915837034</updated>
+      <updated>1592835086179</updated>
     </task>
-    <task id="LOCAL-00006" summary="新增收益明细及持仓详情">
-      <created>1595000508259</created>
+    <task id="LOCAL-00006" summary="更新产品管理页面的接口">
+      <created>1593272591180</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1595000508260</updated>
+      <updated>1593272591180</updated>
     </task>
-    <task id="LOCAL-00007" summary="修改收益明细及持仓详情，新增productName字段">
-      <created>1595045756559</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1595045756559</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -368,103 +384,111 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/user" />
+                        <option value="origin/Kevin_branch" />
                       </list>
                     </value>
                   </entry>
                 </map>
               </option>
-              <option name="COLUMN_ORDER" />
             </State>
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="部署了redis" />
-    <MESSAGE value="redis部署" />
-    <MESSAGE value="卖出接口修改，新增银行卡信息加载。。。" />
-    <MESSAGE value="新增收益明细及持仓详情" />
-    <MESSAGE value="修改收益明细及持仓详情，新增productName字段" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改收益明细及持仓详情，新增productName字段" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/kingdom-parent" />
+      <path value="$PROJECT_DIR$/kingdom-repo" />
+    </ignored-roots>
+    <MESSAGE value="新增了product-web模块，在父依赖中引入" />
+    <MESSAGE value="新增了product-service模块，实现了两个接口" />
+    <MESSAGE value="新增产品接口，投资人登陆的demo" />
+    <MESSAGE value="更改了项目结构，部署了产品模块的demo接口" />
+    <MESSAGE value="Controller层配置解决了跨域问题" />
+    <MESSAGE value="更新产品管理页面的接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新产品管理页面的接口" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="574" y="117" key="#com.intellij.ide.util.MemberChooser" timestamp="1594905292566">
+    <state x="574" y="117" key="#com.intellij.ide.util.MemberChooser" timestamp="1595129926709">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="117" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1594905292566" />
-    <state x="147" y="65" key="DiffContextDialog" timestamp="1594872924432">
+    <state x="574" y="117" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1595129926709" />
+    <state x="499" y="158" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1595061473309">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="147" y="65" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1594872924432" />
-    <state width="1150" height="201" key="GridCell.Tab.0.bottom" timestamp="1594916236005">
+    <state x="499" y="158" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1595061473309" />
+    <state x="147" y="65" key="DiffContextDialog" timestamp="1595118746680">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1150" height="201" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1594916236005" />
-    <state width="1150" height="201" key="GridCell.Tab.0.center" timestamp="1594916236005">
+    <state x="147" y="65" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1595118746680" />
+    <state x="707" y="165" key="FileChooserDialogImpl" timestamp="1595083269079">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1150" height="201" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1594916236005" />
-    <state width="1150" height="201" key="GridCell.Tab.0.left" timestamp="1594916236005">
+    <state x="707" y="165" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1595083269079" />
+    <state width="1150" height="291" key="GridCell.Tab.0.bottom" timestamp="1595145634387">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1150" height="201" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1594916236005" />
-    <state width="1150" height="201" key="GridCell.Tab.0.right" timestamp="1594916236005">
+    <state width="1150" height="291" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1595145634387" />
+    <state width="1150" height="291" key="GridCell.Tab.0.center" timestamp="1595145634387">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1150" height="201" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1594916236005" />
-    <state width="1150" height="201" key="GridCell.Tab.1.bottom" timestamp="1594916236005">
+    <state width="1150" height="291" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1595145634387" />
+    <state width="1150" height="291" key="GridCell.Tab.0.left" timestamp="1595145634387">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1150" height="201" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1594916236005" />
-    <state width="1150" height="201" key="GridCell.Tab.1.center" timestamp="1594916236005">
+    <state width="1150" height="291" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1595145634387" />
+    <state width="1150" height="291" key="GridCell.Tab.0.right" timestamp="1595145634387">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1150" height="201" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1594916236005" />
-    <state width="1150" height="201" key="GridCell.Tab.1.left" timestamp="1594916236005">
+    <state width="1150" height="291" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1595145634387" />
+    <state width="1150" height="291" key="GridCell.Tab.1.bottom" timestamp="1595145634387">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1150" height="201" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1594916236005" />
-    <state width="1150" height="201" key="GridCell.Tab.1.right" timestamp="1594916236005">
+    <state width="1150" height="291" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1595145634387" />
+    <state width="1150" height="291" key="GridCell.Tab.1.center" timestamp="1595145634387">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1150" height="201" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1594916236005" />
-    <state width="1150" height="209" key="GridCell.Tab.2.bottom" timestamp="1594896618556">
+    <state width="1150" height="291" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1595145634387" />
+    <state width="1150" height="291" key="GridCell.Tab.1.left" timestamp="1595145634387">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1150" height="209" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1594896618556" />
-    <state width="1150" height="209" key="GridCell.Tab.2.center" timestamp="1594896618556">
+    <state width="1150" height="291" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1595145634387" />
+    <state width="1150" height="291" key="GridCell.Tab.1.right" timestamp="1595145634387">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1150" height="209" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1594896618556" />
-    <state width="1150" height="209" key="GridCell.Tab.2.left" timestamp="1594896618556">
+    <state width="1150" height="291" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1595145634387" />
+    <state width="1150" height="378" key="GridCell.Tab.2.bottom" timestamp="1595040714493" />
+    <state width="1150" height="378" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1595040714493" />
+    <state width="1150" height="378" key="GridCell.Tab.2.center" timestamp="1595040714493" />
+    <state width="1150" height="378" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1595040714493" />
+    <state width="1150" height="378" key="GridCell.Tab.2.left" timestamp="1595040714493" />
+    <state width="1150" height="378" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1595040714493" />
+    <state width="1150" height="378" key="GridCell.Tab.2.right" timestamp="1595040714493" />
+    <state width="1150" height="378" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1595040714493" />
+    <state x="270" y="56" key="SettingsEditor" timestamp="1595040714493" />
+    <state x="270" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1595040714493" />
+    <state x="494" y="199" key="git4idea.merge.GitMergeDialog" timestamp="1595084342028">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1150" height="209" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1594896618556" />
-    <state width="1150" height="209" key="GridCell.Tab.2.right" timestamp="1594896618556">
+    <state x="494" y="199" key="git4idea.merge.GitMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1595084342028" />
+    <state x="460" y="199" key="git4idea.merge.GitPullDialog" timestamp="1595084329947">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1150" height="209" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1594896618556" />
-    <state x="270" y="56" key="SettingsEditor" timestamp="1594870950443">
+    <state x="460" y="199" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1595084329947" />
+    <state x="505" y="257" key="git4idea.ui.GitUnstashDialog" timestamp="1595118732029">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="270" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1594870950443" />
-    <state x="361" y="131" key="Vcs.Push.Dialog.v2" timestamp="1594915840623">
+    <state x="505" y="257" key="git4idea.ui.GitUnstashDialog/0.0.1536.824@0.0.1536.824" timestamp="1595118732029" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1595142809421">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="131" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1594915840623" />
-    <state x="520" y="199" key="git4idea.merge.GitMergeDialog" timestamp="1594901528359">
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1595142809421" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1595126006906">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="520" y="199" key="git4idea.merge.GitMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1594901528359" />
-    <state x="460" y="199" key="git4idea.merge.GitPullDialog" timestamp="1594915753550">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="460" y="199" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1594915753550" />
-    <state x="505" y="257" key="git4idea.ui.GitUnstashDialog" timestamp="1594872888671">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="505" y="257" key="git4idea.ui.GitUnstashDialog/0.0.1536.824@0.0.1536.824" timestamp="1594872888671" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1595126006906" />
   </component>
 </project>
